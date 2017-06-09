@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D26C5C5C-1472-43CB-B43C-C03913248402}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatColonia.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatEstado.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatMunicipio.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatPais.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatRoles.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Citas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CobroConsulta.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consultorios.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultoriosTipos.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Core.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Core.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CostosConsultasFijas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\StoredProcedureRepository.cs" />
+    <Compile Include="DatosGeneralesES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatosViviendaES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DependientesEconomicosES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dias.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisponibilidadConsultorios.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisponibilidadPsicoterapeuta.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomicilioES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstatusCitas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstudioSocioeconomico.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fechas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getCredencialesUsuario_Result.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioPsicoterapeuta.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Horarios.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InformacionBienesES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\GenericRepository.cs" />
+    <Compile Include="Infrastructure\IGenericRepository.cs" />
+    <Compile Include="Infrastructure\SingletonDBContext.cs" />
+    <Compile Include="Logs.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuUsuario.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagoTerapeutas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Psicoterapeuta.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\CatColoniaRepository.cs" />
+    <Compile Include="Repositories\CatEstadoRepository.cs" />
+    <Compile Include="Repositories\CatMunicipioRepository.cs" />
+    <Compile Include="Repositories\CatPaisRepository.cs" />
+    <Compile Include="Repositories\CatRolesRepository.cs" />
+    <Compile Include="Repositories\CitasRepository.cs" />
+    <Compile Include="Repositories\CobroConsultaRepository.cs" />
+    <Compile Include="Repositories\ConsultoriosRepository.cs" />
+    <Compile Include="Repositories\ConsultoriosTiposRepository.cs" />
+    <Compile Include="Repositories\CostosConsultasFijasRepository.cs" />
+    <Compile Include="Repositories\DatosGeneralesESRepository.cs" />
+    <Compile Include="Repositories\DatosViviendaESRepository.cs" />
+    <Compile Include="Repositories\DependientesEconomicosESRepository.cs" />
+    <Compile Include="Repositories\DiasRepository.cs" />
+    <Compile Include="Repositories\DisponibilidadConsultoriosRepository.cs" />
+    <Compile Include="Repositories\DisponibilidadPsicoterapeutaRepository.cs" />
+    <Compile Include="Repositories\DomicilioESRepository.cs" />
+    <Compile Include="Repositories\EstatusCitasRepository.cs" />
+    <Compile Include="Repositories\EstudioSocioeconomicoRepository.cs" />
+    <Compile Include="Repositories\FechasRepository.cs" />
+    <Compile Include="Repositories\HorarioPsicoterapeutaRepository.cs" />
+    <Compile Include="Repositories\HorariosRepository.cs" />
+    <Compile Include="Repositories\InformacionBienesESRepository.cs" />
+    <Compile Include="Repositories\LogsRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\MenuUsuarioRepository.cs" />
+    <Compile Include="Repositories\PacientesRepository.cs" />
+    <Compile Include="Repositories\PagoTerapeutasRepository.cs" />
+    <Compile Include="Repositories\PermisosRepository.cs" />
+    <Compile Include="Repositories\PsicoterapeutaRepository.cs" />
+    <Compile Include="Repositories\ResultadosNivelSocioEconomicoRepository.cs" />
+    <Compile Include="Repositories\SaldoIcerpRepository.cs" />
+    <Compile Include="Repositories\TipoAccionRepository.cs" />
+    <Compile Include="Repositories\TipoAreasRepository.cs" />
+    <Compile Include="Repositories\TipoConsultorioRepository.cs" />
+    <Compile Include="Repositories\TipoCoutaRepository.cs" />
+    <Compile Include="Repositories\TipoPacienteRepository.cs" />
+    <Compile Include="Repositories\TipoPagoRepository.cs" />
+    <Compile Include="Repositories\TipoTrastornoRepository.cs" />
+    <Compile Include="Repositories\TrabajoActualESRepository.cs" />
+    <Compile Include="Repositories\TurnosRepository.cs" />
+    <Compile Include="Repositories\TutoresRepository.cs" />
+    <Compile Include="Repositories\UsuariosRepository.cs" />
+    <Compile Include="ResultadosNivelSocioEconomico.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaldoIcerp.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spObtenerDetallesConsultorios_Result.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoAccion.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoAreas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoConsultorio.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoCouta.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPaciente.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPago.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoTrastorno.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrabajoActualES.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tutores.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Core.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Core.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Core.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Core.edmx</DependentUpon>
+      <LastGenOutput>Core.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Core.edmx.diagram">
+      <DependentUpon>Core.edmx</DependentUpon>
+    </None>
+    <None Include="Core.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Core.edmx</DependentUpon>
+      <LastGenOutput>Core.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoggerUtility\LoggerUtility.csproj">
+      <Project>{d48de1b6-2b18-4d92-87db-984b77bcec03}</Project>
+      <Name>LoggerUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
