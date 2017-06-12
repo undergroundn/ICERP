@@ -28,9 +28,17 @@ namespace ICERP.Catalogos
         [WebMethod]
         public static string obtenerConsultorios()
         {
-            var spr = new Model.CustomModel.StoredProcedureRepository();
-            var consultorios = spr.ObtenerDetallesConsultorios().Select(c => new {c.IdConsultorio, c.NombreConsultorio, c.Planta, c.TipoConsultorio, c.UsuarioRegistro, FechaRegistro = c.FechaRegistro.ToString("dd/MM/yyyy"), Activo = c.Activo ? "Si" : "No"});
-            return new JavaScriptSerializer().Serialize(consultorios);
+            try
+            {
+                var spr = new Model.CustomModel.StoredProcedureRepository();
+                var consultorios = spr.ObtenerDetallesConsultorios().Select(c => new { c.IdConsultorio, c.NombreConsultorio, c.Planta, c.TipoConsultorio, c.UsuarioRegistro, FechaRegistro = c.FechaRegistro.ToString("dd/MM/yyyy"), Activo = c.Activo ? "Si" : "No" });
+                return new JavaScriptSerializer().Serialize(consultorios);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         [WebMethod]
@@ -46,6 +54,23 @@ namespace ICERP.Catalogos
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
+
+        [WebMethod]
+        public static string obtenerDatosConsultorio(int IdConsultorio)
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var consultorio = uow.ConsultoriosRepository.GetSingle(IdConsultorio);
+                var resultado = new { consultorio.ID, consultorio.Nombre, consultorio.Planta, consultorio.Activo, Tipos = consultorio.ConsultoriosTipos.Select(c => c.IdTipo) };
+                return new JavaScriptSerializer().Serialize(resultado);
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

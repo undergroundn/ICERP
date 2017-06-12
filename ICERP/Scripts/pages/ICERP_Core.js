@@ -21,6 +21,16 @@ var ICERP_Core = {
         $.unblockUI();
     },
 
+    mostrarMensaje: function(mensaje, tipo) {
+        BootstrapDialog.alert({
+            title: 'Notificación',
+            message: mensaje,
+            type: tipo,
+            closable: true,
+            buttonLabel: 'Aceptar'
+        });
+    },
+
     llamarAjax: function (url, parametros, funcion) {
         if (parametros == null) {
             $.ajax({
