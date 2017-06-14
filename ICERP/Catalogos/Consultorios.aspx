@@ -93,10 +93,33 @@
             });
         }
 
+        //Resultado de la llamada a Consultorios.aspx/obtenerDatosConsultorio
         function mostrarDatosConsultorio(resultado) {
             var consultorio = JSON.parse(resultado);
             $("#txtNombreConsultorioEd").val(consultorio.Nombre);
-            $("#sltPlantaEd").val();
+            $("#sltPlantaEd").val(+consultorio.Planta);
+            $("#chkTerapiasEd").prop("checked", false);
+            $("#chkCursosEd").prop("checked", false);
+            $.each(consultorio.Tipos, function(index, value) {
+                if (value == 1) {
+                    $("#chkTerapiasEd").prop("checked", true);
+                    $("#chkTerapiasEd").removeClass("flat-red").addClass("flat-red");
+                    //$("#chkTerapiasEd").iCheck();
+                    
+                }
+                if (value == 2) {
+                    $("#chkCursosEd").prop("checked", true);
+                    $("#chkCursosEd").removeClass("flat-red").addClass("flat-red");
+                }
+            });
+            $("#chkActivoEd").prop("checked", false);
+            if (consultorio.Activo) {
+                $("#chkActivoEd").prop("checked", true);
+                $("#chkActivoEd").removeClass("flat-red").addClass("flat-red");
+            }
+            $('#mdlEditarConsultorio input[type="checkbox"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-red'
+            });
             $("#mdlEditarConsultorio").modal("show");
         }
 
@@ -223,15 +246,15 @@
                                 <label>Tipo</label>
                                 <br />
                                 <div id="divTipoConsultoriosEd" style="display: inline-block;">
-                                    <input id="chkTerapiasEd" value="1" type="checkbox" class="flat-red tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
+                                    <input id="chkTerapiasEd" value="1" type="checkbox" class="tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
                                     <span style="margin-right: 20px">Terapias</span>
-                                    <input id="chkCursosEd" value="2" type="checkbox" class="flat-red tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
+                                    <input id="chkCursosEd" value="2" type="checkbox" class="tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
                                     <span style="margin-right: 20px">Cursos</span>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group">
-                                <input id="chkActivoEd" type="checkbox" class="flat-red" />
+                                <input id="chkActivoEd" type="checkbox" />
                                 <span style="margin-right: 20px">Activo</span>
                             </div>
                         </div>
