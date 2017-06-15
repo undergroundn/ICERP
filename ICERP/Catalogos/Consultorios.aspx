@@ -22,7 +22,15 @@
                 guardarConsultorio();
             });
 
-
+            $("#btnEditarConsultorio").click(function(ev) {
+                var isValid = ICERP_Core.validarFormulario('editarConsultorio');
+                if (!isValid) {
+                    ICERP_Core.reiniciarValidación('editarConsultorio');
+                    ev.preventDefault();
+                    return;
+                }
+                actualizarConsultorio();
+            });
         });
 
         //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
@@ -76,7 +84,7 @@
             ICERP_Core.llamarAjax("Consultorios.aspx/guardarConsultorio", "{ 'consultorio': " + JSON.stringify(consultorio) + "}", "consultorioGuardado");
         }
 
-        //Resultado de la llamada a Consultorios.aspx/guardarConsultorio
+        //Resultado de la llamada a Consultorios.aspx/guardarConsultorio de la función "guardarConsultorio"
         function consultorioGuardado() {
             $('#tblConsultorios').DataTable().destroy();
             ICERP_Core.llamarAjax("Consultorios.aspx/obtenerConsultorios", null, "crearTablaConsultorios");
@@ -93,19 +101,17 @@
             });
         }
 
-        //Resultado de la llamada a Consultorios.aspx/obtenerDatosConsultorio
+        //Resultado de la llamada a Consultorios.aspx/obtenerDatosConsultorio de la función "clickEditarConsultorio"
         function mostrarDatosConsultorio(resultado) {
             var consultorio = JSON.parse(resultado);
             $("#txtNombreConsultorioEd").val(consultorio.Nombre);
             $("#sltPlantaEd").val(+consultorio.Planta);
             $("#chkTerapiasEd").prop("checked", false);
             $("#chkCursosEd").prop("checked", false);
-            $.each(consultorio.Tipos, function(index, value) {
+            $.each(consultorio.Tipos, function (index, value) {
                 if (value == 1) {
                     $("#chkTerapiasEd").prop("checked", true);
                     $("#chkTerapiasEd").removeClass("flat-red").addClass("flat-red");
-                    //$("#chkTerapiasEd").iCheck();
-                    
                 }
                 if (value == 2) {
                     $("#chkCursosEd").prop("checked", true);
@@ -120,10 +126,15 @@
             $('#mdlEditarConsultorio input[type="checkbox"].flat-red').iCheck({
                 checkboxClass: 'icheckbox_flat-red'
             });
+            $("#mdlEditarConsultorio").validationEngine("hideAll");
             $("#mdlEditarConsultorio").modal("show");
         }
 
+        function actualizarConsultorio() {
 
+        }
+
+        //funcion personalizada para validar alta de consultorios
         function verificarTipoConsultorio(field, rules, i, options) {
             var chkTerapias = $("#chkTerapias").prop('checked');
             var chkCursos = $("#chkCursos").prop('checked');
@@ -135,7 +146,19 @@
             }
         }
         
-        
+        //funcion personalizada para validar edición de consultorios
+        function verificarTipoConsultorioEd(field, rules, i, options) {
+            var chkTerapias = $("#chkTerapiasEd").prop('checked');
+            var chkCursos = $("#chkCursosEd").prop('checked');
+            if (!chkTerapias && !chkCursos) {
+                $("#divTipoConsultoriosEd").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
+                options.isError = true;
+            } else {
+                $('#divTipoConsultoriosEd').validationEngine('hide');
+            }
+        }
+
+
     </script>
 </asp:Content>
 <asp:Content ID="consultorioBodyContent" ContentPlaceHolderID="bodyContent" runat="server">
@@ -225,7 +248,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-                    <h4 class="modal-title" id="myModalLabel1">Editar Consultorio</h4>
+                    <h4 class="modal-title" id="myModalLabel1"><strong>Editar Consultorio</strong></h4>
                 </div>
                 <div class="modal-body">
                     <div>
@@ -257,13 +280,18 @@
                                 <input id="chkActivoEd" type="checkbox" />
                                 <span style="margin-right: 20px">Activo</span>
                             </div>
+                            <input id="hdnIdConsultorio" type="hidden" />
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cerrar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnEditarConsultorio">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;Actualizar
+                    </button>
                 </div>
             </div>
         </div>
