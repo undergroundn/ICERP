@@ -104,6 +104,7 @@
         //Resultado de la llamada a Consultorios.aspx/obtenerDatosConsultorio de la función "clickEditarConsultorio"
         function mostrarDatosConsultorio(resultado) {
             var consultorio = JSON.parse(resultado);
+            $("#hdnIdConsultorio").val(consultorio.ID);
             $("#txtNombreConsultorioEd").val(consultorio.Nombre);
             $("#sltPlantaEd").val(+consultorio.Planta);
             $("#chkTerapiasEd").prop("checked", false);
@@ -131,7 +132,37 @@
         }
 
         function actualizarConsultorio() {
+            var idConsultorio = Number($("#hdnIdConsultorio").val());
+            var nombre = $("#txtNombreConsultorioEd").val();
+            var planta = ($("#sltPlantaEd").val() == "1");
+            var activo = $("#chkActivoEd").prop('checked');
 
+            var consultorio = new Object();
+            consultorio.ID = idConsultorio;
+            consultorio.Nombre = nombre;
+            consultorio.Planta = planta;
+            consultorio.Activo = activo;
+            consultorio.ConsultoriosTipos = [];
+
+            $(".tiposConsultoriosEd").each(function () {
+                var checked = $(this).prop('checked');
+                if (checked) {
+                    var idTipo = Number($(this).val());
+                    var consultorioTipo = new Object();
+                    consultorioTipo.IdTipo = idTipo;
+                    consultorio.ConsultoriosTipos.push(consultorioTipo);
+                }
+            });
+
+            ICERP_Core.bloquearPantalla();
+            ICERP_Core.llamarAjax("Consultorios.aspx/actualizarConsultorio", "{ 'consultorio': " + JSON.stringify(consultorio) + "}", "consultorioActualizado");
+        }
+
+        function consultorioActualizado() {
+            $('#tblConsultorios').DataTable().destroy();
+            ICERP_Core.llamarAjax("Consultorios.aspx/obtenerConsultorios", null, "crearTablaConsultorios");
+            ICERP_Core.desbloquearPantalla();
+            ICERP_Core.mostrarMensaje("Se actualizó el consultorio satisfactoriamente", "type-success");
         }
 
         //funcion personalizada para validar alta de consultorios
@@ -269,9 +300,9 @@
                                 <label>Tipo</label>
                                 <br />
                                 <div id="divTipoConsultoriosEd" style="display: inline-block;">
-                                    <input id="chkTerapiasEd" value="1" type="checkbox" class="tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
+                                    <input id="chkTerapiasEd" value="1" type="checkbox" class="tiposConsultoriosEd validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
                                     <span style="margin-right: 20px">Terapias</span>
-                                    <input id="chkCursosEd" value="2" type="checkbox" class="tiposConsultorios validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
+                                    <input id="chkCursosEd" value="2" type="checkbox" class="tiposConsultoriosEd validate[funcCall[verificarTipoConsultorioEd]]" validgroup="editarConsultorio" />
                                     <span style="margin-right: 20px">Cursos</span>
                                 </div>
                             </div>

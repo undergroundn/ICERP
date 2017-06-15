@@ -74,5 +74,31 @@ namespace ICERP.Catalogos
                 throw;
             }
         }
+
+        [WebMethod]
+        public static void actualizarConsultorio(Model.Consultorios consultorio)
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+
+                var consultorioEditar = uow.ConsultoriosRepository.GetSingle(consultorio.ID);
+                consultorioEditar.Nombre = consultorio.Nombre;
+                consultorioEditar.Planta = consultorio.Planta;
+                consultorioEditar.Activo = consultorio.Activo;
+                consultorioEditar.ConsultoriosTipos.Clear();
+                
+                //consultorioEditar.ConsultoriosTipos.Remove()
+                uow.ConsultoriosRepository.UpdateSingle(consultorioEditar);
+
+                
+
+                uow.Save();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
