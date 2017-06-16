@@ -44,5 +44,10 @@ namespace Model.Repositories
         {
             Edit(single);
         }
+
+        public void DeleteSingle(ConsultoriosTipos single)
+        {
+            Delete(single);
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace Model
         public short ID { get; set; }
         public string Tipo { get; set; }
         public bool Activo { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual ICollection<ConsultoriosTipos> ConsultoriosTipos { get; set; }
     }

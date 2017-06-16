@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    ICERP_Core.llamarAjax("Consultorios.aspx/obtenerTiposConsultorios", null, "crearControlTiposConsultorios");
+
     ICERP_Core.llamarAjax("Consultorios.aspx/obtenerConsultorios", null, "crearTablaConsultorios");
 
     $("#btnRegistrarConsultorio").click(function (ev) {
@@ -23,13 +25,29 @@
     });
 });
 
+//Resultado de la llamada a Consultorios.aspx/obtenerTiposConsultorios
+function crearControlTiposConsultorios(resultado) {
+    var contenido = JSON.parse(resultado);
+    $.each(contenido, function (index, item) {
+        var checkBoxAd = "<input id=\"chk" + item.Tipo + "Ad\" value=\"" + item.ID + "\" type=\"checkbox\" class=\"flat-red tiposConsultorios validate[funcCall[verificarTipoConsultorio]]\" validgroup=\"registrarConsultorio\" />" +
+                            "<span style=\"margin-right: 20px\">" + item.Tipo + "</span>";
+        $("#divTipoConsultorios").append(checkBoxAd);
+        var checkBoxEd = "<input id=\"chk" + item.Tipo + "Ed\" value=\"" + item.ID + "\" type=\"checkbox\" class=\"flat-red tiposConsultoriosEd validate[funcCall[verificarTipoConsultorioEd]]\" validgroup=\"editarConsultorio\" />" +
+                            "<span style=\"margin-right: 20px\">" + item.Tipo + "</span>";
+        $("#divTipoConsultoriosEd").append(checkBoxEd);
+    });
+    $('#divTipoConsultorios input[type="checkbox"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-red'
+    });
+}
+
 //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
 function crearTablaConsultorios(resultado) {
     var contenido = JSON.parse(resultado);
     $('#tblConsultorios tbody').html("");
-    $.each(contenido, function (key, data) {
+    $.each(contenido, function (key, item) {
         var $tr = $('<tr>');
-        $.each(data, function (index, data) {
+        $.each(item, function (index, data) {
             $tr.append($('<td>').text(data));
         });
         $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnEditarConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
@@ -97,18 +115,17 @@ function mostrarDatosConsultorio(resultado) {
     $("#hdnIdConsultorio").val(consultorio.ID);
     $("#txtNombreConsultorioEd").val(consultorio.Nombre);
     $("#sltPlantaEd").val(+consultorio.Planta);
-    $("#chkTerapiasEd").prop("checked", false);
-    $("#chkCursosEd").prop("checked", false);
-    $.each(consultorio.Tipos, function (index, value) {
-        if (value == 1) {
-            $("#chkTerapiasEd").prop("checked", true);
-            $("#chkTerapiasEd").removeClass("flat-red").addClass("flat-red");
-        }
-        if (value == 2) {
-            $("#chkCursosEd").prop("checked", true);
-            $("#chkCursosEd").removeClass("flat-red").addClass("flat-red");
-        }
+
+    $('#divTipoConsultoriosEd input[type=checkbox]').each(function () {
+        $(this).prop("checked", false);
     });
+
+    $.each(consultorio.Tipos, function (index, value) {
+        var checkBox = $("#divTipoConsultoriosEd input[type=checkbox][value=" + value + "]");
+        $(checkBox).prop("checked", true);
+        $(checkBox).removeClass("flat-red").addClass("flat-red");
+    });
+
     $("#chkActivoEd").prop("checked", false);
     if (consultorio.Activo) {
         $("#chkActivoEd").prop("checked", true);
@@ -152,14 +169,21 @@ function consultorioActualizado() {
     $('#tblConsultorios').DataTable().destroy();
     ICERP_Core.llamarAjax("Consultorios.aspx/obtenerConsultorios", null, "crearTablaConsultorios");
     ICERP_Core.desbloquearPantalla();
+    $("#mdlEditarConsultorio").modal("hide");
     ICERP_Core.mostrarMensaje("Se actualizó el consultorio satisfactoriamente", "type-success");
 }
 
 //funcion personalizada para validar alta de consultorios
 function verificarTipoConsultorio(field, rules, i, options) {
-    var chkTerapias = $("#chkTerapias").prop('checked');
-    var chkCursos = $("#chkCursos").prop('checked');
-    if (!chkTerapias && !chkCursos) {
+    var valid = false;
+    $(".tiposConsultorios").each(function () {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            valid = true;
+            return false;
+        }
+    });
+    if (!valid) {
         $("#divTipoConsultorios").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
         options.isError = true;
     } else {
@@ -169,12 +193,18 @@ function verificarTipoConsultorio(field, rules, i, options) {
 
 //funcion personalizada para validar edición de consultorios
 function verificarTipoConsultorioEd(field, rules, i, options) {
-    var chkTerapias = $("#chkTerapiasEd").prop('checked');
-    var chkCursos = $("#chkCursosEd").prop('checked');
-    if (!chkTerapias && !chkCursos) {
-        $("#divTipoConsultoriosEd").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
+    var valid = false;
+    $(".tiposConsultoriosEd").each(function () {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            valid = true;
+            return false;
+        }
+    });
+    if (!valid) {
+        $("#divTipoConsultorios").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
         options.isError = true;
     } else {
-        $('#divTipoConsultoriosEd').validationEngine('hide');
+        $('#divTipoConsultorios').validationEngine('hide');
     }
 }

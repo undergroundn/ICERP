@@ -376,6 +376,8 @@
           <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoCouta">
           <Key>
@@ -2506,6 +2508,8 @@
           <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ConsultoriosTipos" Relationship="IcerpModel.FK_ConsultoriosTipos_TipoConsultorio" FromRole="TipoConsultorio" ToRole="ConsultoriosTipos" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ConsultoriosTipos">
           <Key>
@@ -3044,6 +3048,8 @@
           <EntitySetMapping Name="TipoConsultorio">
             <EntityTypeMapping TypeName="IcerpModel.TipoConsultorio">
               <MappingFragment StoreEntitySet="TipoConsultorio">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
