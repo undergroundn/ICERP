@@ -42,7 +42,7 @@ var ICERP_Core = {
                     window[funcion](data.d);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    
+                    this.mostrarMensaje("Se presentó un problema, contácte con el administrador del sitio.", "type-warning");
                 }
             });
         } else {
@@ -56,7 +56,7 @@ var ICERP_Core = {
                     window[funcion](data.d);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    
+                    this.mostrarMensaje("Se presentó un problema, contácte con el administrador del sitio.", "type-warning");
                 }
             });
         }

@@ -3,12 +3,10 @@
 <asp:Content ID="consultorioHeadContent" ContentPlaceHolderID="headContent" runat="server">
     <script src="../Scripts/pages/catalogos/consultorios.js"></script>
     <script type="text/javascript">
-        function PageLoad() {
-            $(".select2").select2();
-
-        };
 
         $(document).ready(function () {
+
+            ICERP_Core.llamarAjax("Consultorios.aspx/obtenerTiposConsultorios", null, "crearControlTiposConsultorios");
 
             ICERP_Core.llamarAjax("Consultorios.aspx/obtenerConsultorios", null, "crearTablaConsultorios");
 
@@ -22,7 +20,7 @@
                 guardarConsultorio();
             });
 
-            $("#btnEditarConsultorio").click(function(ev) {
+            $("#btnEditarConsultorio").click(function (ev) {
                 var isValid = ICERP_Core.validarFormulario('editarConsultorio');
                 if (!isValid) {
                     ICERP_Core.reiniciarValidación('editarConsultorio');
@@ -32,6 +30,19 @@
                 actualizarConsultorio();
             });
         });
+
+        //Resultado de la llamada a Consultorios.aspx/obtenerTiposConsultorios
+        function crearControlTiposConsultorios(resultado) {
+            var contenido = JSON.parse(resultado);
+            $.each(contenido, function(index, item) {
+                var checkBox =  "<input id=\"chk" + item.Tipo + item.ID + "\" value=\"" + item.ID + "\" type=\"checkbox\" class=\"flat-red tiposConsultorios validate[funcCall[verificarTipoConsultorio]]\" validgroup=\"registrarConsultorio\" />" +
+                                "<span style=\"margin-right: 20px\">" + item.Tipo + "</span>";
+                $("#divTipoConsultorios").append(checkBox);
+            });
+            $('#divTipoConsultorios input[type="checkbox"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-red'
+            });
+        }
 
         //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
         function crearTablaConsultorios(resultado) {
@@ -176,7 +187,7 @@
                 $('#divTipoConsultorios').validationEngine('hide');
             }
         }
-        
+
         //funcion personalizada para validar edición de consultorios
         function verificarTipoConsultorioEd(field, rules, i, options) {
             var chkTerapias = $("#chkTerapiasEd").prop('checked');

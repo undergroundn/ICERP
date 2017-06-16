@@ -6,6 +6,7 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ICERP.Utilities;
 using Model;
 using Model.UnitOfWork;
 using Newtonsoft.Json;
@@ -23,6 +24,22 @@ namespace ICERP.Catalogos
 
             var consultorios = _spr.ObtenerDetallesConsultorios();
 
+        }
+
+        [WebMethod]
+        public static string obtenerTiposConsultorios()
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var tiposConsultorios = uow.TipoConsultorioRepository.Get().Where(tc => tc.Activo).Select(tc => new { tc.ID, tc.Tipo });
+                return new JavaScriptSerializer().Serialize(tiposConsultorios);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [WebMethod]
@@ -47,7 +64,7 @@ namespace ICERP.Catalogos
             try
             {
                 var uow = new UnitOfWork();
-                consultorio.IdUsuarioRegistro = 1;
+                consultorio.IdUsuarioRegistro = Queries.GetCurrentUser().ID;
                 consultorio.FechaRegistro = DateTime.Now;
                 uow.ConsultoriosRepository.Add(consultorio);
                 uow.Save();
@@ -87,12 +104,11 @@ namespace ICERP.Catalogos
                 consultorioEditar.Planta = consultorio.Planta;
                 consultorioEditar.Activo = consultorio.Activo;
                 consultorioEditar.ConsultoriosTipos.Clear();
-                
-                //consultorioEditar.ConsultoriosTipos.Remove()
+                foreach (var consultorioTipo in consultorio.ConsultoriosTipos)
+                {
+                    consultorioEditar.ConsultoriosTipos.Add(new ConsultoriosTipos { IdTipo = consultorioTipo.IdTipo });
+                }
                 uow.ConsultoriosRepository.UpdateSingle(consultorioEditar);
-
-                
-
                 uow.Save();
             }
             catch (Exception ex)
