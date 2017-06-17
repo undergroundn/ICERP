@@ -1134,6 +1134,7 @@
     <Content Include="Scripts\jstree\jstree.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\catalogos\consultorios.js" />
+    <Content Include="Scripts\pages\estudiosocioeconomico.js" />
     <Content Include="Scripts\pages\ICERP_Core.js" />
     <Content Include="Scripts\pages\principal.js" />
     <Content Include="Scripts\respond.js" />
@@ -1420,7 +1421,6 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Utilities\Queries.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1431,6 +1431,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoggerUtility\LoggerUtility.csproj">
