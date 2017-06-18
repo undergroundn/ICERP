@@ -4,9 +4,34 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            ICERP_Core.llamarAjax("Consultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
         });
         
+        //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
+        function crearTablaTipoConsultorios(resultado) {
+            var contenido = JSON.parse(resultado);
+            $('#tblTiposConsultorios tbody').html("");
+            $.each(contenido, function (key, item) {
+                var $tr = $('<tr>');
+                $.each(item, function (index, data) {
+                    $tr.append($('<td>').text(data));
+                });
+                $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnEditarTipoConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
+                $tr.appendTo('#tblTiposConsultorios tbody');
+            });
+
+            $("#tblTiposConsultorios").DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                "responsive": true,
+                "columnDefs": [
+                    { "visible": false, "targets": 0 }
+                ]
+            });
+
+            //clickEditarTipoConsultorio();
+        }
 
     </script>
 </asp:Content>
@@ -50,6 +75,8 @@
                                     <tr>
                                         <th>IdTipoConsultorio</th>
                                         <th>Tipo</th>
+                                        <th>Registró</th>
+                                        <th>Fecha</th>
                                         <th>Activo</th>
                                         <th>Editar</th>
                                     </tr>

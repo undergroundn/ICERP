@@ -15,7 +15,7 @@ namespace ICERP.Catalogos
         private static readonly LoggerUtility.ILogger Log = LoggerUtility.Logger.GetInstance();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         [WebMethod]
@@ -27,11 +27,11 @@ namespace ICERP.Catalogos
                 var tiposConsultorios = uow.TipoConsultorioRepository.Get();
                 var usuarios = uow.UsuariosRepository.Get();
                 var consulta = from tc in tiposConsultorios
-                    join u in usuarios on tc.IdUsuario equals u.ID
-                    select new {tc.ID, tc.Tipo, tc.Activo, tc.FechaAlta, NombreUsuario = string.Format("{0} {1} {2}" + u.Nombres, u.ApPaterno, u.ApMaterno)};
+                               join u in usuarios on tc.IdUsuario equals u.ID
+                               select new { tc.ID, tc.Tipo, NombreUsuario = u.Nombres + " " + u.ApPaterno + " " + u.ApMaterno, FechaAlta = tc.FechaAlta.ToString("dd/MM/yyyy"), Activo = tc.Activo ? "Si" : "No" };
 
-                var resultado = uow.TipoConsultorioRepository.Get().Where(tc => tc.Activo).Select(tc => new { tc.ID, tc.Tipo });
-                //return new JavaScriptSerializer().Serialize(tiposConsultorios);
+                //var resultado = uow.TipoConsultorioRepository.Get().Where(tc => tc.Activo).Select(tc => new { tc.ID, tc.Tipo });
+                return new JavaScriptSerializer().Serialize(consulta);
             }
             catch (Exception ex)
             {
