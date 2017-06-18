@@ -5,6 +5,16 @@
 
         $(document).ready(function () {
             ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
+
+            $("#btnRegistrarTipoConsultorio").click(function (ev) {
+                var isValid = ICERP_Core.validarFormulario('registrarTipoConsultorio');
+                if (!isValid) {
+                    ICERP_Core.reiniciarValidación('registrarTipoConsultorio');
+                    ev.preventDefault();
+                    return;
+                }
+                guardarTipoConsultorio();
+            });
         });
         
         //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
@@ -31,6 +41,26 @@
             });
 
             //clickEditarTipoConsultorio();
+        }
+
+        function guardarTipoConsultorio() {
+            var nombre = $("#txtTipoConsultorio").val();
+            var activo = $("#chkActivo").prop('checked');
+
+            var tipoConsultorio = new Object();
+            tipoConsultorio.Tipo = nombre;
+            tipoConsultorio.Activo = activo;
+
+            ICERP_Core.bloquearPantalla();
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/guardarTipoConsultorio", "{ 'tipoConsultorio': " + JSON.stringify(tipoConsultorio) + "}", "tipoConsultorioGuardado");
+        }
+
+        //Resultado de la llamada a TipoConsultorios.aspx/guardarTipoConsultorio de la función "guardarTipoConsultorio"
+        function consultorioGuardado() {
+            $('#tblTiposConsultorios').DataTable().destroy();
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerConsultorios", null, "crearTablaTipoConsultorios");
+            ICERP_Core.desbloquearPantalla();
+            ICERP_Core.mostrarMensaje("Se almacenó el tipo de consultorio satisfactoriamente", "type-success");
         }
 
     </script>
