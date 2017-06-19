@@ -15,6 +15,16 @@
                 }
                 guardarTipoConsultorio();
             });
+
+            $("#btnEditarTipoConsultorio").click(function (ev) {
+                var isValid = ICERP_Core.validarFormulario('editarTipoConsultorio');
+                if (!isValid) {
+                    ICERP_Core.reiniciarValidación('editarTipoConsultorio');
+                    ev.preventDefault();
+                    return;
+                }
+                actualizarTipoConsultorio();
+            });
         });
         
         //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
@@ -40,7 +50,7 @@
                 ]
             });
 
-            //clickEditarTipoConsultorio();
+            clickEditarTipoConsultorio();
         }
 
         function guardarTipoConsultorio() {
@@ -56,11 +66,59 @@
         }
 
         //Resultado de la llamada a TipoConsultorios.aspx/guardarTipoConsultorio de la función "guardarTipoConsultorio"
-        function consultorioGuardado() {
+        function tipoConsultorioGuardado() {
             $('#tblTiposConsultorios').DataTable().destroy();
-            ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerConsultorios", null, "crearTablaTipoConsultorios");
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
             ICERP_Core.desbloquearPantalla();
             ICERP_Core.mostrarMensaje("Se almacenó el tipo de consultorio satisfactoriamente", "type-success");
+        }
+
+        function clickEditarTipoConsultorio() {
+            $(".btnEditarTipoConsultorio").click(function () {
+                var row = $(this).closest('tr');
+                var data = $('#tblTiposConsultorios').dataTable().fnGetData(row);
+                var idTipoConsultorio = Number(data[0]);
+                ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerDatosTipoConsultorio", "{ 'idTipoConsultorio': " + idTipoConsultorio + " }", "mostrarDatosTipoConsultorio");
+            });
+        }
+
+        //Resultado de la llamada a TipoConsultorios.aspx/obtenerDatosTipoConsultorio de la función "clickEditarConsultorio"
+        function mostrarDatosTipoConsultorio(resultado) {
+            var tipoConsultorio = JSON.parse(resultado);
+            $("#hdnIdTipoConsultorio").val(tipoConsultorio.ID);
+            $("#txtTipoConsultorioEd").val(tipoConsultorio.Tipo);
+            $("#chkActivoEd").prop("checked", false);
+            if (tipoConsultorio.Activo) {
+                $("#chkActivoEd").prop("checked", true);
+                $("#chkActivoEd").removeClass("flat-red").addClass("flat-red");
+            }
+            $('#mdlEditarTipoConsultorio input[type="checkbox"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-red'
+            });
+            $("#mdlEditarTipoConsultorio").validationEngine("hideAll");
+            $("#mdlEditarTipoConsultorio").modal("show");
+        }
+
+        function actualizarTipoConsultorio() {
+            var idTipoConsultorio = Number($("#hdnIdTipoConsultorio").val());
+            var tipo = $("#txtTipoConsultorioEd").val();
+            var activo = $("#chkActivoEd").prop('checked');
+
+            var tipoConsultorio = new Object();
+            tipoConsultorio.ID = idTipoConsultorio;
+            tipoConsultorio.Tipo = tipo;
+            tipoConsultorio.Activo = activo;
+
+            ICERP_Core.bloquearPantalla();
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/actualizarTipoConsultorio", "{ 'tipoConsultorio': " + JSON.stringify(tipoConsultorio) + "}", "tipoConsultorioActualizado");
+        }
+
+        function tipoConsultorioActualizado() {
+            $('#tblTiposConsultorios').DataTable().destroy();
+            ICERP_Core.llamarAjax("TipoConsultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
+            ICERP_Core.desbloquearPantalla();
+            $("#mdlEditarTipoConsultorio").modal("hide");
+            ICERP_Core.mostrarMensaje("Se actualizó el tipo de consultorio satisfactoriamente", "type-success");
         }
 
     </script>
@@ -122,12 +180,12 @@
         </div>
     </section>
 
-    <div class="modal fade" id="mdlEditarConsultorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mdlEditarTipoConsultorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 350px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-                    <h4 class="modal-title" id="myModalLabel1"><strong>Editar Consultorio</strong></h4>
+                    <h4 class="modal-title" id="myModalLabel1"><strong>Editar Tipo de Consultorio</strong></h4>
                 </div>
                 <div class="modal-body">
                     <div>

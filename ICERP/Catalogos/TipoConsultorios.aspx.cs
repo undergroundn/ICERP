@@ -57,5 +57,43 @@ namespace ICERP.Catalogos
                 throw;
             }
         }
+
+        //Obtener información del tipo de consultorio a editar
+        [WebMethod]
+        public static string obtenerDatosTipoConsultorio(int idTipoConsultorio)
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var tipoConsultorio = uow.TipoConsultorioRepository.GetSingle(idTipoConsultorio);
+                var resultado = new { tipoConsultorio.ID, tipoConsultorio.Tipo, tipoConsultorio.Activo };
+                return new JavaScriptSerializer().Serialize(resultado);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[ System ] " + " [ Page ] " + "[ " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name.ToString() + " ] [ " + System.Reflection.MethodBase.GetCurrentMethod().Name.ToString() + " ] [ Fin ]", ex);
+                throw;
+            }
+        }
+
+        //Actualizar los datos de un tipo de consultorio
+        [WebMethod]
+        public static void actualizarTipoConsultorio(Model.TipoConsultorio tipoConsultorio)
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var tipoConsultorioEditar = uow.TipoConsultorioRepository.GetSingle(tipoConsultorio.ID);
+                tipoConsultorioEditar.Tipo = tipoConsultorio.Tipo;
+                tipoConsultorioEditar.Activo = tipoConsultorio.Activo;
+                uow.TipoConsultorioRepository.UpdateSingle(tipoConsultorioEditar);
+                uow.Save();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[ System ] " + " [ Page ] " + "[ " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name.ToString() + " ] [ " + System.Reflection.MethodBase.GetCurrentMethod().Name.ToString() + " ] [ Fin ]", ex);
+                throw;
+            }
+        }
     }
 }
