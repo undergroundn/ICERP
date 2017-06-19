@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="EstudioSocioeconomico.aspx.cs" Inherits="ICERP.EstudioSocioeconomico" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
-    <script type="text/javascript">
+        <script src="../Scripts/pages/estudiosocioeconomico.js"></script>
+   <%-- <script type="text/javascript">
 
         $(document).ready(function () {
             $('#example1').DataTable({
@@ -19,7 +20,7 @@
                 }
             });
         });
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="bodyContent" runat="server">
       <section class="content">
@@ -34,13 +35,13 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="nombreusuario">Nombre del encuestador</label>
-                                <input type="text" class="form-control" id="nombreusuario" placeholder="Nombre de usuario">
+                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="nombreusuario" placeholder="Nombre de usuario" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="fecha">Fecha</label>
-                                <input type="text" class="form-control" id="fecha" placeholder="Fecha actual">
+                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="fecha" placeholder="Fecha actual" >
                             </div>
                         </div>
                     </div>
@@ -53,19 +54,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre de paciente">
+                                        <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="nombre" placeholder="Nombre de paciente">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="apPaterno">Apellido Paterno</label>
-                                        <input type="text" class="form-control" id="apPaterno" placeholder="Apellido Paterno">
+                                        <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="apPaterno" placeholder="Apellido Paterno">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="apMaterno">Apellido Materno</label>
-                                        <input type="text" class="form-control" id="apMaterno" placeholder="Apellido Materno">
+                                        <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="apMaterno" placeholder="Apellido Materno">
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +144,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input type="text" class="form-control" id="Telefonocelular" placeholder="Teléfono del tutor" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                            <input type="text" class="form-control  validate[required]" validgroup="registrarEstudioSE" id="Telefonocelular" placeholder="Teléfono del tutor" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                         </div>
 
                                     </div>
@@ -199,21 +200,21 @@
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <label for="Ingresopaciente">Paciente</label>
-                                                <input type="text" class="form-control" id="Ingresopaciente">
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="Ingresopaciente">
                                             </li>
                                             <li class="list-group-item">
                                                 <label for="IngresoPareja">Cónyuge o Pareja</label>
-                                                <input type="text" class="form-control" id="IngresoPareja">
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="IngresoPareja">
                                             </li>
                                             <li class="list-group-item">
                                                 <label for="IngresoPadres">Padres</label>
-                                                <input type="text" class="form-control" id="IngresoPadres"></li>
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="IngresoPadres"></li>
                                             <li class="list-group-item">
                                                 <label for="IngresoHijos">Hijos</label>
-                                                <input type="text" class="form-control" id="IngresoHijos"></li>
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="IngresoHijos"></li>
                                             <li class="list-group-item">
                                                 <label for="IngresoOtros">Otros</label>
-                                                <input type="text" class="form-control" id="IngresoOtros"></li>
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="IngresoOtros"></li>
                                             <li class="list-group-item">
                                                 <label for="IngresoTotal">Total</label>
                                                 <input type="text" class="form-control" id="IngresoTotal"></li>
@@ -228,80 +229,80 @@
                                         <!-- List group -->
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <label> <input type="checkbox" id="notra" class="flat-red">
+                                                <label> <input type="checkbox" id="chkPredial" class="flat-red">
                                                     Predial                 
                            
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label> <input type="checkbox" id="notra" class="flat-red">
+                                               <label> <input type="checkbox" id="chkAgua" class="flat-red">
                                                     Agua                 
                            
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <label><input type="checkbox" id="notra" class="flat-red">
+                                                <label><input type="checkbox" id="chkTel" class="flat-red">
                                                     Teléfono                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkLuz" class="flat-red">
                                                     Luz                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkGas" class="flat-red">
                                                     Gas                 
                             
                                                 </label>
                                             </li>
                                              <li class="list-group-item">
-                                                <label><input type="checkbox" id="notra" class="flat-red">
+                                                <label><input type="checkbox" id="chkTransporte" class="flat-red">
                                                     Transporte (gasolina)                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkRenta" class="flat-red">
                                                     Renta o Hipoteca                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <label><input type="checkbox" id="notra" class="flat-red">
+                                                <label><input type="checkbox" id="chkAlimentacion" class="flat-red">
                                                     Alimentación                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkEducacion" class="flat-red">
                                                     Educación                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkSalud" class="flat-red">
                                                     Salud                 
                             
                                                 </label>
                                             </li>
                                              <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkDiversiones" class="flat-red">
                                                     Diversiones                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkOtros" class="flat-red">
                                                     Otros                 
                             
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
                                                 <label for="egresoTotal">Total aprox. de gastos</label>
-                                                <input type="text" class="form-control" id="egresoTotal"></li>
+                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="egresoTotal"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -446,31 +447,31 @@
                                         <!-- List group -->
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <label> <input type="checkbox" id="notra" class="flat-red">
+                                                <label> <input type="checkbox" id="chkautobienes" class="flat-red">
                                                     Automóvil (marca. modelo)                 
                            
                                                 </label><input type="text" class="form-control" id="autobienes">
                                             </li>
                                             <li class="list-group-item">
-                                               <label> <input type="checkbox" id="notra" class="flat-red">
+                                               <label> <input type="checkbox" id="chkpropiedadesbienes" class="flat-red">
                                                     Propiedades (casa, terrenos)                 
                            
                                                 </label><input type="text" class="form-control" id="propiedadesbienes">
                                             </li>
                                             <li class="list-group-item">
-                                                <label><input type="checkbox" id="notra" class="flat-red">
+                                                <label><input type="checkbox" id="chkiversionesbienes" class="flat-red">
                                                     Inversiones (cuentas bancarias, ahorros)                 
                             
                                                 </label><input type="text" class="form-control" id="inversionesbienes">
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkdeudasbienes" class="flat-red">
                                                     Deudas (tarjetas de crédito, automóvil, hipoteca, préstamos personales, etc.)                 
                             
                                                 </label><input type="text" class="form-control" id="deudasbienes">
                                             </li>
                                             <li class="list-group-item">
-                                               <label><input type="checkbox" id="notra" class="flat-red">
+                                               <label><input type="checkbox" id="chkotrosbienes" class="flat-red">
                                                     Otros Bienes                 
                             
                                                 </label>
@@ -493,7 +494,7 @@
 <div class="col-md-4">
                              <div class="form-group">
                 <label>Zona</label>
-                <select class="form-control select2" style="width: 100%;">
+                <select id="sltZona" class="form-control select2" style="width: 100%;">
                   <option selected="selected">--Seleccione--</option>
                     <option >Urbana</option>
                   <option>Céntrica</option>
@@ -519,11 +520,11 @@
                                         <label>Centros Comerciales</label><br />
                                         <label>
                                             Si                 
-                            <input type="radio" name="r3" id="sitra" class="flat-red">
+                            <input type="radio" name="r3" id="chkSiCentrocomercial" class="flat-red">
                                         </label>
                                         <label>
                                             No                 
-                            <input type="radio" name="r3" id="notra" class="flat-red">
+                            <input type="radio" name="r3" id="chkNoCentrocomercial" class="flat-red">
                                         </label><input type="text" class="form-control" id="cualescentroscomerciales" placeholder="especificar cuales centros comerciales" />
                                     </div>
                                  
@@ -553,7 +554,7 @@
                             <div class="col-md-4">
                              <div class="form-group">
                 <label>Condiciones generales de la vivienda (puertas, ventanaas, muros, techo, pisos, etc.)</label>
-                <select class="form-control select2" style="width: 100%;">
+                <select id="sltcondicionesvivienda" class="form-control select2" style="width: 100%;">
                   <option selected="selected">--Seleccione--</option>
                     <option >Buena</option>
                   <option>Regular</option>
@@ -604,10 +605,10 @@
 
                 <div class="box-footer">
                     <div class="col-md-1">
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button id="btnGuardarEstudioSE" type="submit" class="btn btn-success">Guardar</button>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-warning">Cancelar</button>
+                        <button id="btnCancelarEstudioSE" type="button" class="btn btn-warning">Cancelar</button>
                     </div>
 
                 </div>

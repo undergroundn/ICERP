@@ -1134,6 +1134,7 @@
     <Content Include="Scripts\jstree\jstree.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\catalogos\consultorios.js" />
+    <Content Include="Scripts\pages\estudiosocioeconomico.js" />
     <Content Include="Scripts\pages\ICERP_Core.js" />
     <Content Include="Scripts\pages\principal.js" />
     <Content Include="Scripts\respond.js" />
