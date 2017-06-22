@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="TiposPacientes.aspx.cs" Inherits="ICERP.Catalogos.TiposPacientes" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     
     <script type="text/javascript">
 
@@ -25,7 +25,7 @@
     </script>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="bodyContent" runat="server">
 
     <div class="box box-danger">
         <div class="box-header with-border">
