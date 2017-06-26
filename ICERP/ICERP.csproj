@@ -1135,6 +1135,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\catalogos\consultorios.js" />
     <Content Include="Scripts\pages\catalogos\tipoConsultorios.js" />
+    <Content Include="Scripts\pages\catalogos\tipoPacientes.js" />
     <Content Include="Scripts\pages\estudiosocioeconomico.js" />
     <Content Include="Scripts\pages\ICERP_Core.js" />
     <Content Include="Scripts\pages\principal.js" />

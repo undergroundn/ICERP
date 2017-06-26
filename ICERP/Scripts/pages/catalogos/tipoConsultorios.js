@@ -22,7 +22,7 @@
     });
 });
 
-//Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
+//Resultado de la llamada a TipoConsultorios.aspx/obtenerTiposConsultorios
 function crearTablaTipoConsultorios(resultado) {
     var contenido = JSON.parse(resultado);
     $('#tblTiposConsultorios tbody').html("");
@@ -31,7 +31,7 @@ function crearTablaTipoConsultorios(resultado) {
         $.each(item, function (index, data) {
             $tr.append($('<td>').text(data));
         });
-        $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnEditarTipoConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
+        $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnModalEditarTipoConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
         $tr.appendTo('#tblTiposConsultorios tbody');
     });
 
@@ -69,7 +69,7 @@ function tipoConsultorioGuardado() {
 }
 
 function clickEditarTipoConsultorio() {
-    $(".btnEditarTipoConsultorio").click(function () {
+    $(".btnModalEditarTipoConsultorio").click(function () {
         var row = $(this).closest('tr');
         var data = $('#tblTiposConsultorios').dataTable().fnGetData(row);
         var idTipoConsultorio = Number(data[0]);
@@ -77,7 +77,7 @@ function clickEditarTipoConsultorio() {
     });
 }
 
-//Resultado de la llamada a TipoConsultorios.aspx/obtenerDatosTipoConsultorio de la función "clickEditarConsultorio"
+//Resultado de la llamada a TipoConsultorios.aspx/obtenerDatosTipoConsultorio de la función "clickEditarTipoConsultorio"
 function mostrarDatosTipoConsultorio(resultado) {
     var tipoConsultorio = JSON.parse(resultado);
     $("#hdnIdTipoConsultorio").val(tipoConsultorio.ID);

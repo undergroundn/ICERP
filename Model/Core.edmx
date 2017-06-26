@@ -315,11 +315,11 @@
           <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
           <Property Name="IdTurno" Type="int" />
-          <Property Name="IdTipoPaciente" Type="int" />
+          <Property Name="IdTipoPaciente" Type="smallint" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
           <Property Name="Whatsapp" Type="bit" />
           <Property Name="IdTipoTrastorno" Type="int" />
-          <Property Name="IdAreaAtiende" Type="int" />
+          <Property Name="IdAreaAtiende" Type="smallint" />
           <Property Name="IdTipoCuota" Type="int" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
@@ -365,9 +365,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoConsultorio">
           <Key>
@@ -391,9 +393,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" MaxLength="150" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -1567,11 +1571,11 @@
           <Property Name="ApPaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IdTurno" Type="Int32" />
-          <Property Name="IdTipoPaciente" Type="Int32" />
+          <Property Name="IdTipoPaciente" Type="Int16" />
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Whatsapp" Type="Boolean" />
           <Property Name="IdTipoTrastorno" Type="Int32" />
-          <Property Name="IdAreaAtiende" Type="Int32" />
+          <Property Name="IdAreaAtiende" Type="Int16" />
           <Property Name="IdTipoCuota" Type="Int32" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Citas" Relationship="Self.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
@@ -1628,10 +1632,12 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int16" Nullable="false" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Psicoterapeuta" Relationship="Self.FK_Psicoterapeuta_TipoAreas" FromRole="TipoAreas" ToRole="Psicoterapeuta" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoCouta">
           <Key>
@@ -1646,10 +1652,12 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Tipo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Psicoterapeuta" Relationship="Self.FK_Psicoterapeuta_TipoPaciente" FromRole="TipoPaciente" ToRole="Psicoterapeuta" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -2922,6 +2930,8 @@
           <EntitySetMapping Name="TipoAreas">
             <EntityTypeMapping TypeName="IcerpModel.TipoAreas">
               <MappingFragment StoreEntitySet="TipoAreas">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
@@ -2940,6 +2950,8 @@
           <EntitySetMapping Name="TipoPaciente">
             <EntityTypeMapping TypeName="IcerpModel.TipoPaciente">
               <MappingFragment StoreEntitySet="TipoPaciente">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />

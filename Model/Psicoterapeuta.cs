@@ -28,11 +28,11 @@ namespace Model
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
         public Nullable<int> IdTurno { get; set; }
-        public Nullable<int> IdTipoPaciente { get; set; }
+        public Nullable<short> IdTipoPaciente { get; set; }
         public string Telefono { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
         public Nullable<int> IdTipoTrastorno { get; set; }
-        public Nullable<int> IdAreaAtiende { get; set; }
+        public Nullable<short> IdAreaAtiende { get; set; }
         public Nullable<int> IdTipoCuota { get; set; }
         public Nullable<bool> Activo { get; set; }
     
