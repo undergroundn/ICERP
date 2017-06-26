@@ -19,9 +19,11 @@ namespace Model
             this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
         }
     
-        public int ID { get; set; }
+        public short ID { get; set; }
         public string Tipo { get; set; }
         public bool Activo { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }
     }

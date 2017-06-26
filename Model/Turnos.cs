@@ -20,9 +20,9 @@ namespace Model
             this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
         }
     
-        public int ID { get; set; }
+        public short ID { get; set; }
         public string Turno { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public bool Activo { get; set; }
     
         public virtual ICollection<Pacientes> Pacientes { get; set; }
         public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }

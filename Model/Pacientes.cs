@@ -28,7 +28,7 @@ namespace Model
         public Nullable<int> Edad { get; set; }
         public string Motivo { get; set; }
         public string Horario { get; set; }
-        public Nullable<int> IdTurno { get; set; }
+        public Nullable<short> IdTurno { get; set; }
         public string FechaNacimiento { get; set; }
         public string Genero { get; set; }
         public Nullable<int> Activo { get; set; }

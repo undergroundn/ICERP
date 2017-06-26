@@ -17,8 +17,8 @@ namespace Model
         public Usuarios()
         {
             this.Logs = new HashSet<Logs>();
-            this.Permisos = new HashSet<Permisos>();
             this.MenuUsuario = new HashSet<MenuUsuario>();
+            this.Permisos = new HashSet<Permisos>();
         }
     
         public int ID { get; set; }
@@ -32,7 +32,7 @@ namespace Model
     
         public virtual CatRoles CatRoles { get; set; }
         public virtual ICollection<Logs> Logs { get; set; }
-        public virtual ICollection<Permisos> Permisos { get; set; }
         public virtual ICollection<MenuUsuario> MenuUsuario { get; set; }
+        public virtual ICollection<Permisos> Permisos { get; set; }
     }
 }

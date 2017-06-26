@@ -27,13 +27,13 @@ namespace Model
         public string Nombre { get; set; }
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
-        public Nullable<int> IdTurno { get; set; }
+        public Nullable<short> IdTurno { get; set; }
         public Nullable<short> IdTipoPaciente { get; set; }
         public string Telefono { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
-        public Nullable<int> IdTipoTrastorno { get; set; }
+        public Nullable<short> IdTipoTrastorno { get; set; }
         public Nullable<short> IdAreaAtiende { get; set; }
-        public Nullable<int> IdTipoCuota { get; set; }
+        public Nullable<short> IdTipoCuota { get; set; }
         public Nullable<bool> Activo { get; set; }
     
         public virtual ICollection<Citas> Citas { get; set; }

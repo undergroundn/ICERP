@@ -41,7 +41,7 @@
                 $tr.appendTo('#tblTiposArea tbody');
             });
 
-            $("#tblTiposPacientes").DataTable({
+            $("#tblTiposAreas").DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
@@ -67,8 +67,8 @@
         }
 
         //Resultado de la llamada a TiposArea.aspx/guardarTipoArea de la función "guardarTipoArea"
-        function tipoPacienteGuardado() {
-            $('#tipoAreaGuardado').DataTable().destroy();
+        function tipoAreaGuardado() {
+            $('#tblTiposAreas').DataTable().destroy();
             ICERP_Core.llamarAjax("TiposArea.aspx/obtenerTiposAreas", null, "crearTablaTiposAreas");
             ICERP_Core.desbloquearPantalla();
             ICERP_Core.mostrarMensaje("Se almacenó el tipo de área satisfactoriamente", "type-success");
@@ -101,12 +101,12 @@
         }
 
         function actualizarTipoArea() {
-            var idTipoPaciente = Number($("#hdnIdTipoArea").val());
+            var idTipoArea = Number($("#hdnIdTipoArea").val());
             var tipo = $("#txtTipoAreaEd").val();
             var activo = $("#chkActivoEd").prop('checked');
 
             var tipoArea = new Object();
-            tipoArea.ID = idTipoPaciente;
+            tipoArea.ID = idTipoArea;
             tipoArea.Tipo = tipo;
             tipoArea.Activo = activo;
 
