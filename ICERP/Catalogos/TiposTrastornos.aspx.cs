@@ -83,10 +83,10 @@ namespace ICERP.Catalogos
             try
             {
                 var uow = new UnitOfWork();
-                var tipoTrastornoEditar = uow.TipoAreasRepository.GetSingle(tipoTrastorno.ID);
+                var tipoTrastornoEditar = uow.TipoTrastornoRepository.GetSingle(tipoTrastorno.ID);
                 tipoTrastornoEditar.Tipo = tipoTrastorno.Tipo;
                 tipoTrastornoEditar.Activo = tipoTrastorno.Activo;
-                uow.TipoAreasRepository.UpdateSingle(tipoTrastornoEditar);
+                uow.TipoTrastornoRepository.UpdateSingle(tipoTrastornoEditar);
                 uow.Save();
             }
             catch (Exception ex)

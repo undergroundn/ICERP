@@ -38,7 +38,7 @@
                     $tr.append($('<td>').text(data));
                 });
                 $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnModalEditarTipoArea" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
-                $tr.appendTo('#tblTiposArea tbody');
+                $tr.appendTo('#tblTiposAreas tbody');
             });
 
             $("#tblTiposAreas").DataTable({

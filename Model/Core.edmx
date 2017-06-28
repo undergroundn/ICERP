@@ -310,18 +310,42 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
           <Property Name="IdTurno" Type="smallint" />
-          <Property Name="IdTipoPaciente" Type="smallint" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
           <Property Name="Whatsapp" Type="bit" />
-          <Property Name="IdTipoTrastorno" Type="smallint" />
-          <Property Name="IdAreaAtiende" Type="smallint" />
           <Property Name="IdTipoCuota" Type="smallint" />
           <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="PsicoterapeutasTiposAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPsicoterapeuta" Type="int" Nullable="false" />
+          <Property Name="IdTipoArea" Type="smallint" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PsicoterapeutasTiposPacientes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPsicoterapeuta" Type="int" Nullable="false" />
+          <Property Name="IdTipoPaciente" Type="smallint" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PsicoterapeutasTiposTrastornos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPsicoterapeuta" Type="int" Nullable="false" />
+          <Property Name="IdTipoTrastorno" Type="smallint" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ResultadosNivelSocioEconomico">
           <Key>
@@ -355,7 +379,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
@@ -383,7 +407,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
@@ -400,7 +424,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
@@ -422,8 +446,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="smallint" Nullable="false" />
-          <Property Name="Turno" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Turno" Type="nvarchar" MaxLength="150" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="Tutores">
           <Key>
@@ -904,18 +928,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Psicoterapeuta_TipoAreas">
-          <End Role="TipoAreas" Type="Self.TipoAreas" Multiplicity="0..1" />
-          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoAreas">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdAreaAtiende" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Psicoterapeuta_TipoCouta">
           <End Role="TipoCouta" Type="Self.TipoCouta" Multiplicity="0..1" />
           <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="*" />
@@ -928,30 +940,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Psicoterapeuta_TipoPaciente">
-          <End Role="TipoPaciente" Type="Self.TipoPaciente" Multiplicity="0..1" />
-          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPaciente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdTipoPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Psicoterapeuta_TipoTrastorno">
-          <End Role="TipoTrastorno" Type="Self.TipoTrastorno" Multiplicity="0..1" />
-          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoTrastorno">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdTipoTrastorno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Psicoterapeuta_Turnos">
           <End Role="Turnos" Type="Self.Turnos" Multiplicity="0..1" />
           <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="*" />
@@ -961,6 +949,78 @@
             </Principal>
             <Dependent Role="Psicoterapeuta">
               <PropertyRef Name="IdTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposAreas_Psicoterapeuta">
+          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposAreas" Type="Self.PsicoterapeutasTiposAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposAreas">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposAreas_TipoAreas">
+          <End Role="TipoAreas" Type="Self.TipoAreas" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposAreas" Type="Self.PsicoterapeutasTiposAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAreas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposAreas">
+              <PropertyRef Name="IdTipoArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposPacientes_Psicoterapeuta">
+          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposPacientes" Type="Self.PsicoterapeutasTiposPacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposPacientes">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposPacientes_TipoPaciente">
+          <End Role="TipoPaciente" Type="Self.TipoPaciente" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposPacientes" Type="Self.PsicoterapeutasTiposPacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPaciente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposPacientes">
+              <PropertyRef Name="IdTipoPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta">
+          <End Role="Psicoterapeuta" Type="Self.Psicoterapeuta" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposTrastornos" Type="Self.PsicoterapeutasTiposTrastornos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposTrastornos">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposTrastornos_TipoTrastorno">
+          <End Role="TipoTrastorno" Type="Self.TipoTrastorno" Multiplicity="1" />
+          <End Role="PsicoterapeutasTiposTrastornos" Type="Self.PsicoterapeutasTiposTrastornos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrastorno">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposTrastornos">
+              <PropertyRef Name="IdTipoTrastorno" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1024,6 +1084,9 @@
           <EntitySet Name="PagoTerapeutas" EntityType="Self.PagoTerapeutas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Psicoterapeuta" EntityType="Self.Psicoterapeuta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PsicoterapeutasTiposAreas" EntityType="Self.PsicoterapeutasTiposAreas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PsicoterapeutasTiposPacientes" EntityType="Self.PsicoterapeutasTiposPacientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PsicoterapeutasTiposTrastornos" EntityType="Self.PsicoterapeutasTiposTrastornos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResultadosNivelSocioEconomico" EntityType="Self.ResultadosNivelSocioEconomico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaldoIcerp" EntityType="Self.SaldoIcerp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" Schema="dbo" store:Type="Tables" />
@@ -1189,25 +1252,37 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoAreas" Association="Self.FK_Psicoterapeuta_TipoAreas">
-            <End Role="TipoAreas" EntitySet="TipoAreas" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
           <AssociationSet Name="FK_Psicoterapeuta_TipoCouta" Association="Self.FK_Psicoterapeuta_TipoCouta">
             <End Role="TipoCouta" EntitySet="TipoCouta" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoPaciente" Association="Self.FK_Psicoterapeuta_TipoPaciente">
-            <End Role="TipoPaciente" EntitySet="TipoPaciente" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoTrastorno" Association="Self.FK_Psicoterapeuta_TipoTrastorno">
-            <End Role="TipoTrastorno" EntitySet="TipoTrastorno" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
           <AssociationSet Name="FK_Psicoterapeuta_Turnos" Association="Self.FK_Psicoterapeuta_Turnos">
             <End Role="Turnos" EntitySet="Turnos" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposAreas_Psicoterapeuta" Association="Self.FK_PsicoterapeutasTiposAreas_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposAreas" EntitySet="PsicoterapeutasTiposAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposAreas_TipoAreas" Association="Self.FK_PsicoterapeutasTiposAreas_TipoAreas">
+            <End Role="TipoAreas" EntitySet="TipoAreas" />
+            <End Role="PsicoterapeutasTiposAreas" EntitySet="PsicoterapeutasTiposAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" Association="Self.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposPacientes" EntitySet="PsicoterapeutasTiposPacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposPacientes_TipoPaciente" Association="Self.FK_PsicoterapeutasTiposPacientes_TipoPaciente">
+            <End Role="TipoPaciente" EntitySet="TipoPaciente" />
+            <End Role="PsicoterapeutasTiposPacientes" EntitySet="PsicoterapeutasTiposPacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" Association="Self.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposTrastornos" EntitySet="PsicoterapeutasTiposTrastornos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" Association="Self.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno">
+            <End Role="TipoTrastorno" EntitySet="TipoTrastorno" />
+            <End Role="PsicoterapeutasTiposTrastornos" EntitySet="PsicoterapeutasTiposTrastornos" />
           </AssociationSet>
           <AssociationSet Name="FK_TrabajoActualES_EstudioSocioeconomico" Association="Self.FK_TrabajoActualES_EstudioSocioeconomico">
             <End Role="EstudioSocioeconomico" EntitySet="EstudioSocioeconomico" />
@@ -1257,7 +1332,6 @@
           <EntitySet Name="Pacientes" EntityType="IcerpModel.Pacientes" />
           <EntitySet Name="PagoTerapeutas" EntityType="IcerpModel.PagoTerapeutas" />
           <EntitySet Name="Permisos" EntityType="IcerpModel.Permisos" />
-          <EntitySet Name="Psicoterapeuta" EntityType="IcerpModel.Psicoterapeuta" />
           <EntitySet Name="ResultadosNivelSocioEconomico" EntityType="IcerpModel.ResultadosNivelSocioEconomico" />
           <EntitySet Name="SaldoIcerp" EntityType="IcerpModel.SaldoIcerp" />
           <EntitySet Name="TipoAccion" EntityType="IcerpModel.TipoAccion" />
@@ -1303,10 +1377,6 @@
             <End Role="Pacientes" EntitySet="Pacientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Citas_Psicoterapeuta" Association="IcerpModel.FK_Citas_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK_CobroConsulta_Citas" Association="IcerpModel.FK_CobroConsulta_Citas">
             <End Role="Citas" EntitySet="Citas" />
             <End Role="CobroConsulta" EntitySet="CobroConsulta" />
@@ -1330,10 +1400,6 @@
           <AssociationSet Name="FK_ConsultoriosTipos_TipoConsultorio" Association="IcerpModel.FK_ConsultoriosTipos_TipoConsultorio">
             <End Role="TipoConsultorio" EntitySet="TipoConsultorio" />
             <End Role="ConsultoriosTipos" EntitySet="ConsultoriosTipos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CostosConsultasFijas_Psicoterapeuta" Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-            <End Role="CostosConsultasFijas" EntitySet="CostosConsultasFijas" />
           </AssociationSet>
           <AssociationSet Name="FK_DatosGeneralesES_DomicilioES" Association="IcerpModel.FK_DatosGeneralesES_DomicilioES">
             <End Role="DomicilioES" EntitySet="DomicilioES" />
@@ -1375,10 +1441,6 @@
             <End Role="Horarios" EntitySet="Horarios" />
             <End Role="DisponibilidadPsicoterapeuta" EntitySet="DisponibilidadPsicoterapeuta" />
           </AssociationSet>
-          <AssociationSet Name="FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-            <End Role="DisponibilidadPsicoterapeuta" EntitySet="DisponibilidadPsicoterapeuta" />
-          </AssociationSet>
           <AssociationSet Name="FK_InformacionBienesES_EstudioSocioeconomico" Association="IcerpModel.FK_InformacionBienesES_EstudioSocioeconomico">
             <End Role="EstudioSocioeconomico" EntitySet="EstudioSocioeconomico" />
             <End Role="InformacionBienesES" EntitySet="InformacionBienesES" />
@@ -1389,10 +1451,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_HorarioPsicoterapeuta_Horarios" Association="IcerpModel.FK_HorarioPsicoterapeuta_Horarios">
             <End Role="Horarios" EntitySet="Horarios" />
-            <End Role="HorarioPsicoterapeuta" EntitySet="HorarioPsicoterapeuta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HorarioPsicoterapeuta_Psicoterapeuta" Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
             <End Role="HorarioPsicoterapeuta" EntitySet="HorarioPsicoterapeuta" />
           </AssociationSet>
           <AssociationSet Name="FK_Logs_TipoAccion" Association="IcerpModel.FK_Logs_TipoAccion">
@@ -1423,33 +1481,65 @@
             <End Role="Tutores" EntitySet="Tutores" />
             <End Role="Pacientes" EntitySet="Pacientes" />
           </AssociationSet>
-          <AssociationSet Name="FK_PagoTerapeutas_Psicoterapeuta" Association="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-            <End Role="PagoTerapeutas" EntitySet="PagoTerapeutas" />
-          </AssociationSet>
           <AssociationSet Name="FK_Permisos_Usuarios" Association="IcerpModel.FK_Permisos_Usuarios">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoAreas" Association="IcerpModel.FK_Psicoterapeuta_TipoAreas">
+          <EntitySet Name="PsicoterapeutasTiposAreas" EntityType="IcerpModel.PsicoterapeutasTiposAreas" />
+          <EntitySet Name="PsicoterapeutasTiposPacientes" EntityType="IcerpModel.PsicoterapeutasTiposPacientes" />
+          <EntitySet Name="PsicoterapeutasTiposTrastornos" EntityType="IcerpModel.PsicoterapeutasTiposTrastornos" />
+          <AssociationSet Name="FK_PsicoterapeutasTiposAreas_TipoAreas" Association="IcerpModel.FK_PsicoterapeutasTiposAreas_TipoAreas">
             <End Role="TipoAreas" EntitySet="TipoAreas" />
+            <End Role="PsicoterapeutasTiposAreas" EntitySet="PsicoterapeutasTiposAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposPacientes_TipoPaciente" Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_TipoPaciente">
+            <End Role="TipoPaciente" EntitySet="TipoPaciente" />
+            <End Role="PsicoterapeutasTiposPacientes" EntitySet="PsicoterapeutasTiposPacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno">
+            <End Role="TipoTrastorno" EntitySet="TipoTrastorno" />
+            <End Role="PsicoterapeutasTiposTrastornos" EntitySet="PsicoterapeutasTiposTrastornos" />
+          </AssociationSet>
+          <EntitySet Name="Psicoterapeuta" EntityType="IcerpModel.Psicoterapeuta" />
+          <AssociationSet Name="FK_Citas_Psicoterapeuta" Association="IcerpModel.FK_Citas_Psicoterapeuta">
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CostosConsultasFijas_Psicoterapeuta" Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="CostosConsultasFijas" EntitySet="CostosConsultasFijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="DisponibilidadPsicoterapeuta" EntitySet="DisponibilidadPsicoterapeuta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HorarioPsicoterapeuta_Psicoterapeuta" Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="HorarioPsicoterapeuta" EntitySet="HorarioPsicoterapeuta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoTerapeutas_Psicoterapeuta" Association="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PagoTerapeutas" EntitySet="PagoTerapeutas" />
           </AssociationSet>
           <AssociationSet Name="FK_Psicoterapeuta_TipoCouta" Association="IcerpModel.FK_Psicoterapeuta_TipoCouta">
             <End Role="TipoCouta" EntitySet="TipoCouta" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoPaciente" Association="IcerpModel.FK_Psicoterapeuta_TipoPaciente">
-            <End Role="TipoPaciente" EntitySet="TipoPaciente" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Psicoterapeuta_TipoTrastorno" Association="IcerpModel.FK_Psicoterapeuta_TipoTrastorno">
-            <End Role="TipoTrastorno" EntitySet="TipoTrastorno" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
           <AssociationSet Name="FK_Psicoterapeuta_Turnos" Association="IcerpModel.FK_Psicoterapeuta_Turnos">
             <End Role="Turnos" EntitySet="Turnos" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposAreas_Psicoterapeuta" Association="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposAreas" EntitySet="PsicoterapeutasTiposAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposPacientes" EntitySet="PsicoterapeutasTiposPacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="PsicoterapeutasTiposTrastornos" EntitySet="PsicoterapeutasTiposTrastornos" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="getCredencialesUsuario_Result">
@@ -1535,8 +1625,8 @@
           <NavigationProperty Name="Consultorios" Relationship="IcerpModel.FK_Citas_Consultorios" FromRole="Citas" ToRole="Consultorios" />
           <NavigationProperty Name="EstatusCitas" Relationship="IcerpModel.FK_Citas_EstatusCitas" FromRole="Citas" ToRole="EstatusCitas" />
           <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Citas" ToRole="Pacientes" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Citas" ToRole="Psicoterapeuta" />
           <NavigationProperty Name="CobroConsulta" Relationship="IcerpModel.FK_CobroConsulta_Citas" FromRole="Citas" ToRole="CobroConsulta" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Citas" ToRole="Psicoterapeuta" />
         </EntityType>
         <EntityType Name="CobroConsulta">
           <Key>
@@ -1837,33 +1927,6 @@
           <NavigationProperty Name="Menu" Relationship="IcerpModel.FK_Permisos_Menu" FromRole="Permisos" ToRole="Menu" />
           <NavigationProperty Name="Usuarios" Relationship="IcerpModel.FK_Permisos_Usuarios" FromRole="Permisos" ToRole="Usuarios" />
         </EntityType>
-        <EntityType Name="Psicoterapeuta">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IdTurno" Type="Int16" />
-          <Property Name="IdTipoPaciente" Type="Int16" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Whatsapp" Type="Boolean" />
-          <Property Name="IdTipoTrastorno" Type="Int16" />
-          <Property Name="IdAreaAtiende" Type="Int16" />
-          <Property Name="IdTipoCuota" Type="Int16" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
-          <NavigationProperty Name="CostosConsultasFijas" Relationship="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="CostosConsultasFijas" />
-          <NavigationProperty Name="DisponibilidadPsicoterapeuta" Relationship="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="DisponibilidadPsicoterapeuta" />
-          <NavigationProperty Name="HorarioPsicoterapeuta" Relationship="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="HorarioPsicoterapeuta" />
-          <NavigationProperty Name="PagoTerapeutas" Relationship="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PagoTerapeutas" />
-          <NavigationProperty Name="TipoAreas" Relationship="IcerpModel.FK_Psicoterapeuta_TipoAreas" FromRole="Psicoterapeuta" ToRole="TipoAreas" />
-          <NavigationProperty Name="TipoCouta" Relationship="IcerpModel.FK_Psicoterapeuta_TipoCouta" FromRole="Psicoterapeuta" ToRole="TipoCouta" />
-          <NavigationProperty Name="TipoPaciente" Relationship="IcerpModel.FK_Psicoterapeuta_TipoPaciente" FromRole="Psicoterapeuta" ToRole="TipoPaciente" />
-          <NavigationProperty Name="TipoTrastorno" Relationship="IcerpModel.FK_Psicoterapeuta_TipoTrastorno" FromRole="Psicoterapeuta" ToRole="TipoTrastorno" />
-          <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Psicoterapeuta_Turnos" FromRole="Psicoterapeuta" ToRole="Turnos" />
-        </EntityType>
         <EntityType Name="ResultadosNivelSocioEconomico">
           <Key>
             <PropertyRef Name="ID" />
@@ -1902,7 +1965,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_TipoAreas" FromRole="TipoAreas" ToRole="Psicoterapeuta" />
+          <NavigationProperty Name="PsicoterapeutasTiposAreas" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_TipoAreas" FromRole="TipoAreas" ToRole="PsicoterapeutasTiposAreas" />
         </EntityType>
         <EntityType Name="TipoConsultorio">
           <Key>
@@ -1933,7 +1996,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_TipoPaciente" FromRole="TipoPaciente" ToRole="Psicoterapeuta" />
+          <NavigationProperty Name="PsicoterapeutasTiposPacientes" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_TipoPaciente" FromRole="TipoPaciente" ToRole="PsicoterapeutasTiposPacientes" />
         </EntityType>
         <EntityType Name="TipoPago">
           <Key>
@@ -1952,7 +2015,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_TipoTrastorno" FromRole="TipoTrastorno" ToRole="Psicoterapeuta" />
+          <NavigationProperty Name="PsicoterapeutasTiposTrastornos" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" FromRole="TipoTrastorno" ToRole="PsicoterapeutasTiposTrastornos" />
         </EntityType>
         <EntityType Name="TrabajoActualES">
           <Key>
@@ -1971,8 +2034,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int16" Nullable="false" />
-          <Property Name="Turno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Turno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Turnos" ToRole="Pacientes" />
           <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_Turnos" FromRole="Turnos" ToRole="Psicoterapeuta" />
         </EntityType>
@@ -2100,18 +2163,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Citas_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdTerapeuta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CobroConsulta_Citas">
           <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="1" />
           <End Type="IcerpModel.CobroConsulta" Role="CobroConsulta" Multiplicity="*" />
@@ -2181,18 +2232,6 @@
             </Principal>
             <Dependent Role="ConsultoriosTipos">
               <PropertyRef Name="IdTipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CostosConsultasFijas_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.CostosConsultasFijas" Role="CostosConsultasFijas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CostosConsultasFijas">
-              <PropertyRef Name="IdPsicoterapeuta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2316,18 +2355,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DisponibilidadPsicoterapeuta_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.DisponibilidadPsicoterapeuta" Role="DisponibilidadPsicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DisponibilidadPsicoterapeuta">
-              <PropertyRef Name="IdTerapeuta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_InformacionBienesES_EstudioSocioeconomico">
           <End Type="IcerpModel.EstudioSocioeconomico" Role="EstudioSocioeconomico" Multiplicity="0..1" />
           <End Type="IcerpModel.InformacionBienesES" Role="InformacionBienesES" Multiplicity="*" />
@@ -2361,18 +2388,6 @@
             </Principal>
             <Dependent Role="HorarioPsicoterapeuta">
               <PropertyRef Name="IdHora" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HorarioPsicoterapeuta_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.HorarioPsicoterapeuta" Role="HorarioPsicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HorarioPsicoterapeuta">
-              <PropertyRef Name="IdTerapeuta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2460,18 +2475,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PagoTerapeutas_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.PagoTerapeutas" Role="PagoTerapeutas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PagoTerapeutas">
-              <PropertyRef Name="IdTerapeuta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Permisos_Usuarios">
           <End Type="IcerpModel.Usuarios" Role="Usuarios" Multiplicity="1" />
           <End Type="IcerpModel.Permisos" Role="Permisos" Multiplicity="*" />
@@ -2484,15 +2487,156 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Psicoterapeuta_TipoAreas">
-          <End Type="IcerpModel.TipoAreas" Role="TipoAreas" Multiplicity="0..1" />
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
+        <EntityType Name="PsicoterapeutasTiposAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPsicoterapeuta" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoArea" Type="Int16" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoAreas" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_TipoAreas" FromRole="PsicoterapeutasTiposAreas" ToRole="TipoAreas" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" FromRole="PsicoterapeutasTiposAreas" ToRole="Psicoterapeuta" />
+        </EntityType>
+        <EntityType Name="PsicoterapeutasTiposPacientes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPsicoterapeuta" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoPaciente" Type="Int16" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoPaciente" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_TipoPaciente" FromRole="PsicoterapeutasTiposPacientes" ToRole="TipoPaciente" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" FromRole="PsicoterapeutasTiposPacientes" ToRole="Psicoterapeuta" />
+        </EntityType>
+        <EntityType Name="PsicoterapeutasTiposTrastornos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPsicoterapeuta" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoTrastorno" Type="Int16" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoTrastorno" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" FromRole="PsicoterapeutasTiposTrastornos" ToRole="TipoTrastorno" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" FromRole="PsicoterapeutasTiposTrastornos" ToRole="Psicoterapeuta" />
+        </EntityType>
+        <Association Name="FK_PsicoterapeutasTiposAreas_TipoAreas">
+          <End Type="IcerpModel.TipoAreas" Role="TipoAreas" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposAreas" Role="PsicoterapeutasTiposAreas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoAreas">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdAreaAtiende" />
+            <Dependent Role="PsicoterapeutasTiposAreas">
+              <PropertyRef Name="IdTipoArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposPacientes_TipoPaciente">
+          <End Type="IcerpModel.TipoPaciente" Role="TipoPaciente" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposPacientes" Role="PsicoterapeutasTiposPacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPaciente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposPacientes">
+              <PropertyRef Name="IdTipoPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposTrastornos_TipoTrastorno">
+          <End Type="IcerpModel.TipoTrastorno" Role="TipoTrastorno" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposTrastornos" Role="PsicoterapeutasTiposTrastornos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrastorno">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposTrastornos">
+              <PropertyRef Name="IdTipoTrastorno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Psicoterapeuta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdTurno" Type="Int16" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Whatsapp" Type="Boolean" />
+          <Property Name="IdTipoCuota" Type="Int16" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
+          <NavigationProperty Name="CostosConsultasFijas" Relationship="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="CostosConsultasFijas" />
+          <NavigationProperty Name="DisponibilidadPsicoterapeuta" Relationship="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="DisponibilidadPsicoterapeuta" />
+          <NavigationProperty Name="HorarioPsicoterapeuta" Relationship="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="HorarioPsicoterapeuta" />
+          <NavigationProperty Name="PagoTerapeutas" Relationship="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PagoTerapeutas" />
+          <NavigationProperty Name="TipoCouta" Relationship="IcerpModel.FK_Psicoterapeuta_TipoCouta" FromRole="Psicoterapeuta" ToRole="TipoCouta" />
+          <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Psicoterapeuta_Turnos" FromRole="Psicoterapeuta" ToRole="Turnos" />
+          <NavigationProperty Name="PsicoterapeutasTiposAreas" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposAreas" />
+          <NavigationProperty Name="PsicoterapeutasTiposPacientes" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposPacientes" />
+          <NavigationProperty Name="PsicoterapeutasTiposTrastornos" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposTrastornos" />
+        </EntityType>
+        <Association Name="FK_Citas_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="IdTerapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CostosConsultasFijas_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.CostosConsultasFijas" Role="CostosConsultasFijas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CostosConsultasFijas">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DisponibilidadPsicoterapeuta_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.DisponibilidadPsicoterapeuta" Role="DisponibilidadPsicoterapeuta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DisponibilidadPsicoterapeuta">
+              <PropertyRef Name="IdTerapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HorarioPsicoterapeuta_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.HorarioPsicoterapeuta" Role="HorarioPsicoterapeuta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HorarioPsicoterapeuta">
+              <PropertyRef Name="IdTerapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoTerapeutas_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.PagoTerapeutas" Role="PagoTerapeutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PagoTerapeutas">
+              <PropertyRef Name="IdTerapeuta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2508,30 +2652,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Psicoterapeuta_TipoPaciente">
-          <End Type="IcerpModel.TipoPaciente" Role="TipoPaciente" Multiplicity="0..1" />
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPaciente">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdTipoPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Psicoterapeuta_TipoTrastorno">
-          <End Type="IcerpModel.TipoTrastorno" Role="TipoTrastorno" Multiplicity="0..1" />
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoTrastorno">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdTipoTrastorno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Psicoterapeuta_Turnos">
           <End Type="IcerpModel.Turnos" Role="Turnos" Multiplicity="0..1" />
           <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
@@ -2541,6 +2661,42 @@
             </Principal>
             <Dependent Role="Psicoterapeuta">
               <PropertyRef Name="IdTurno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposAreas_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposAreas" Role="PsicoterapeutasTiposAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposAreas">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposPacientes_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposPacientes" Role="PsicoterapeutasTiposPacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposPacientes">
+              <PropertyRef Name="IdPsicoterapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.PsicoterapeutasTiposTrastornos" Role="PsicoterapeutasTiposTrastornos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PsicoterapeutasTiposTrastornos">
+              <PropertyRef Name="IdPsicoterapeuta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2907,24 +3063,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Psicoterapeuta">
-            <EntityTypeMapping TypeName="IcerpModel.Psicoterapeuta">
-              <MappingFragment StoreEntitySet="Psicoterapeuta">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="IdTipoCuota" ColumnName="IdTipoCuota" />
-                <ScalarProperty Name="IdAreaAtiende" ColumnName="IdAreaAtiende" />
-                <ScalarProperty Name="IdTipoTrastorno" ColumnName="IdTipoTrastorno" />
-                <ScalarProperty Name="Whatsapp" ColumnName="Whatsapp" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="IdTipoPaciente" ColumnName="IdTipoPaciente" />
-                <ScalarProperty Name="IdTurno" ColumnName="IdTurno" />
-                <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
-                <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ResultadosNivelSocioEconomico">
             <EntityTypeMapping TypeName="IcerpModel.ResultadosNivelSocioEconomico">
               <MappingFragment StoreEntitySet="ResultadosNivelSocioEconomico">
@@ -3059,6 +3197,51 @@
                 <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
                 <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PsicoterapeutasTiposAreas">
+            <EntityTypeMapping TypeName="IcerpModel.PsicoterapeutasTiposAreas">
+              <MappingFragment StoreEntitySet="PsicoterapeutasTiposAreas">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdTipoArea" ColumnName="IdTipoArea" />
+                <ScalarProperty Name="IdPsicoterapeuta" ColumnName="IdPsicoterapeuta" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PsicoterapeutasTiposPacientes">
+            <EntityTypeMapping TypeName="IcerpModel.PsicoterapeutasTiposPacientes">
+              <MappingFragment StoreEntitySet="PsicoterapeutasTiposPacientes">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdTipoPaciente" ColumnName="IdTipoPaciente" />
+                <ScalarProperty Name="IdPsicoterapeuta" ColumnName="IdPsicoterapeuta" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PsicoterapeutasTiposTrastornos">
+            <EntityTypeMapping TypeName="IcerpModel.PsicoterapeutasTiposTrastornos">
+              <MappingFragment StoreEntitySet="PsicoterapeutasTiposTrastornos">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdTipoTrastorno" ColumnName="IdTipoTrastorno" />
+                <ScalarProperty Name="IdPsicoterapeuta" ColumnName="IdPsicoterapeuta" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Psicoterapeuta">
+            <EntityTypeMapping TypeName="IcerpModel.Psicoterapeuta">
+              <MappingFragment StoreEntitySet="Psicoterapeuta">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdTipoCuota" ColumnName="IdTipoCuota" />
+                <ScalarProperty Name="Whatsapp" ColumnName="Whatsapp" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="IdTurno" ColumnName="IdTurno" />
+                <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
+                <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

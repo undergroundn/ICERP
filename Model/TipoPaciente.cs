@@ -16,7 +16,7 @@ namespace Model
     {
         public TipoPaciente()
         {
-            this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
+            this.PsicoterapeutasTiposPacientes = new HashSet<PsicoterapeutasTiposPacientes>();
         }
     
         public short ID { get; set; }
@@ -25,6 +25,6 @@ namespace Model
         public System.DateTime FechaAlta { get; set; }
         public int IdUsuario { get; set; }
     
-        public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
     }
 }

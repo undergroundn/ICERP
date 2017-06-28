@@ -118,7 +118,7 @@
             $('#tblTiposTrastornos').DataTable().destroy();
             ICERP_Core.llamarAjax("TiposTrastornos.aspx/obtenerTiposTrastornos", null, "crearTablaTiposTrastornos");
             ICERP_Core.desbloquearPantalla();
-            $("#tblTiposTrastornos").modal("hide");
+            $("#mdlEditarTipoTrastorno").modal("hide");
             ICERP_Core.mostrarMensaje("Se actualizó el tipo de trastorno satisfactoriamente", "type-success");
         }
 
@@ -212,7 +212,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove"></span>&nbsp;Cerrar
                     </button>
-                    <button type="button" class="btn btn-primary" id="btnEditarTipoArea">
+                    <button type="button" class="btn btn-primary" id="btnEditarTipoTrastorno">
                         <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;Actualizar
                     </button>
                 </div>

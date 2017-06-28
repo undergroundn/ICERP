@@ -56,7 +56,6 @@ namespace Model
         public virtual DbSet<Pacientes> Pacientes { get; set; }
         public virtual DbSet<PagoTerapeutas> PagoTerapeutas { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
-        public virtual DbSet<Psicoterapeuta> Psicoterapeuta { get; set; }
         public virtual DbSet<ResultadosNivelSocioEconomico> ResultadosNivelSocioEconomico { get; set; }
         public virtual DbSet<SaldoIcerp> SaldoIcerp { get; set; }
         public virtual DbSet<TipoAccion> TipoAccion { get; set; }
@@ -70,6 +69,10 @@ namespace Model
         public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<Tutores> Tutores { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
+        public virtual DbSet<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
+        public virtual DbSet<PsicoterapeutasTiposTrastornos> PsicoterapeutasTiposTrastornos { get; set; }
+        public virtual DbSet<Psicoterapeuta> Psicoterapeuta { get; set; }
     
         public virtual ObjectResult<getCredencialesUsuario_Result> getCredencialesUsuario(string nombreUsuario, string pwd)
         {

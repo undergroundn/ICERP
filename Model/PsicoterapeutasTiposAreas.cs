@@ -12,19 +12,14 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoAreas
+    public partial class PsicoterapeutasTiposAreas
     {
-        public TipoAreas()
-        {
-            this.PsicoterapeutasTiposAreas = new HashSet<PsicoterapeutasTiposAreas>();
-        }
-    
-        public short ID { get; set; }
-        public string Tipo { get; set; }
+        public int ID { get; set; }
+        public int IdPsicoterapeuta { get; set; }
+        public short IdTipoArea { get; set; }
         public bool Activo { get; set; }
-        public System.DateTime FechaAlta { get; set; }
-        public int IdUsuario { get; set; }
     
-        public virtual ICollection<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
+        public virtual TipoAreas TipoAreas { get; set; }
+        public virtual Psicoterapeuta Psicoterapeuta { get; set; }
     }
 }

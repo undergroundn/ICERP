@@ -21,6 +21,9 @@ namespace Model
             this.DisponibilidadPsicoterapeuta = new HashSet<DisponibilidadPsicoterapeuta>();
             this.HorarioPsicoterapeuta = new HashSet<HorarioPsicoterapeuta>();
             this.PagoTerapeutas = new HashSet<PagoTerapeutas>();
+            this.PsicoterapeutasTiposAreas = new HashSet<PsicoterapeutasTiposAreas>();
+            this.PsicoterapeutasTiposPacientes = new HashSet<PsicoterapeutasTiposPacientes>();
+            this.PsicoterapeutasTiposTrastornos = new HashSet<PsicoterapeutasTiposTrastornos>();
         }
     
         public int ID { get; set; }
@@ -28,11 +31,8 @@ namespace Model
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
         public Nullable<short> IdTurno { get; set; }
-        public Nullable<short> IdTipoPaciente { get; set; }
         public string Telefono { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
-        public Nullable<short> IdTipoTrastorno { get; set; }
-        public Nullable<short> IdAreaAtiende { get; set; }
         public Nullable<short> IdTipoCuota { get; set; }
         public Nullable<bool> Activo { get; set; }
     
@@ -41,10 +41,10 @@ namespace Model
         public virtual ICollection<DisponibilidadPsicoterapeuta> DisponibilidadPsicoterapeuta { get; set; }
         public virtual ICollection<HorarioPsicoterapeuta> HorarioPsicoterapeuta { get; set; }
         public virtual ICollection<PagoTerapeutas> PagoTerapeutas { get; set; }
-        public virtual TipoAreas TipoAreas { get; set; }
         public virtual TipoCouta TipoCouta { get; set; }
-        public virtual TipoPaciente TipoPaciente { get; set; }
-        public virtual TipoTrastorno TipoTrastorno { get; set; }
         public virtual Turnos Turnos { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposTrastornos> PsicoterapeutasTiposTrastornos { get; set; }
     }
 }
