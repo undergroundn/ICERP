@@ -34,7 +34,9 @@ namespace Model
         public string Telefono { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
         public Nullable<short> IdTipoCuota { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual ICollection<Citas> Citas { get; set; }
         public virtual ICollection<CostosConsultasFijas> CostosConsultasFijas { get; set; }

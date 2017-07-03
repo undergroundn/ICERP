@@ -315,10 +315,12 @@
           <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
           <Property Name="IdTurno" Type="smallint" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Whatsapp" Type="bit" />
           <Property Name="IdTipoCuota" Type="smallint" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PsicoterapeutasTiposAreas">
           <Key>
@@ -2565,10 +2567,10 @@
           <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IdTurno" Type="Int16" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Whatsapp" Type="Boolean" />
           <Property Name="IdTipoCuota" Type="Int16" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
           <NavigationProperty Name="CostosConsultasFijas" Relationship="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="CostosConsultasFijas" />
           <NavigationProperty Name="DisponibilidadPsicoterapeuta" Relationship="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="DisponibilidadPsicoterapeuta" />
@@ -2579,6 +2581,8 @@
           <NavigationProperty Name="PsicoterapeutasTiposAreas" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposAreas" />
           <NavigationProperty Name="PsicoterapeutasTiposPacientes" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposPacientes" />
           <NavigationProperty Name="PsicoterapeutasTiposTrastornos" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposTrastornos" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Citas_Psicoterapeuta">
           <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
@@ -3234,6 +3238,8 @@
           <EntitySetMapping Name="Psicoterapeuta">
             <EntityTypeMapping TypeName="IcerpModel.Psicoterapeuta">
               <MappingFragment StoreEntitySet="Psicoterapeuta">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="IdTipoCuota" ColumnName="IdTipoCuota" />
                 <ScalarProperty Name="Whatsapp" ColumnName="Whatsapp" />
