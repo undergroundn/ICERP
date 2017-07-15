@@ -58,7 +58,7 @@ function guardarEstudioSE() {
     var planta = ($("#sltPlanta").val() == "1");
     var activo = $("#chkActivo").prop('checked');
 
-    //var consultorio = new Object();
+    var estudiosocioeconomico = new Object();
     //consultorio.Nombre = nombre;
     //consultorio.Planta = planta;
     //consultorio.Activo = activo;
