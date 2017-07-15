@@ -50,7 +50,7 @@ namespace ICERP
                 {
                     var user = new Model.CustomModel.StoredProcedureRepository().GetUserCredenciales(usuario, contraseña);                       
                    
-                    if (user != null  || user.ID != 0 )
+                    if (user != null)//  || user.ID != 0 )
                     {
                         if ((user != null && user.ID != 0 && user.Activo == false))
                         {

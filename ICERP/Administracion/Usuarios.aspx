@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Usuarios.aspx.cs" Inherits="ICERP.Administracion.Usuarios" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <script src="<%=ResolveUrl("~/Scripts/jstree/jstree.min.js")%>"></script>
     <link href="<%=ResolveUrl("~/Styles/tree/style.min.css")%>" rel="stylesheet" />
     <script type="text/javascript">
@@ -245,7 +245,7 @@
 
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="bodyContent" runat="server">
     <div class="box box-danger">
         <div class="box-header with-border">
             <h3 class="box-title">Registro de Usuarios</h3>

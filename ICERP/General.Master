@@ -22,7 +22,16 @@
 
 <link href="Styles/boostrap/bootstrap-dialog.css" rel="stylesheet" />
 
-
+     <!-- jQuery 2.2.0 -->
+    <script src="<%=ResolveUrl("~/plugins/jQuery/jQuery-2.2.0.min.js")%>"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="<%=ResolveUrl("~/bootstrap/js/bootstrap.min.js")%>"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<%=ResolveUrl("~/dist/js/app.min.js")%>"></script>
+    <script src="<%=ResolveUrl("~/Scripts/jQuery/jquery.blockUI.js")%>"></script>
+        <script src="<%=ResolveUrl("~/Scripts/boostrap/bootstrap-dialog.js")%>"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -57,7 +66,7 @@
             increaseArea: '20%' // optional
         });
     });
-    function mostrarMensaje(contenido, type) {
+    function mostrarMensaje(contenido, type1) {
         BootstrapDialog.alert({
             title: 'Notificación',
             message: contenido,

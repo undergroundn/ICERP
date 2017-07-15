@@ -1197,6 +1197,7 @@
     <Content Include="Styles\dist\skins\skin-yellow.min.css" />
     <Content Include="Styles\dist\skins\_all-skins.css" />
     <Content Include="Styles\dist\skins\_all-skins.min.css" />
+    <Content Include="Styles\tree\32px.png" />
     <Content Include="Styles\tree\style.min.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
