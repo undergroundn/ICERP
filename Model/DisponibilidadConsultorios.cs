@@ -19,8 +19,8 @@ namespace Model
         public int IdFecha { get; set; }
         public int IdHora { get; set; }
     
-        public virtual Consultorios Consultorios { get; set; }
         public virtual Fechas Fechas { get; set; }
         public virtual Horarios Horarios { get; set; }
+        public virtual Consultorios Consultorios { get; set; }
     }
 }

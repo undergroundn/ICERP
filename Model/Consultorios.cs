@@ -17,8 +17,8 @@ namespace Model
         public Consultorios()
         {
             this.Citas = new HashSet<Citas>();
-            this.ConsultoriosTipos = new HashSet<ConsultoriosTipos>();
             this.DisponibilidadConsultorios = new HashSet<DisponibilidadConsultorios>();
+            this.ConsultoriosTipos = new HashSet<ConsultoriosTipos>();
         }
     
         public int ID { get; set; }
@@ -29,7 +29,7 @@ namespace Model
         public System.DateTime FechaRegistro { get; set; }
     
         public virtual ICollection<Citas> Citas { get; set; }
-        public virtual ICollection<ConsultoriosTipos> ConsultoriosTipos { get; set; }
         public virtual ICollection<DisponibilidadConsultorios> DisponibilidadConsultorios { get; set; }
+        public virtual ICollection<ConsultoriosTipos> ConsultoriosTipos { get; set; }
     }
 }

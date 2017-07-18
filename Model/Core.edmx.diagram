@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="IcerpModel.Permisos" Width="1.5" PointX="21.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.ResultadosNivelSocioEconomico" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.SaldoIcerp" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IcerpModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.TipoAccion" Width="1.5" PointX="16" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.TipoPago" Width="1.5" PointX="8.25" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.TrabajoActualES" Width="1.5" PointX="28.5" PointY="20.5" IsExpanded="true" />

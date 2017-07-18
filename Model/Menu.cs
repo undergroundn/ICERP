@@ -16,8 +16,8 @@ namespace Model
     {
         public Menu()
         {
-            this.MenuUsuario = new HashSet<MenuUsuario>();
             this.Permisos = new HashSet<Permisos>();
+            this.MenuUsuario = new HashSet<MenuUsuario>();
         }
     
         public int MenuId { get; set; }
@@ -28,7 +28,7 @@ namespace Model
         public string Icono { get; set; }
         public Nullable<byte> Orden { get; set; }
     
-        public virtual ICollection<MenuUsuario> MenuUsuario { get; set; }
         public virtual ICollection<Permisos> Permisos { get; set; }
+        public virtual ICollection<MenuUsuario> MenuUsuario { get; set; }
     }
 }

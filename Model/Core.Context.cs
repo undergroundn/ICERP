@@ -54,7 +54,6 @@ namespace Model
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<ResultadosNivelSocioEconomico> ResultadosNivelSocioEconomico { get; set; }
         public virtual DbSet<SaldoIcerp> SaldoIcerp { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TipoAccion> TipoAccion { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<TrabajoActualES> TrabajoActualES { get; set; }

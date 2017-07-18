@@ -372,16 +372,6 @@
           <Property Name="CantidadEfectivo" Type="decimal" Precision="18" Scale="0" />
           <Property Name="CantidadTarjeta" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TipoAccion">
           <Key>
             <PropertyRef Name="ID" />
@@ -1104,7 +1094,6 @@
           <EntitySet Name="PsicoterapeutasTiposTrastornos" EntityType="Self.PsicoterapeutasTiposTrastornos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResultadosNivelSocioEconomico" EntityType="Self.ResultadosNivelSocioEconomico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaldoIcerp" EntityType="Self.SaldoIcerp" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoAreas" EntityType="Self.TipoAreas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoConsultorio" EntityType="Self.TipoConsultorio" Schema="dbo" store:Type="Tables" />
@@ -1643,16 +1632,6 @@
           <Property Name="CantidadEfectivo" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="CantidadTarjeta" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="TipoAccion">
           <Key>
             <PropertyRef Name="ID" />
@@ -1984,7 +1963,6 @@
           <EntitySet Name="Permisos" EntityType="Self.Permisos" />
           <EntitySet Name="ResultadosNivelSocioEconomico" EntityType="Self.ResultadosNivelSocioEconomico" />
           <EntitySet Name="SaldoIcerp" EntityType="Self.SaldoIcerp" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <EntitySet Name="TrabajoActualES" EntityType="Self.TrabajoActualES" />
@@ -3038,17 +3016,6 @@
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="CantidadEfectivo" ColumnName="CantidadEfectivo" />
                 <ScalarProperty Name="CantidadTarjeta" ColumnName="CantidadTarjeta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="IcerpModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

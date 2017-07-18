@@ -222,9 +222,6 @@
     <Compile Include="spObtenerDetallesConsultorios_Result.cs">
       <DependentUpon>Core.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Core.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoAccion.cs">
       <DependentUpon>Core.tt</DependentUpon>
     </Compile>
