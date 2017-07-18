@@ -8,6 +8,7 @@
     <section class="content">
         <div class="row">
             <div class="box box-danger">
+                <input id="hdnIdPaciente" type="hidden" />
                 <div class="box-header with-border">
                     <h3 class="box-title">Registro de Pacientes</h3>
                 </div>
@@ -135,12 +136,49 @@
                 <div class="box-footer">
                     <div class="col-md-1">
                         <button type="button" class="btn btn-success" id="btnRegistrarPaciente">Registrar</button>
+                         <button type="button" class="btn btn-primary" id="btnActualizarPaciente">Actualizar</button>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-warning">Cancelar</button>
+                        <button type="button" class="btn btn-warning" id="btnCancelar">Cancelar</button>
                     </div>
 
                 </div>
+            </div>
+             <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Pacientes</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="dataTables_wrapper form-inline dt-bootstrap">
+
+                        <div style="width: 100%">
+                            <br />
+
+                            <table id="tblPacientes" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="display:none">IdPaciente</th>
+                                        <th>Nombre</th>                                       
+                                        <th>Edad</th>
+                                        <th>Motivo</th>
+                                        <th>Horario</th>
+                                        <th>Tutor</th>
+                                        <th>Teléfono</th>
+                                        <th>Contacto</th>
+                                        <th>Activo</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
             </div>
         </div>
     </section>

@@ -457,7 +457,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ViaContacto" Type="nvarchar" MaxLength="150" />
@@ -1660,17 +1660,6 @@
           <Property Name="IdEstudioSocioeconomico" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EstudioSocioeconomico" Relationship="Self.FK_TrabajoActualES_EstudioSocioeconomico" FromRole="TrabajoActualES" ToRole="EstudioSocioeconomico" />
         </EntityType>
-        <EntityType Name="Tutores">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ViaContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Parentezco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Tutores" ToRole="Pacientes" />
-        </EntityType>
         <Association Name="FK_CatColonia_CatMunicipio">
           <End Role="CatMunicipio" Type="Self.CatMunicipio" Multiplicity="1" />
           <End Role="CatColonia" Type="Self.CatColonia" Multiplicity="*" />
@@ -1966,7 +1955,6 @@
           <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <EntitySet Name="TrabajoActualES" EntityType="Self.TrabajoActualES" />
-          <EntitySet Name="Tutores" EntityType="Self.Tutores" />
           <AssociationSet Name="FK_CatColonia_CatMunicipio" Association="Self.FK_CatColonia_CatMunicipio">
             <End Role="CatMunicipio" EntitySet="CatMunicipio" />
             <End Role="CatColonia" EntitySet="CatColonia" />
@@ -2163,6 +2151,7 @@
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
           <EntitySet Name="Pacientes" EntityType="IcerpModel.Pacientes" />
+          <EntitySet Name="Tutores" EntityType="IcerpModel.Tutores" />
           <AssociationSet Name="FK_Citas_Pacientes" Association="IcerpModel.FK_Citas_Pacientes">
             <End Role="Pacientes" EntitySet="Pacientes" />
             <End Role="Citas" EntitySet="Citas" />
@@ -2662,6 +2651,17 @@
           <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Pacientes" ToRole="Turnos" />
           <NavigationProperty Name="Tutores" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Pacientes" ToRole="Tutores" />
         </EntityType>
+        <EntityType Name="Tutores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViaContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Parentezco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Tutores" ToRole="Pacientes" />
+        </EntityType>
         <Association Name="FK_Citas_Pacientes">
           <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />
           <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
@@ -3047,17 +3047,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tutores">
-            <EntityTypeMapping TypeName="IcerpModel.Tutores">
-              <MappingFragment StoreEntitySet="Tutores">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="ViaContacto" ColumnName="ViaContacto" />
-                <ScalarProperty Name="Parentezco" ColumnName="Parentezco" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="getCredencialesUsuario" FunctionName="IcerpModel.Store.getCredencialesUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IcerpModel.getCredencialesUsuario_Result">
@@ -3256,6 +3245,17 @@
                 <ScalarProperty Name="IdTutor" ColumnName="IdTutor" />
                 <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
                 <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutores">
+            <EntityTypeMapping TypeName="IcerpModel.Tutores">
+              <MappingFragment StoreEntitySet="Tutores">
+                <ScalarProperty Name="Parentezco" ColumnName="Parentezco" />
+                <ScalarProperty Name="ViaContacto" ColumnName="ViaContacto" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

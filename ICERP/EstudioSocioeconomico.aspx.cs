@@ -35,5 +35,23 @@ namespace ICERP
                 throw;
             }
         }
+        
+            //Obtener la tarifa que se aplicará al usuario
+        [WebMethod]
+        public static string obtenerTarifaIngreso(string ingreso)
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var decimalIngreso = decimal.Parse(ingreso);
+                var tarifa = uow.ResultadosNivelSocioEconomicoRepository.Get().Where(x => x.RangoInferior <= decimalIngreso && x.RangoSuperior >= decimalIngreso).Select(tc => new { tc.ID, tc.NombreTarifa, tc.PrecioTarifa }).FirstOrDefault();
+                return new JavaScriptSerializer().Serialize(tarifa);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[ System ] " + " [ Page ] " + "[ " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name.ToString() + " ] [ " + System.Reflection.MethodBase.GetCurrentMethod().Name.ToString() + " ] [ Fin ]", ex);
+                throw;
+            }
+        }
     }
 }

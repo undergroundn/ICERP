@@ -55,7 +55,7 @@ namespace ICERP
                         if ((user != null && user.ID != 0 && user.Activo == false))
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "mensajedesactivado",
-                                "mostrarMensaje('Su usuario se encuentra desactivado.<br/>Contácte con el administrador para más detalles.');",
+                                "mostrarMensaje('Su usuario se encuentra desactivado.<br/>Contácte con el administrador para más detalles.','type-warning');",
                                 true);
                             return;
                         }
@@ -104,18 +104,18 @@ namespace ICERP
                         }
                         else
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "mensajeincorrecto",
-                                "mostrarMensaje('¡Su usuario y/o contraseña son incorrectos!');", true);
+                                "mostrarMensaje('¡Su usuario y/o contraseña son incorrectos!','type-warning');", true);
                         
                     }
                     else
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "mensajenoregistro",
-                            "mostrarMensaje('¡Su usuario no está registrado!');", true);
+                            "mostrarMensaje('¡Su usuario no está registrado!','type-warning');", true);
                     
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "mensajevacio",
-                            "mostrarMensaje('¡Ingrese un nombre de usuario y contraseña!');", true);
+                            "mostrarMensaje('¡Ingrese un nombre de usuario y contraseña!','type-warning');", true);
                     
                 }
             }

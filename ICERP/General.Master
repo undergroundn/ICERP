@@ -73,7 +73,7 @@
         BootstrapDialog.alert({
             title: 'Notificación',
             message: contenido,
-            type: 'type-warning',
+            type: type,
             closable: true,
             buttonLabel: 'Aceptar'
         });

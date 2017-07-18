@@ -19,11 +19,14 @@
 
 //Resultado de la llamada a Pacientes.aspx/obtenerUsuarioEncuestador
 function crearControlEncuestador(resultado) {
-    var contenido = JSON.parse(resultado);
-    contenido.Nombres
+    var contenido = JSON.parse(resultado);    
     var nombre = contenido.Nombres + " " + contenido.ApPaterno + " " + contenido.ApMaterno;
     $("#nombreusuario").val(nombre);
-    var fechaactual = Date.Now;
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    var year = now.getFullYear();
+    var fechaactual = day.toString() + "-" + month.toString() + "-" + year.toString();
     $("#fecha").val(fechaactual);
     //$.each(contenido, function (index, item) {
     //    //llenar lista de turnos disponibles en BD
@@ -39,6 +42,31 @@ function crearControlEncuestador(resultado) {
     //$('#divTipoConsultorios input[type="checkbox"].flat-red').iCheck({
     //    checkboxClass: 'icheckbox_flat-red'
     //});
+}
+function calcularTotalIngresos() {
+    //ingresos
+    var Ingresopaciente = $("#Ingresopaciente").val();
+    var IngresoPareja = $("#IngresoPareja").val();
+    var IngresoPadres = $("#IngresoPadres").val();
+    var IngresoHijos = $("#IngresoHijos").val();
+    var IngresoOtros = $("#IngresoOtros").val();
+    var numIngresopaciente = Ingresopaciente != "" ? parseFloat(Ingresopaciente) : 0;
+    var numIngresoPareja = IngresoPareja != "" ? parseFloat(IngresoPareja) : 0;
+    var numIngresoPadres = IngresoPadres != "" ? parseFloat(IngresoPadres) : 0;
+    var numIngresoHijos = IngresoHijos != "" ? parseFloat(IngresoHijos) : 0;
+    var numIngresoOtros = IngresoOtros != "" ? parseFloat(IngresoOtros) : 0;
+    var sumtotalingreso = numIngresopaciente + numIngresoPareja + numIngresoPadres + numIngresoHijos + numIngresoOtros;
+    $("#IngresoTotal").val(sumtotalingreso);
+}
+function calculoTarifa() {
+    var ingresoString = $("#IngresoTotal").val() != "" ? $("#IngresoTotal").val() : "0" ;
+
+    ICERP_Core.llamarAjax("EstudioSocioeconomico.aspx/obtenerTarifaIngreso", "{ 'ingreso': '" + ingresoString + "'}", "calcularNivelSocioeconomico");
+}
+function calcularNivelSocioeconomico(resultado) {
+    var contenido = JSON.parse(resultado);    
+    var resultadoIngreso = contenido.NombreTarifa + " - $" + contenido.PrecioTarifa;
+    $("#tarifa").val(resultadoIngreso);
 }
 
 function guardarEstudioSE() {
@@ -77,7 +105,7 @@ function guardarEstudioSE() {
     var IngresoPadres = $("#IngresoPadres").val();
     var IngresoHijos = $("#IngresoHijos").val();
     var IngresoOtros = $("#IngresoOtros").val();
-    var sumtotalingreso = parseFloat(Ingresopaciente) +  parseFloat(IngresoPareja) +  parseFloat(IngresoPadres) +  parseFloat(IngresoHijos) +  parseFloat(IngresoOtros);
+    //var sumtotalingreso = parseFloat(Ingresopaciente) +  parseFloat(IngresoPareja) +  parseFloat(IngresoPadres) +  parseFloat(IngresoHijos) +  parseFloat(IngresoOtros);
     var IngresoTotal = $("#IngresoTotal").val();
 
     //egresos

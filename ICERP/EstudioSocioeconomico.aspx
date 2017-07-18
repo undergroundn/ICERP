@@ -217,7 +217,7 @@
                                                 <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="IngresoOtros"></li>
                                             <li class="list-group-item">
                                                 <label for="IngresoTotal">Total</label>
-                                                <input type="text" class="form-control" id="IngresoTotal"></li>
+                                                <input type="text" style="font-weight:bold" class="form-control" id="IngresoTotal" onfocus="calcularTotalIngresos();"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -302,7 +302,7 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <label for="egresoTotal">Total aprox. de gastos</label>
-                                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="egresoTotal"></li>
+                                                <input type="text" style="font-weight:bold" class="form-control validate[required]" validgroup="registrarEstudioSE" id="egresoTotal"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -590,7 +590,7 @@
                             <div class="col-md-4">
                              <div class="form-group">
                 <label>Tarifa</label>
-                <input type="text" class="form-control" id="tarifa" placeholder="A/B_ C+_ C_ D+_ D_ E_" />                                    
+                <input type="text" class="form-control" style="font-weight:bold" id="tarifa" onfocus="calculoTarifa();" placeholder="A/B_ C+_ C_ D+_ D_ E_" />                                    
               </div></div>
                             <div class="col-md-6">
                              <div class="form-group">
