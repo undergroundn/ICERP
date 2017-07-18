@@ -21,30 +21,32 @@ namespace Model
             this.DisponibilidadPsicoterapeuta = new HashSet<DisponibilidadPsicoterapeuta>();
             this.HorarioPsicoterapeuta = new HashSet<HorarioPsicoterapeuta>();
             this.PagoTerapeutas = new HashSet<PagoTerapeutas>();
+            this.PsicoterapeutasTiposAreas = new HashSet<PsicoterapeutasTiposAreas>();
+            this.PsicoterapeutasTiposPacientes = new HashSet<PsicoterapeutasTiposPacientes>();
+            this.PsicoterapeutasTiposTrastornos = new HashSet<PsicoterapeutasTiposTrastornos>();
         }
     
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
-        public Nullable<int> IdTurno { get; set; }
-        public Nullable<int> IdTipoPaciente { get; set; }
+        public Nullable<short> IdTurno { get; set; }
         public string Telefono { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
-        public Nullable<int> IdTipoTrastorno { get; set; }
-        public Nullable<int> IdAreaAtiende { get; set; }
-        public Nullable<int> IdTipoCuota { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public Nullable<short> IdTipoCuota { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual ICollection<Citas> Citas { get; set; }
         public virtual ICollection<CostosConsultasFijas> CostosConsultasFijas { get; set; }
         public virtual ICollection<DisponibilidadPsicoterapeuta> DisponibilidadPsicoterapeuta { get; set; }
         public virtual ICollection<HorarioPsicoterapeuta> HorarioPsicoterapeuta { get; set; }
         public virtual ICollection<PagoTerapeutas> PagoTerapeutas { get; set; }
-        public virtual TipoAreas TipoAreas { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposTrastornos> PsicoterapeutasTiposTrastornos { get; set; }
         public virtual TipoCouta TipoCouta { get; set; }
-        public virtual TipoPaciente TipoPaciente { get; set; }
-        public virtual TipoTrastorno TipoTrastorno { get; set; }
         public virtual Turnos Turnos { get; set; }
     }
 }

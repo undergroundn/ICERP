@@ -22,5 +22,10 @@ $(function () {
 
     if (data)
         $('.sidebar-menu').append(data);
+
+    $(".cuentaDominio").text(nombreDominio);
+    $(".menuUsuario").html(nombreCompleto + "<small>" + rolUsuario + "</small>");
+    $(".menuUsuarioIzq").html("<p>" + nombreCompleto + "</p>" + rolUsuario);
     //$(".sidebar .treeview").tree();
+    $(".userImageLoad").attr("src", fotoUsuario);
 });

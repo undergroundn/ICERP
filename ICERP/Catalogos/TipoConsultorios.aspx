@@ -1,14 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="TipoConsultorios.aspx.cs" Inherits="ICERP.Catalogos.TipoConsultorios" %>
 
 <asp:Content ID="tipoConsultorioHeadContent" ContentPlaceHolderID="headContent" runat="server">
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            ICERP_Core.llamarAjax("Consultorios.aspx/obtenerTiposConsultorios", null, "crearTablaTipoConsultorios");
-        });
-        
-
-    </script>
+    <script src="../Scripts/pages/catalogos/tipoConsultorios.js"></script>
 </asp:Content>
 <asp:Content ID="tipoConsultorioBodyContent" ContentPlaceHolderID="bodyContent" runat="server">
     <section class="content">
@@ -50,6 +43,8 @@
                                     <tr>
                                         <th>IdTipoConsultorio</th>
                                         <th>Tipo</th>
+                                        <th>Registró</th>
+                                        <th>Fecha</th>
                                         <th>Activo</th>
                                         <th>Editar</th>
                                     </tr>
@@ -65,12 +60,12 @@
         </div>
     </section>
 
-    <div class="modal fade" id="mdlEditarConsultorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mdlEditarTipoConsultorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 350px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-                    <h4 class="modal-title" id="myModalLabel1"><strong>Editar Consultorio</strong></h4>
+                    <h4 class="modal-title" id="myModalLabel1"><strong>Editar Tipo de Consultorio</strong></h4>
                 </div>
                 <div class="modal-body">
                     <div>

@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="fecha">Fecha</label>
-                                <input type="text" class="form-control validate[required]" validgroup="registrarEstudioSE" id="fecha" placeholder="Fecha actual" >
+                                <input type="date" class="form-control validate[required]" validgroup="registrarEstudioSE" id="fecha" placeholder="Fecha actual" >
                             </div>
                         </div>
                     </div>

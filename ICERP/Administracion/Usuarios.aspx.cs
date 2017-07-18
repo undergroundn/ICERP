@@ -61,28 +61,29 @@ namespace ICERP.Administracion
         {
             try
             {
-                var listmenus = uw.PermisosRepository.GetBy(x => x.UsuarioID == usuarioid);
-                uw.PermisosRepository.RemoveAll(listmenus);
+                var listmenus = uw.MenuUsuarioRepository.GetBy(x => x.IdUsuario == usuarioid);
+                uw.MenuUsuarioRepository.RemoveAll(listmenus);
                 uw.Save();
-                var areastotales = uw.PermisosRepository.Get();
+                var areastotales = uw.MenuUsuarioRepository.Get();
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
 
                 List<Regreso> nueva = jss.Deserialize<List<Regreso>>(hfnodosseleccionados.Value);
 
-                Model.Permisos areasusuarios = new Model.Permisos();
+                Model.MenuUsuario areasusuarios = new Model.MenuUsuario();
 
-                foreach (Regreso re in nueva)
+
+               foreach (Regreso re in nueva)
                 {
                     if (re.state.selected == "True")
                     {
                         int reid = int.Parse(re.id);
-                        var areasuser = uw.PermisosRepository.GetBy(x => x.UsuarioID == usuarioid && x.MenuID == reid);
+                        var areasuser = uw.MenuUsuarioRepository.GetBy(x => x.IdUsuario == usuarioid && x.IdMenu == reid);
                         if (areasuser.Count == 0)
                         {
-                            areasusuarios.UsuarioID = usuarioid;
-                            areasusuarios.MenuID = int.Parse(re.id);
-                            uw.PermisosRepository.AddSingle(areasusuarios);
+                            areasusuarios.IdUsuario = usuarioid;
+                            areasusuarios.IdMenu = int.Parse(re.id);
+                            uw.MenuUsuarioRepository.AddSingle(areasusuarios);
                             uw.Save();
 
                         }
@@ -92,12 +93,12 @@ namespace ICERP.Administracion
                             if (valor != "#")
                             {
                                 int vid = int.Parse(valor);
-                                var areasuser2 = uw.PermisosRepository.GetBy(x => x.UsuarioID == usuarioid && x.MenuID == vid);
+                                var areasuser2 = uw.MenuUsuarioRepository.GetBy(x => x.IdUsuario == usuarioid && x.IdMenu == vid);
                                 if (areasuser2.Count == 0)
                                 {
-                                    areasusuarios.UsuarioID = usuarioid;
-                                    areasusuarios.MenuID = int.Parse(valor);
-                                    uw.PermisosRepository.AddSingle(areasusuarios);
+                                    areasusuarios.IdUsuario = usuarioid;
+                                    areasusuarios.IdMenu = int.Parse(valor);
+                                    uw.MenuUsuarioRepository.AddSingle(areasusuarios);
                                     uw.Save();
                                 }
                             }
@@ -107,7 +108,7 @@ namespace ICERP.Administracion
                 }
                 if (nueva.Count != 0) { return true; }
                 else
-                { return false; }
+                { return false; }                      
             }
             catch (Exception e)
             {
@@ -128,8 +129,9 @@ namespace ICERP.Administracion
                 usuario.ApMaterno = texbMaterno.Text.ToUpper();
                 usuario.NombreUsuario = texbClaveUsuario.Text;
                 string pwd = texbCorreo.Text;
-                byte[] array = Encoding.ASCII.GetBytes(pwd);
-                usuario.Contraseña = array;
+                //byte[] array = Encoding.ASCII.GetBytes(pwd);
+                //usuario.Contraseña = array;
+                usuario.Contraseña = pwd;
                 usuario.RolId = int.Parse(ddlRol.SelectedValue.ToString());
                 usuario.Activo = chebActivo.Checked;
                 uw.UsuariosRepository.AddSingle(usuario);
@@ -137,9 +139,9 @@ namespace ICERP.Administracion
 
                 hfidusuario.Value = usuario.ID.ToString();
 
-                Model.Permisos Area_Usuario = new Model.Permisos();
-                Area_Usuario.UsuarioID = int.Parse(hfidusuario.Value);
-                int iduser = Area_Usuario.UsuarioID != null ? Convert.ToInt32(Area_Usuario.UsuarioID) : 0;
+                Model.MenuUsuario Area_Usuario = new Model.MenuUsuario();
+                Area_Usuario.IdUsuario = int.Parse(hfidusuario.Value);
+                int iduser = Area_Usuario.IdUsuario != null ? Convert.ToInt32(Area_Usuario.IdUsuario) : 0;
                 bool respuesta = agregandopermisos(iduser);
                 if (respuesta == true)
                 {
@@ -178,8 +180,9 @@ namespace ICERP.Administracion
                 usuario.ApMaterno = texbMaterno.Text.ToUpper();
                 usuario.NombreUsuario = texbClaveUsuario.Text;
                 string pwd = texbCorreo.Text;
-                byte[] array = Encoding.ASCII.GetBytes(pwd);
-                usuario.Contraseña = array;
+                //byte[] array = Encoding.ASCII.GetBytes(pwd);
+                //usuario.Contraseña = array;
+                usuario.Contraseña = pwd;
                 usuario.RolId = int.Parse(ddlRol.SelectedValue.ToString());
                 usuario.Activo = chebActivo.Checked;
 
@@ -290,19 +293,33 @@ namespace ICERP.Administracion
                 area.parent = nueva.MenuPadreId == null ? "#" : nueva.MenuPadreId.ToString();
                 int iduser = int.Parse(usuarioId);
                 int idar = int.Parse(area.id);
-                var usuario = uow.PermisosRepository.GetBy(x => x.UsuarioID == iduser && x.MenuID == idar);
+                var usuario = uow.MenuUsuarioRepository.GetBy(x => x.IdUsuario == iduser && x.IdMenu == idar);
 
                 int contar = 0;
                 if (usuario.Count > 0)
                 {
-                    int menuid = usuario[0].MenuID != null ? Int32.Parse(usuario[0].MenuID.ToString()) : 0;
+                    int menuid = usuario[0].IdMenu != null ? Int32.Parse(usuario[0].IdMenu.ToString()) : 0;
                     var usuario1 = uow.MenuRepository.GetBy(x => x.MenuPadreId == menuid);
                     contar = usuario1.Count;
                 }
                 state st = new state();
-                if (usuario.Count > 0) { if (area.parent == "#" || contar > 0) { st.opened = "True"; } else { st.selected = "True"; } }
-                else { st.selected = null; st.opened = null; st.disabled = null; }
+
+                if (usuario.Count > 0) { 
+                    if (area.parent == "#" && contar > 0) { 
+                        
+                        //st.opened = "True";
+                            st.selected = null;
+                        
+                    
+                    } 
+                    else { st.selected = "True"; } }
+                else { 
+                    st.selected = null; 
+                    //st.opened = null; 
+                    //st.disabled = null;
+                }
                 st.loaded = "True";
+                st.opened = "True";
                 area.state = st;
                 return area;
             }

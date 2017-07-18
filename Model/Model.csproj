@@ -161,6 +161,15 @@
     <Compile Include="Psicoterapeuta.cs">
       <DependentUpon>Core.tt</DependentUpon>
     </Compile>
+    <Compile Include="PsicoterapeutasTiposAreas.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PsicoterapeutasTiposPacientes.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PsicoterapeutasTiposTrastornos.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\CatColoniaRepository.cs" />
     <Compile Include="Repositories\CatEstadoRepository.cs" />
     <Compile Include="Repositories\CatMunicipioRepository.cs" />

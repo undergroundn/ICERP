@@ -50,7 +50,7 @@ function crearTablaConsultorios(resultado) {
         $.each(item, function (index, data) {
             $tr.append($('<td>').text(data));
         });
-        $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnEditarConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
+        $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnModalEditarConsultorio" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
         $tr.appendTo('#tblConsultorios tbody');
     });
 
@@ -101,7 +101,7 @@ function consultorioGuardado() {
 }
 
 function clickEditarConsultorio() {
-    $(".btnEditarConsultorio").click(function () {
+    $(".btnModalEditarConsultorio").click(function () {
         var row = $(this).closest('tr');
         var data = $('#tblConsultorios').dataTable().fnGetData(row);
         var idConsultorio = Number(data[0]);

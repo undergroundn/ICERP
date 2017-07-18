@@ -16,13 +16,15 @@ namespace Model
     {
         public TipoPaciente()
         {
-            this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
+            this.PsicoterapeutasTiposPacientes = new HashSet<PsicoterapeutasTiposPacientes>();
         }
     
-        public int ID { get; set; }
+        public short ID { get; set; }
         public string Tipo { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int IdUsuario { get; set; }
     
-        public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }
+        public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
     }
 }

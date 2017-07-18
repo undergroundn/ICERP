@@ -154,6 +154,13 @@ namespace Model.UnitOfWork
         {
             get { return _MenuRepository ?? (_MenuRepository = new MenuRepository(_entities)); }
         }
+
+        private Repositories.MenuUsuarioRepository _MenuUsuarioRepository;
+
+        public Repositories.MenuUsuarioRepository MenuUsuarioRepository
+        {
+            get { return _MenuUsuarioRepository ?? (_MenuUsuarioRepository = new MenuUsuarioRepository(_entities)); }
+        }
         private Repositories.PacientesRepository _PacientesRepository;
 
         public Repositories.PacientesRepository PacientesRepository

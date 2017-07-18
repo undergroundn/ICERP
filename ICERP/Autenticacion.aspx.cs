@@ -48,8 +48,8 @@ namespace ICERP
 
                 if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(contraseña))
                 {
-                    var user = new Model.CustomModel.StoredProcedureRepository().GetUserCredenciales(usuario, contraseña);                       
-                   
+                    //var user = new Model.CustomModel.StoredProcedureRepository().GetUserCredenciales(usuario, contraseña);
+                    var user = uow.UsuariosRepository.Get().Where(x => x.NombreUsuario.Equals(usuario) && x.Contraseña.Equals(contraseña)).FirstOrDefault();
                     if (user != null)//  || user.ID != 0 )
                     {
                         if ((user != null && user.ID != 0 && user.Activo == false))
