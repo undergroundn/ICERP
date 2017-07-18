@@ -31,7 +31,7 @@ namespace Model
         public Nullable<short> IdTurno { get; set; }
         public string FechaNacimiento { get; set; }
         public string Genero { get; set; }
-        public Nullable<int> Activo { get; set; }
+        public bool Activo { get; set; }
         public string MedioDifusion { get; set; }
         public int IdUsuarioRegistro { get; set; }
         public System.DateTime FechaRegistro { get; set; }

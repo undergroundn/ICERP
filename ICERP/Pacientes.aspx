@@ -78,7 +78,7 @@
                                 <label for="turno">Turno</label>
                                 <%--<input type="text" class="form-control" id="turno" placeholder="turno">--%>
                                 <select id="sltTurno" class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">--Seleccione--</option>
+                                    <option value="0" selected="selected">--Seleccione--</option>
                                     <%--<option value="1">Matutino</option>
                                     <option value="2">Vespertino</option>   --%>                                 
                                 </select>

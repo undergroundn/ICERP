@@ -41,7 +41,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreRol" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
@@ -272,7 +272,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
@@ -283,7 +283,7 @@
           <Property Name="IdTurno" Type="smallint" />
           <Property Name="FechaNacimiento" Type="nvarchar" MaxLength="50" />
           <Property Name="Genero" Type="nvarchar" MaxLength="50" />
-          <Property Name="Activo" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="MedioDifusion" Type="nvarchar" MaxLength="50" />
           <Property Name="IdUsuarioRegistro" Type="int" Nullable="false" />
           <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
@@ -2642,7 +2642,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -2653,14 +2653,14 @@
           <Property Name="IdTurno" Type="Int16" />
           <Property Name="FechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="MedioDifusion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdUsuarioRegistro" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Pacientes" ToRole="Citas" />
           <NavigationProperty Name="CobroConsulta" Relationship="IcerpModel.FK_CobroConsulta_Pacientes" FromRole="Pacientes" ToRole="CobroConsulta" />
           <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Pacientes" ToRole="Turnos" />
           <NavigationProperty Name="Tutores" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Pacientes" ToRole="Tutores" />
-          <Property Name="IdUsuarioRegistro" Type="Int32" Nullable="false" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Citas_Pacientes">
           <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />

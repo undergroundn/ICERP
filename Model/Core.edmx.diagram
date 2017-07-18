@@ -94,7 +94,7 @@
         <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_TipoCouta" />
         <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.5" />
         <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
-        <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="3" PointY="6.625" />
         <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
         <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Pacientes" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
