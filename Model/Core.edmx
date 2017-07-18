@@ -457,7 +457,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ViaContacto" Type="nvarchar" MaxLength="150" />
