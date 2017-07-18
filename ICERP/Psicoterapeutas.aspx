@@ -4,7 +4,19 @@
 
     <script type="text/javascript">
 
-        
+        $(document).ready(function () {
+
+            ICERP_Core.llamarAjax("Psicoterapeutas.aspx/obtenerDatosControles", null, "crearControles");
+
+            $("#btnAgregarPsico").click(function () {
+                $("#mdlAgregarPsico").modal("show");
+            });
+        });
+
+        //Resultado de la llamada a Psicoterapeutas.aspx/obtenerDatosControles
+        function crearControles(resultado) {
+            var contenido = JSON.parse(resultado);
+        }
 
     </script>
 
@@ -16,7 +28,7 @@
         </div>
         <div class="box-body">
             <div>
-                <button id="btnAgregarPsico" type="button" class="btn btn-info"><span><i class="glyphicon glyphicon-plus"></i></span>&nbsp;&nbsp;Nuevo Psicoterapeuta</button>
+                <button id="btnAgregarPsico" type="button" class="btn btn-success"><span><i class="glyphicon glyphicon-plus"></i></span>&nbsp;&nbsp;Nuevo Psicoterapeuta</button>
             </div>
             <br />
             <div id="tblPsicoterapeutas">
@@ -89,16 +101,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputATelefono" class="col-sm-4 control-label">Telefono</label>
+                                    <label for="inputTelefono" class="col-sm-4 control-label">Teléfono</label>
 
                                     <div class="col-sm-8">
-                                        <input class="form-control" id="inputATelefono" placeholder="Telefono" />
+                                        <input class="form-control" id="inputTelefono" placeholder="Teléfono" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputWhatsApp" class="col-sm-4 control-label">WhatsApp</label>
+
+                                    <div class="col-sm-8">
+                                        <input class="form-control" id="inputWhatsApp" placeholder="WhatsApp" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="sltTurno" class="col-sm-4 control-label">Turno</label>
 
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8" id="divSltTurno">
                                         <select class="form-control" id="sltTurno">
                                             <option>Matutino</option>
                                             <option>Vespertino</option>
@@ -108,13 +127,35 @@
                                 <div class="form-group">
                                     <label for="sltCuota" class="col-sm-4 control-label">Cuota</label>
 
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8" id="divSltTipoCuota">
                                         <select class="form-control" id="sltCuota">
                                             <option>Fija</option>
                                             <option>Flexible</option>
                                         </select>
                                     </div>
                                 </div>
+<%--                                <div class="form-group">
+                                    <label>Tipos de Pacientes</label>
+                                    <br />
+                                    <div id="divTiposPacientes" style="display: inline-block;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipos de Áreas</label>
+                                    <br />
+                                    <div id="divTiposÁreas" style="display: inline-block;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipos de Trastornos</label>
+                                    <br />
+                                    <div id="divTiposTrastornos" style="display: inline-block;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input id="chkActivo" type="checkbox" class="flat-red" checked />
+                                    <span style="margin-right: 20px">Activo</span>
+                                </div>--%>
                             </div>
                         </div>
                     </div>

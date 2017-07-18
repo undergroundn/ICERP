@@ -57,6 +57,7 @@ namespace Model
         public virtual DbSet<TipoAccion> TipoAccion { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<TrabajoActualES> TrabajoActualES { get; set; }
+        public virtual DbSet<Tutores> Tutores { get; set; }
         public virtual DbSet<MenuUsuario> MenuUsuario { get; set; }
         public virtual DbSet<Consultorios> Consultorios { get; set; }
         public virtual DbSet<TipoConsultorio> TipoConsultorio { get; set; }
@@ -70,9 +71,8 @@ namespace Model
         public virtual DbSet<TipoPaciente> TipoPaciente { get; set; }
         public virtual DbSet<TipoTrastorno> TipoTrastorno { get; set; }
         public virtual DbSet<TipoCouta> TipoCouta { get; set; }
-        public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<Pacientes> Pacientes { get; set; }
-        public virtual DbSet<Tutores> Tutores { get; set; }
+        public virtual DbSet<Turnos> Turnos { get; set; }
     
         public virtual ObjectResult<getCredencialesUsuario_Result> getCredencialesUsuario(string nombreUsuario, string pwd)
         {

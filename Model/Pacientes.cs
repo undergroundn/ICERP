@@ -38,7 +38,7 @@ namespace Model
     
         public virtual ICollection<Citas> Citas { get; set; }
         public virtual ICollection<CobroConsulta> CobroConsulta { get; set; }
-        public virtual Turnos Turnos { get; set; }
         public virtual Tutores Tutores { get; set; }
+        public virtual Turnos Turnos { get; set; }
     }
 }

@@ -35,6 +35,7 @@
         <EntityTypeShape EntityType="IcerpModel.TipoAccion" Width="1.5" PointX="16" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.TipoPago" Width="1.5" PointX="8.25" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.TrabajoActualES" Width="1.5" PointX="28.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IcerpModel.Tutores" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
         <AssociationConnector Association="IcerpModel.FK_CatColonia_CatMunicipio" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_DomicilioES_CatColonia" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_CatEstado_CatEstado" ManuallyRouted="false" />
@@ -91,14 +92,13 @@
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" />
         <EntityTypeShape EntityType="IcerpModel.TipoCouta" Width="1.5" PointX="3.375" PointY="0.875" />
         <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_TipoCouta" />
-        <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.5" />
-        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
-        <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="IcerpModel.Tutores" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="3" PointY="6.625" />
         <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
         <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Pacientes" />
-        <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Tutores" />
+        <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.875" />
+        <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
+        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
