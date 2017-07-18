@@ -71,8 +71,8 @@ namespace Model
         public virtual DbSet<TipoPaciente> TipoPaciente { get; set; }
         public virtual DbSet<TipoTrastorno> TipoTrastorno { get; set; }
         public virtual DbSet<TipoCouta> TipoCouta { get; set; }
-        public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<Pacientes> Pacientes { get; set; }
+        public virtual DbSet<Turnos> Turnos { get; set; }
     
         public virtual ObjectResult<getCredencialesUsuario_Result> getCredencialesUsuario(string nombreUsuario, string pwd)
         {

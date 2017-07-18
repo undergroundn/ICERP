@@ -450,8 +450,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Turno" Type="nvarchar" MaxLength="150" />
-          <Property Name="Activo" Type="bit" />
+          <Property Name="Turno" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Tutores">
           <Key>
@@ -2157,11 +2157,6 @@
             <End Role="TipoCouta" EntitySet="TipoCouta" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
-          <EntitySet Name="Turnos" EntityType="IcerpModel.Turnos" />
-          <AssociationSet Name="FK_Psicoterapeuta_Turnos" Association="IcerpModel.FK_Psicoterapeuta_Turnos">
-            <End Role="Turnos" EntitySet="Turnos" />
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-          </AssociationSet>
           <EntitySet Name="Pacientes" EntityType="IcerpModel.Pacientes" />
           <AssociationSet Name="FK_Citas_Pacientes" Association="IcerpModel.FK_Citas_Pacientes">
             <End Role="Pacientes" EntitySet="Pacientes" />
@@ -2171,13 +2166,18 @@
             <End Role="Pacientes" EntitySet="Pacientes" />
             <End Role="CobroConsulta" EntitySet="CobroConsulta" />
           </AssociationSet>
+          <AssociationSet Name="FK_Pacientes_Tutores" Association="IcerpModel.FK_Pacientes_Tutores">
+            <End Role="Tutores" EntitySet="Tutores" />
+            <End Role="Pacientes" EntitySet="Pacientes" />
+          </AssociationSet>
+          <EntitySet Name="Turnos" EntityType="IcerpModel.Turnos" />
           <AssociationSet Name="FK_Pacientes_Turnos" Association="IcerpModel.FK_Pacientes_Turnos">
             <End Role="Turnos" EntitySet="Turnos" />
             <End Role="Pacientes" EntitySet="Pacientes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pacientes_Tutores" Association="IcerpModel.FK_Pacientes_Tutores">
-            <End Role="Tutores" EntitySet="Tutores" />
-            <End Role="Pacientes" EntitySet="Pacientes" />
+          <AssociationSet Name="FK_Psicoterapeuta_Turnos" Association="IcerpModel.FK_Psicoterapeuta_Turnos">
+            <End Role="Turnos" EntitySet="Turnos" />
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="getCredencialesUsuario_Result">
@@ -2616,28 +2616,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Turnos">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int16" Nullable="false" />
-          <Property Name="Turno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_Turnos" FromRole="Turnos" ToRole="Psicoterapeuta" />
-          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Turnos" ToRole="Pacientes" />
-        </EntityType>
-        <Association Name="FK_Psicoterapeuta_Turnos">
-          <End Type="IcerpModel.Turnos" Role="Turnos" Multiplicity="0..1" />
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Turnos">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Psicoterapeuta">
-              <PropertyRef Name="IdTurno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Pacientes">
           <Key>
             <PropertyRef Name="ID" />
@@ -2659,8 +2637,8 @@
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Pacientes" ToRole="Citas" />
           <NavigationProperty Name="CobroConsulta" Relationship="IcerpModel.FK_CobroConsulta_Pacientes" FromRole="Pacientes" ToRole="CobroConsulta" />
-          <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Pacientes" ToRole="Turnos" />
           <NavigationProperty Name="Tutores" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Pacientes" ToRole="Tutores" />
+          <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Pacientes" ToRole="Turnos" />
         </EntityType>
         <Association Name="FK_Citas_Pacientes">
           <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />
@@ -2686,6 +2664,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pacientes_Tutores">
+          <End Type="IcerpModel.Tutores" Role="Tutores" Multiplicity="0..1" />
+          <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pacientes">
+              <PropertyRef Name="IdTutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Turnos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Turno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Turnos" ToRole="Pacientes" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Psicoterapeuta_Turnos" FromRole="Turnos" ToRole="Psicoterapeuta" />
+        </EntityType>
         <Association Name="FK_Pacientes_Turnos">
           <End Type="IcerpModel.Turnos" Role="Turnos" Multiplicity="0..1" />
           <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="*" />
@@ -2698,15 +2698,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pacientes_Tutores">
-          <End Type="IcerpModel.Tutores" Role="Tutores" Multiplicity="0..1" />
-          <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="*" />
+        <Association Name="FK_Psicoterapeuta_Turnos">
+          <End Type="IcerpModel.Turnos" Role="Turnos" Multiplicity="0..1" />
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tutores">
+            <Principal Role="Turnos">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Pacientes">
-              <PropertyRef Name="IdTutor" />
+            <Dependent Role="Psicoterapeuta">
+              <PropertyRef Name="IdTurno" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3231,15 +3231,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Turnos">
-            <EntityTypeMapping TypeName="IcerpModel.Turnos">
-              <MappingFragment StoreEntitySet="Turnos">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Turno" ColumnName="Turno" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Pacientes">
             <EntityTypeMapping TypeName="IcerpModel.Pacientes">
               <MappingFragment StoreEntitySet="Pacientes">
@@ -3257,6 +3248,15 @@
                 <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
                 <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turnos">
+            <EntityTypeMapping TypeName="IcerpModel.Turnos">
+              <MappingFragment StoreEntitySet="Turnos">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Turno" ColumnName="Turno" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -16,15 +16,15 @@ namespace Model
     {
         public Turnos()
         {
-            this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
             this.Pacientes = new HashSet<Pacientes>();
+            this.Psicoterapeuta = new HashSet<Psicoterapeuta>();
         }
     
         public short ID { get; set; }
         public string Turno { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public bool Activo { get; set; }
     
-        public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }
         public virtual ICollection<Pacientes> Pacientes { get; set; }
+        public virtual ICollection<Psicoterapeuta> Psicoterapeuta { get; set; }
     }
 }
