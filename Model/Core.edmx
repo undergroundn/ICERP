@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreColonia" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CP" Type="bigint" />
           <Property Name="IdMunicipio" Type="int" Nullable="false" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreEstado" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdPais" Type="int" Nullable="false" />
         </EntityType>
@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreMunicipio" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombrePais" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CatRoles">
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdConsultorio" Type="int" />
           <Property Name="IdEstatus" Type="int" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
@@ -63,7 +63,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCita" Type="int" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
           <Property Name="CantidadEfectivo" Type="decimal" Precision="18" Scale="0" />
@@ -94,7 +94,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPsicoterapeuta" Type="int" Nullable="false" />
           <Property Name="Tarifa" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -102,7 +102,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
@@ -115,7 +115,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Antiguedad" Type="nvarchar" MaxLength="50" />
           <Property Name="ViasAcceso" Type="nvarchar" MaxLength="150" />
@@ -131,7 +131,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Parentezco" Type="nvarchar" MaxLength="150" />
           <Property Name="Edad" Type="nvarchar" MaxLength="50" />
@@ -143,14 +143,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreDia" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="DisponibilidadConsultorios">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdConsultorio" Type="int" Nullable="false" />
           <Property Name="IdFecha" Type="int" Nullable="false" />
           <Property Name="IdHora" Type="int" Nullable="false" />
@@ -159,7 +159,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdFecha" Type="int" Nullable="false" />
           <Property Name="IdHora" Type="int" Nullable="false" />
           <Property Name="IdTerapeuta" Type="int" Nullable="false" />
@@ -168,7 +168,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdColonia" Type="int" Nullable="false" />
           <Property Name="Calle" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="NumExterior" Type="int" />
@@ -180,7 +180,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Estatus" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
@@ -188,7 +188,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUsuarioEncuestador" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="IdDatosGenerales" Type="int" Nullable="false" />
@@ -203,7 +203,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDia" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
         </EntityType>
@@ -211,7 +211,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdTerapeuta" Type="int" Nullable="false" />
           <Property Name="IdDias" Type="int" Nullable="false" />
           <Property Name="IdHora" Type="int" Nullable="false" />
@@ -220,14 +220,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="InformacionBienesES">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Automovil" Type="nvarchar" MaxLength="50" />
           <Property Name="Propiedades" Type="nvarchar" MaxLength="50" />
           <Property Name="Inversiones" Type="nvarchar" MaxLength="50" />
@@ -239,7 +239,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Origen" Type="nvarchar" MaxLength="250" />
@@ -292,7 +292,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCita" Type="int" Nullable="false" />
           <Property Name="IdTerapeuta" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" />
@@ -355,7 +355,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreTarifa" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RangoInferior" Type="decimal" Precision="18" Scale="0" />
           <Property Name="RangoSuperior" Type="decimal" Precision="18" Scale="0" />
@@ -366,7 +366,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCita" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="CantidadEfectivo" Type="decimal" Precision="18" Scale="0" />
@@ -376,7 +376,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Accion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoAreas">
@@ -421,7 +421,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoTrastorno">
@@ -438,7 +438,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empresa" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Area" Type="nvarchar" MaxLength="250" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="150" />
