@@ -37,8 +37,7 @@ namespace ICERP
                     "\"TiposCuotas\":" + js.Serialize(tiposCuotas) + "," +
                     "\"TiposPacientes\":" + js.Serialize(tiposPacientes) + "," +
                     "\"TiposAreas\":" + js.Serialize(tiposAreas) + "," +
-                    "\"TiposTrastornos\":" + js.Serialize(tiposTrastornos) + "," +
-                    "}";
+                    "\"TiposTrastornos\":" + js.Serialize(tiposTrastornos) + "}";
 
                 return datosControles;
             }

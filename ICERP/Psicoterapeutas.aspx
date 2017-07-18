@@ -5,10 +5,18 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            ICERP_Core.llamarAjax("Psicoterapeutas.aspx/obtenerDatosControles", null, "crearControles");
+
             $("#btnAgregarPsico").click(function () {
                 $("#mdlAgregarPsico").modal("show");
             });
         });
+
+        //Resultado de la llamada a Psicoterapeutas.aspx/obtenerDatosControles
+        function crearControles(resultado) {
+            var contenido = JSON.parse(resultado);
+        }
 
     </script>
 
@@ -110,23 +118,23 @@
                                     <label for="sltTurno" class="col-sm-4 control-label">Turno</label>
 
                                     <div class="col-sm-8" id="divSltTurno">
-                                        <%--<select class="form-control" id="sltTurno">
+                                        <select class="form-control" id="sltTurno">
                                             <option>Matutino</option>
                                             <option>Vespertino</option>
-                                        </select>--%>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="sltCuota" class="col-sm-4 control-label">Cuota</label>
 
                                     <div class="col-sm-8" id="divSltTipoCuota">
-                                        <%--<select class="form-control" id="sltCuota">
+                                        <select class="form-control" id="sltCuota">
                                             <option>Fija</option>
                                             <option>Flexible</option>
-                                        </select>--%>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+<%--                                <div class="form-group">
                                     <label>Tipos de Pacientes</label>
                                     <br />
                                     <div id="divTiposPacientes" style="display: inline-block;">
@@ -147,7 +155,7 @@
                                 <div class="form-group">
                                     <input id="chkActivo" type="checkbox" class="flat-red" checked />
                                     <span style="margin-right: 20px">Activo</span>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                     </div>
