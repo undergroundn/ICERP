@@ -162,6 +162,7 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Catalogos\Consultorios.aspx" />
+    <Content Include="Catalogos\ResultadosEvaluacion.aspx" />
     <Content Include="Catalogos\TipoConsultorios.aspx" />
     <Content Include="Catalogos\TiposArea.aspx" />
     <Content Include="Catalogos\TiposPacientes.aspx" />
@@ -1136,6 +1137,7 @@
     <Content Include="Scripts\jstree\jstree.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\catalogos\consultorios.js" />
+    <Content Include="Scripts\pages\catalogos\resultadosEvaluacion.js" />
     <Content Include="Scripts\pages\catalogos\tipoConsultorios.js" />
     <Content Include="Scripts\pages\catalogos\tipoPacientes.js" />
     <Content Include="Scripts\pages\estudiosocioeconomico.js" />
@@ -1301,6 +1303,13 @@
     </Compile>
     <Compile Include="Catalogos\Consultorios.aspx.designer.cs">
       <DependentUpon>Consultorios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\ResultadosEvaluacion.aspx.cs">
+      <DependentUpon>ResultadosEvaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalogos\ResultadosEvaluacion.aspx.designer.cs">
+      <DependentUpon>ResultadosEvaluacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\TipoConsultorios.aspx.cs">
       <DependentUpon>TipoConsultorios.aspx</DependentUpon>
