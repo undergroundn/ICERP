@@ -3,10 +3,8 @@
 <asp:Content ID="tipoAreasHeadContent" ContentPlaceHolderID="headContent" runat="server">
 
     <script type="text/javascript">
-
         $(document).ready(function () {
             ICERP_Core.llamarAjax("TiposArea.aspx/obtenerTiposAreas", null, "crearTablaTiposAreas");
-
             $("#btnRegistrarTipoArea").click(function (ev) {
                 var isValid = ICERP_Core.validarFormulario('registrarTipoArea');
                 if (!isValid) {
@@ -16,7 +14,6 @@
                 }
                 guardarTipoArea();
             });
-
             $("#btnEditarTipoArea").click(function (ev) {
                 var isValid = ICERP_Core.validarFormulario('editarTipoArea');
                 if (!isValid) {
@@ -27,7 +24,6 @@
                 actualizarTipoArea();
             });
         });
-
         //Resultado de la llamada a TiposPacientes.aspx/obtenerTiposPacientes
         function crearTablaTiposAreas(resultado) {
             var contenido = JSON.parse(resultado);
@@ -40,7 +36,6 @@
                 $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnModalEditarTipoArea" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
                 $tr.appendTo('#tblTiposAreas tbody');
             });
-
             $("#tblTiposAreas").DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -50,22 +45,17 @@
                     { "visible": false, "targets": 0 }
                 ]
             });
-
             clickEditarTipoArea();
         }
-
         function guardarTipoArea() {
             var nombre = $("#txtTipoArea").val();
             var activo = $("#chkActivo").prop('checked');
-
             var tipoArea = new Object();
             tipoArea.Tipo = nombre;
             tipoArea.Activo = activo;
-
             ICERP_Core.bloquearPantalla();
             ICERP_Core.llamarAjax("TiposArea.aspx/guardarTipoArea", "{ 'tipoArea': " + JSON.stringify(tipoArea) + "}", "tipoAreaGuardado");
         }
-
         //Resultado de la llamada a TiposArea.aspx/guardarTipoArea de la función "guardarTipoArea"
         function tipoAreaGuardado() {
             $('#tblTiposAreas').DataTable().destroy();
@@ -73,7 +63,6 @@
             ICERP_Core.desbloquearPantalla();
             ICERP_Core.mostrarMensaje("Se almacenó el tipo de área satisfactoriamente", "type-success");
         }
-
         function clickEditarTipoArea() {
             $(".btnModalEditarTipoArea").click(function () {
                 var row = $(this).closest('tr');
@@ -82,7 +71,6 @@
                 ICERP_Core.llamarAjax("TiposArea.aspx/obtenerDatosTipoArea", "{ 'idTipoArea': " + idTipoArea + " }", "mostrarDatosTipoArea");
             });
         }
-
         //Resultado de la llamada a TiposArea.aspx/obtenerDatosTipoArea de la función "clickEditarTipoArea"
         function mostrarDatosTipoArea(resultado) {
             var tipoArea = JSON.parse(resultado);
@@ -99,21 +87,17 @@
             $("#mdlEditarTipoArea").validationEngine("hideAll");
             $("#mdlEditarTipoArea").modal("show");
         }
-
         function actualizarTipoArea() {
             var idTipoArea = Number($("#hdnIdTipoArea").val());
             var tipo = $("#txtTipoAreaEd").val();
             var activo = $("#chkActivoEd").prop('checked');
-
             var tipoArea = new Object();
             tipoArea.ID = idTipoArea;
             tipoArea.Tipo = tipo;
             tipoArea.Activo = activo;
-
             ICERP_Core.bloquearPantalla();
             ICERP_Core.llamarAjax("TiposArea.aspx/actualizarTipoArea", "{ 'tipoArea': " + JSON.stringify(tipoArea) + "}", "tipoAreaActualizado");
         }
-
         function tipoAreaActualizado() {
             $('#tblTiposAreas').DataTable().destroy();
             ICERP_Core.llamarAjax("TiposArea.aspx/obtenerTiposAreas", null, "crearTablaTiposAreas");
@@ -121,7 +105,6 @@
             $("#mdlEditarTipoArea").modal("hide");
             ICERP_Core.mostrarMensaje("Se actualizó el tipo de área satisfactoriamente", "type-success");
         }
-
     </script>
 
 </asp:Content>

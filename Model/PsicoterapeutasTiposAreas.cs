@@ -19,7 +19,7 @@ namespace Model
         public short IdTipoArea { get; set; }
         public bool Activo { get; set; }
     
-        public virtual TipoAreas TipoAreas { get; set; }
         public virtual Psicoterapeuta Psicoterapeuta { get; set; }
+        public virtual TipoAreas TipoAreas { get; set; }
     }
 }

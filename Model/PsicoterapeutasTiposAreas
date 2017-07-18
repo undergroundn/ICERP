@@ -12,14 +12,14 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PsicoterapeutasTiposPacientes
+    public partial class PsicoterapeutasTiposAreas
     {
         public int ID { get; set; }
         public int IdPsicoterapeuta { get; set; }
-        public short IdTipoPaciente { get; set; }
+        public short IdTipoArea { get; set; }
         public bool Activo { get; set; }
     
+        public virtual TipoAreas TipoAreas { get; set; }
         public virtual Psicoterapeuta Psicoterapeuta { get; set; }
-        public virtual TipoPaciente TipoPaciente { get; set; }
     }
 }

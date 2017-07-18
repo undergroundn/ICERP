@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Roles.aspx.cs" Inherits="ICERP.Administracion.Roles" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
      <script type ="text/javascript">
          //$('#myModal').modal('show');
     </script>
@@ -64,7 +64,7 @@
          };
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="bodyContent" runat="server">
           <div>
  <asp:Button ID="btnver" runat="server" Text="Button" OnClick="abrir"  Style="display:none" />
         <asp:HiddenField ID="hfPerfiles" runat="server" />

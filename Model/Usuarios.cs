@@ -26,9 +26,10 @@ namespace Model
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }
         public string NombreUsuario { get; set; }
-        public byte[] Contraseña { get; set; }
+        public string Contraseña { get; set; }
         public bool Activo { get; set; }
         public int RolId { get; set; }
+        public string Foto { get; set; }
     
         public virtual CatRoles CatRoles { get; set; }
         public virtual ICollection<Logs> Logs { get; set; }

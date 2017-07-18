@@ -3,10 +3,8 @@
 <asp:Content ID="tipoTrastornosHeadContent" ContentPlaceHolderID="headContent" runat="server">
 
     <script type="text/javascript">
-
         $(document).ready(function () {
             ICERP_Core.llamarAjax("TiposTrastornos.aspx/obtenerTiposTrastornos", null, "crearTablaTiposTrastornos");
-
             $("#btnRegistrarTipoTrastorno").click(function (ev) {
                 var isValid = ICERP_Core.validarFormulario('registrarTipoTrastorno');
                 if (!isValid) {
@@ -16,7 +14,6 @@
                 }
                 guardarTipoTrastorno();
             });
-
             $("#btnEditarTipoTrastorno").click(function (ev) {
                 var isValid = ICERP_Core.validarFormulario('editarTipoTrastorno');
                 if (!isValid) {
@@ -27,7 +24,6 @@
                 actualizarTipoTrastorno();
             });
         });
-
         //Resultado de la llamada a TiposTrastornos.aspx/obtenerTiposTrastornos
         function crearTablaTiposTrastornos(resultado) {
             var contenido = JSON.parse(resultado);
@@ -40,7 +36,6 @@
                 $tr.append($('<td style="text-align:center">').html('<a role="button" class="btn btn-default btnModalEditarTipoTrastorno" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'));
                 $tr.appendTo('#tblTiposTrastornos tbody');
             });
-
             $("#tblTiposTrastornos").DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -50,22 +45,17 @@
                     { "visible": false, "targets": 0 }
                 ]
             });
-
             clickEditarTipoTrastorno();
         }
-
         function guardarTipoTrastorno() {
             var nombre = $("#txtTipoTrastorno").val();
             var activo = $("#chkActivo").prop('checked');
-
             var tipoTrastorno = new Object();
             tipoTrastorno.Tipo = nombre;
             tipoTrastorno.Activo = activo;
-
             ICERP_Core.bloquearPantalla();
             ICERP_Core.llamarAjax("TiposTrastornos.aspx/guardarTipoTrastorno", "{ 'tipoTrastorno': " + JSON.stringify(tipoTrastorno) + "}", "tipoTrastornoGuardado");
         }
-
         //Resultado de la llamada a TiposTrastornos.aspx/guardarTipoTrastorno de la función "guardarTipoTrastorno"
         function tipoTrastornoGuardado() {
             $('#tblTiposTrastornos').DataTable().destroy();
@@ -73,7 +63,6 @@
             ICERP_Core.desbloquearPantalla();
             ICERP_Core.mostrarMensaje("Se almacenó el tipo de trastorno satisfactoriamente", "type-success");
         }
-
         function clickEditarTipoTrastorno() {
             $(".btnModalEditarTipoTrastorno").click(function () {
                 var row = $(this).closest('tr');
@@ -82,7 +71,6 @@
                 ICERP_Core.llamarAjax("TiposTrastornos.aspx/obtenerDatosTipoTrastorno", "{ 'idTipoTrastorno': " + idTipoTrastorno + " }", "mostrarDatosTipoTrastorno");
             });
         }
-
         //Resultado de la llamada a TiposTrastornos.aspx/obtenerDatosTipoTrastorno de la función "clickEditarTipoTrastorno"
         function mostrarDatosTipoTrastorno(resultado) {
             var tipoTrastorno = JSON.parse(resultado);
@@ -99,21 +87,17 @@
             $("#mdlEditarTipoTrastorno").validationEngine("hideAll");
             $("#mdlEditarTipoTrastorno").modal("show");
         }
-
         function actualizarTipoTrastorno() {
             var idTipoTrastorno = Number($("#hdnIdTipoTrastorno").val());
             var tipo = $("#txtTipoTrastornoEd").val();
             var activo = $("#chkActivoEd").prop('checked');
-
             var tipoTrastorno = new Object();
             tipoTrastorno.ID = idTipoTrastorno;
             tipoTrastorno.Tipo = tipo;
             tipoTrastorno.Activo = activo;
-
             ICERP_Core.bloquearPantalla();
             ICERP_Core.llamarAjax("TiposTrastornos.aspx/actualizarTipoTrastorno", "{ 'tipoTrastorno': " + JSON.stringify(tipoTrastorno) + "}", "tipoTrastornoActualizado");
         }
-
         function tipoTrastornoActualizado() {
             $('#tblTiposTrastornos').DataTable().destroy();
             ICERP_Core.llamarAjax("TiposTrastornos.aspx/obtenerTiposTrastornos", null, "crearTablaTiposTrastornos");
@@ -121,7 +105,6 @@
             $("#mdlEditarTipoTrastorno").modal("hide");
             ICERP_Core.mostrarMensaje("Se actualizó el tipo de trastorno satisfactoriamente", "type-success");
         }
-
     </script>
 
 </asp:Content>

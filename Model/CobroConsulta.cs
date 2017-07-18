@@ -23,7 +23,7 @@ namespace Model
         public Nullable<System.DateTime> Fecha { get; set; }
     
         public virtual Citas Citas { get; set; }
-        public virtual Pacientes Pacientes { get; set; }
         public virtual TipoPago TipoPago { get; set; }
+        public virtual Pacientes Pacientes { get; set; }
     }
 }

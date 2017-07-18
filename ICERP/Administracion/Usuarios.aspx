@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Usuarios.aspx.cs" Inherits="ICERP.Administracion.Usuarios" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <script src="<%=ResolveUrl("~/Scripts/jstree/jstree.min.js")%>"></script>
     <link href="<%=ResolveUrl("~/Styles/tree/style.min.css")%>" rel="stylesheet" />
     <script type="text/javascript">
@@ -131,6 +131,7 @@
 
 
         function validar() {
+            agregarusuario1();
             var isStepValid = true;
 
             isStepValid = validarFormulario('valid');
@@ -147,6 +148,7 @@
                 $(this).validationEngine('validate');
                 return false;
             }
+            
         };
 
         function validarFormulario(validGroupName) {
@@ -245,7 +247,7 @@
 
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="bodyContent" runat="server">
     <div class="box box-danger">
         <div class="box-header with-border">
             <h3 class="box-title">Registro de Usuarios</h3>
@@ -289,7 +291,7 @@
                                 <tr>
                                     <td class="auto-style2">Contraseña:</td>
                                     <td>
-                                        <asp:TextBox ID="texbCorreo" runat="server" CssClass="form-control validate[required,custom[password],maxSize[250], classNoHtml" ValidGroup="valid" Width="500px" MaxLength="250" onkeypress="return event.keyCode!=13" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="texbCorreo" runat="server" CssClass="form-control classNoHtml" ValidGroup="valid" Width="500px" MaxLength="250" onkeypress="return event.keyCode!=13" TextMode="Password"></asp:TextBox>
                                     </td>
 
                                 </tr>
@@ -327,8 +329,8 @@
                                     <td style="width: 70%; text-align: right;"></td>
                                     <td style="width: 15%; text-align: right;">
 
-                                        <asp:Button ID="btnguardar" runat="server" Text="GUARDAR" CssClass="btn btn-success" OnClick="btnguardar_Click" OnClientClick="validar(); return false;" />
-                                        <asp:Button ID="btnactualizar" runat="server" Text="ACTUALIZAR" CssClass="btn btn-success" OnClick="btnactualizar_Click" OnClientClick="validar(); return false;" />
+                                        <asp:Button ID="btnguardar" runat="server" Text="GUARDAR" CssClass="btn btn-success" OnClick="btnguardar_Click" OnClientClick="validar(); " />
+                                        <asp:Button ID="btnactualizar" runat="server" Text="ACTUALIZAR" CssClass="btn btn-success" OnClick="btnactualizar_Click" OnClientClick="validar();" />
                                     </td>
                                     <td style="width: 15%; text-align: right;">
                                         <asp:Button ID="btncancelar" runat="server" Text="CANCELAR" CssClass="btn btn-warning" OnClientClick="cancelartodo();" />

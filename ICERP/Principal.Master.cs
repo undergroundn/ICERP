@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model.Repositories;
 using Model.UnitOfWork;
+using System.Threading;
 
 namespace ICERP
 {
@@ -14,6 +15,9 @@ namespace ICERP
     {
         private static readonly LoggerUtility.ILogger Log = LoggerUtility.Logger.GetInstance();
         UnitOfWork _uow = new UnitOfWork();
+        public string nombreCompleto;
+        public string nombreDominio;
+        public string imageString;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -21,11 +25,30 @@ namespace ICERP
                 //Obtener usuario actual
                 var idUsuario = Int32.Parse(Session["userID"].ToString());
                 var usuario = _uow.UsuariosRepository.GetSingle(idUsuario);
+                var rol = usuario.CatRoles.NombreRol;
                 //Obtener opciones de menu principales del usuario
                 var menusUsuario = usuario.MenuUsuario.Select(m => m.Menu).Where(m => m.MenuPadreId == null && m.Activo.Value);
                 //Generar menu con las opciones del usuario
                 var htmlMenu = GeneraHtmlMenu(menusUsuario, usuario);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "menu", "var data = '" + htmlMenu + "' ;", true);
+                //Obtener información del usuario para desplegar
+                nombreCompleto = usuario.Nombres + " " + usuario.ApPaterno + " " + usuario.ApMaterno;
+                var culInfo = Thread.CurrentThread.CurrentCulture;
+                var tInfo = culInfo.TextInfo;
+                nombreCompleto = tInfo.ToTitleCase(nombreCompleto.ToLower());
+                nombreDominio = usuario.NombreUsuario.ToLower();
+                var image = usuario.Foto != null ? usuario.Foto : "/dist/img/avatar5.png";
+                imageString = image;//ImageConverterString.toBase64String(image);
+                //ocultarRoles = "Si";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "mostrarDatos",
+                    "var rolUsuario = '" + rol + "'; " +
+                    "var nombreCompleto = '" + nombreCompleto + "'; " +
+                    "var nombreDominio = '" + nombreDominio + "'; " +
+                    //"var cantNotificaciones = " + notifiPendientes + "; " +
+                    "var fotoUsuario = '" + imageString + "'; " 
+                    //+
+                    //"var ocultarRoles = '" + ocultarRoles + "';"
+                    , true);
             }
             catch (Exception ex)
             {
