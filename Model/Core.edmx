@@ -401,7 +401,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
@@ -447,7 +447,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Turno" Type="nvarchar" MaxLength="150" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
