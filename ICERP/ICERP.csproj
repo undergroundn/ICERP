@@ -1112,6 +1112,7 @@
     <Content Include="General.Master" />
     <Content Include="fonts\gotham-medium.ttf" />
     <Content Include="DB\IcerpDemo17-07.zip" />
+    <Content Include="DB\Icerp_Indices_18_07_17.zip" />
     <None Include="Properties\PublishProfiles\Icerp_Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Psicoterapeutas.aspx" />
