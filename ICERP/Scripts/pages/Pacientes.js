@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    ICERP_Core.llamarAjax("Pacientes.aspx/obtenerDerivados", null, "crearControlDerivados");
+
     ICERP_Core.llamarAjax("Pacientes.aspx/obtenerTurnos", null, "crearControlTurnos");
 
     ICERP_Core.llamarAjax("Pacientes.aspx/obtenerPacientes", null, "crearTablaPacientes");
@@ -48,7 +50,10 @@ function limpiarCampos() {
     $("#Motivo").val("");
     $("#MedioDifusion").val("");
     $("#chkActivo").prop("checked", false);
-    $("#chkActivo").removeClass("flat-red").addClass("flat-red");    
+    $("#chkActivo").removeClass("flat-red").addClass("flat-red");
+    $('#divDerivados input[type=radio]').each(function () {
+        $(this).prop("checked", false);
+    });
     //tabla tutor
     $("#NombreTutor").val("");
     $("#TelefonoTutor").val("");
@@ -58,23 +63,29 @@ function limpiarCampos() {
     $("#btnRegistrarPaciente").show();
     $("#btnActualizarPaciente").hide();
 }
+//Resultado de la llamada a Consultorios.aspx/obtenerTiposConsultorios
+function crearControlDerivados(resultado) {
+    var contenido = JSON.parse(resultado);
+    $.each(contenido, function (index, item) {
+        var checkBoxAd = "<input id=\"chk" + item.QuienDeriva + "Ad\" value=\"" + item.IdDerivado + "\" type=\"radio\" name=\"rder\" class=\"flat-red tiposDerivados validate[funcCall[verificarDerivado]]\" />" +
+            "<label>&nbsp;&nbsp;&nbsp;" + item.QuienDeriva + "&nbsp;&nbsp;&nbsp;</label>";
+            //"<span style=\"margin-right: 20px\">" + item.QuienDeriva + "</span>";
+        $("#divDerivados").append(checkBoxAd);
+      
+    });
+    $('#divDerivados input[type="radio"].flat-red').iCheck({
+        radioClass: 'iradio_flat-red'
+    });
+}
+
 //Resultado de la llamada a Pacientes.aspx/obtenerTurnos
 function crearControlTurnos(resultado) {
     var contenido = JSON.parse(resultado);
     $.each(contenido, function (index, item) {
         //llenar lista de turnos disponibles en BD
         var turnos = "<option value=" + item.ID + ">" + item.Turno + "</option>";
-        $("#sltTurno").append(turnos);
-        //var checkBoxAd = "<input id=\"chk" + item.Tipo + "Ad\" value=\"" + item.ID + "\" type=\"checkbox\" class=\"flat-red tiposConsultorios validate[funcCall[verificarTipoConsultorio]]\" validgroup=\"registrarConsultorio\" />" +
-        //                    "<span style=\"margin-right: 20px\">" + item.Tipo + "</span>";
-        //$("#divTipoConsultorios").append(checkBoxAd);
-        //var checkBoxEd = "<input id=\"chk" + item.Tipo + "Ed\" value=\"" + item.ID + "\" type=\"checkbox\" class=\"flat-red tiposConsultoriosEd validate[funcCall[verificarTipoConsultorioEd]]\" validgroup=\"editarConsultorio\" />" +
-        //                    "<span style=\"margin-right: 20px\">" + item.Tipo + "</span>";
-        //$("#divTipoConsultoriosEd").append(checkBoxEd);
+        $("#sltTurno").append(turnos);        
     });
-    //$('#divTipoConsultorios input[type="checkbox"].flat-red').iCheck({
-    //    checkboxClass: 'icheckbox_flat-red'
-    //});
 }
 
 //Resultado de la llamada a Consultorios.aspx/obtenerConsultorios
@@ -122,6 +133,14 @@ function guardarPaciente() {
     var TelefonoTutor = $("#TelefonoTutor").val();
     var ViaContactoTutor = $("#ViaContactoTutor").val();
     var ParentezcoTutor = $("#ParentezcoTutor").val();
+    var idDerivado = 0;
+    $(".tiposDerivados").each(function () {       
+        var checked = $(this).prop('checked');
+        if (checked) {
+            idDerivado = Number($(this).val());          
+        }
+    });
+
 
     var param = "{ 'nombre': '" + nombre
         + "','apPaterno':'" + apPaterno
@@ -137,7 +156,8 @@ function guardarPaciente() {
         + ",'NombreTutor':'" + NombreTutor
         + "','TelefonoTutor':'" + TelefonoTutor
         + "','ViaContactoTutor':'" + ViaContactoTutor
-        + "','ParentezcoTutor':'" + ParentezcoTutor + "'}"
+        + "','ParentezcoTutor':'" + ParentezcoTutor
+        + "','IdDerivado':'" + idDerivado + "'}"
 
     //var paciente = new Object();
     //paciente.Nombre = nombre;
@@ -231,6 +251,15 @@ function mostrarDatosPaciente(resultado) {
         $("#chkActivo").prop("checked", true);
         $("#chkActivo").removeClass("flat-red").addClass("flat-red");
     }
+    $('#divDerivados input[type=radio]').each(function () {
+        $(this).prop("checked", false);
+    });
+    $('#divDerivados input[type=radio]').each(function (index, value) {
+        if (value == paciente.IdDerivado) {
+            $(this).prop("checked", true);
+            $(this).removeClass("flat-red").addClass("flat-red");
+        }
+    });
     //tabla tutor
     $("#NombreTutor").val(paciente.Tutor);
     $("#TelefonoTutor").val(paciente.telefono);
@@ -261,6 +290,13 @@ function actualizarPaciente() {
     var Motivo = $("#Motivo").val();
     var MedioDifusion = $("#MedioDifusion").val();
     var activo = $("#chkActivo").prop('checked');
+    var idDerivado = 0;
+    $(".tiposDerivados").each(function () {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            idDerivado = Number($(this).val());
+        }
+    });
     //tabla tutor
     var NombreTutor = $("#NombreTutor").val();
     var TelefonoTutor = $("#TelefonoTutor").val();
@@ -282,7 +318,8 @@ function actualizarPaciente() {
         + ",'NombreTutor':'" + NombreTutor
         + "','TelefonoTutor':'" + TelefonoTutor
         + "','ViaContactoTutor':'" + ViaContactoTutor
-        + "','ParentezcoTutor':'" + ParentezcoTutor + "'}"
+        + "','ParentezcoTutor':'" + ParentezcoTutor
+        + "','IdDerivado':'" + idDerivado + "'}"
 
     ICERP_Core.bloquearPantalla();
     ICERP_Core.llamarAjax("Pacientes.aspx/actualizarPaciente", param, "pacienteActualizado");
@@ -296,5 +333,21 @@ function pacienteActualizado() {
     ICERP_Core.mostrarMensaje("Se actualizó el paciente satisfactoriamente", "type-success");
 }
 
-
+//funcion personalizada para validar alta de consultorios
+function verificarDerivado(field, rules, i, options) {
+    var valid = false;
+    $(".tiposDerivados").each(function () {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            valid = true;
+            return false;
+        }
+    });
+    if (!valid) {
+        $("#divDerivados").validationEngine('showPrompt', '* Seleccione quien deriva el paciente', 'error', 'topRight', true);
+        options.isError = true;
+    } else {
+        $('#divDerivados').validationEngine('hide');
+    }
+}
 

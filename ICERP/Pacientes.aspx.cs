@@ -17,6 +17,22 @@ namespace ICERP
         {
 
         }
+        //Obtener los tipos de consultorio actuales para crear los controles
+        [WebMethod]
+        public static string obtenerDerivados()
+        {
+            try
+            {
+                var uow = new UnitOfWork();
+                var Derivados = uow.DerivadoRepository.Get().Select(tc => new { tc.IdDerivado, tc.QuienDeriva });
+                return new JavaScriptSerializer().Serialize(Derivados);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[ System ] " + " [ Page ] " + "[ " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name.ToString() + " ] [ " + System.Reflection.MethodBase.GetCurrentMethod().Name.ToString() + " ] [ Fin ]", ex);
+                throw;
+            }
+        }
         //Obtener el listado de turnos para cargar la lista
         [WebMethod]
         public static string obtenerTurnos()
@@ -52,7 +68,7 @@ namespace ICERP
         [WebMethod]
         //public static void guardarPaciente(Model.Pacientes paciente)
         public static void guardarPaciente(string nombre,string apPaterno,string apMaterno,string fechaNacimiento,string Edad,
-            string genero,string Horario,string turnoid,string Motivo,string MedioDifusion,bool activo,string NombreTutor,string TelefonoTutor,string ViaContactoTutor,string ParentezcoTutor)
+            string genero, string Horario, string turnoid, string Motivo, string MedioDifusion, bool activo, string NombreTutor, string TelefonoTutor, string ViaContactoTutor, string ParentezcoTutor, string IdDerivado)
         {
             try
             {
@@ -72,7 +88,7 @@ namespace ICERP
                 paciente.Activo = activo;                
                 paciente.IdUsuarioRegistro = userId;// Queries.GetCurrentUser().ID;
                 paciente.FechaRegistro = DateTime.Now;
-               
+                paciente.IdDerivado = Convert.ToInt16(IdDerivado);
                 Model.Tutores Tutores = new Model.Tutores();
                 Tutores.Nombre = NombreTutor;
                 Tutores.Telefono = TelefonoTutor;
@@ -93,7 +109,7 @@ namespace ICERP
         //Actualizar los datos de un paciente
         [WebMethod]
         public static void actualizarPaciente(int idPaciente, string nombre, string apPaterno, string apMaterno, string fechaNacimiento, string Edad,
-            string genero, string Horario, string turnoid, string Motivo, string MedioDifusion, bool activo, string NombreTutor, string TelefonoTutor, string ViaContactoTutor, string ParentezcoTutor)
+            string genero, string Horario, string turnoid, string Motivo, string MedioDifusion, bool activo, string NombreTutor, string TelefonoTutor, string ViaContactoTutor, string ParentezcoTutor, string IdDerivado)
         {
             try
             {
@@ -113,6 +129,7 @@ namespace ICERP
                 paciente.Activo = activo;
                 paciente.IdUsuarioRegistro = userId;// Queries.GetCurrentUser().ID;
                 paciente.FechaRegistro = DateTime.Now;
+                paciente.IdDerivado = Convert.ToInt16(IdDerivado);
                 var idtutor = paciente.IdTutor != null ? Int32.Parse(paciente.IdTutor.ToString()) : 0;
                 var Tutores = uow.TutoresRepository.GetSingle(idtutor);
                 Tutores.Nombre = NombreTutor;

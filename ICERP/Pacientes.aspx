@@ -124,6 +124,12 @@
                         <label for="MedioDifusion">Medio de Difusión</label>
                         <input type="text" class="form-control" id="MedioDifusion" placeholder="Como se entero del Instituto">
                     </div>
+                    <div class="form-group">
+                        <label>Derivado por</label>
+                        <br />
+                        <div id="divDerivados" style="display: inline-block;">
+                        </div>
+                    </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" class="flat-red" id="chkActivo" checked>
