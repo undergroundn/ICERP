@@ -9,6 +9,14 @@ namespace Model.UnitOfWork
 
         #region Eventos Repositories
         private Repositories.CatColoniaRepository _catColoniaRepository;
+        private Repositories.DerivadoRepository _derivadoRepository;
+
+        public Repositories.DerivadoRepository DerivadoRepository
+        {
+            get { return _derivadoRepository; }
+            set { _derivadoRepository = value; }
+        }
+
         private Repositories.CatEstadoRepository _catEstadoRepository;
 
         public Repositories.CatEstadoRepository CatEstadoRepository

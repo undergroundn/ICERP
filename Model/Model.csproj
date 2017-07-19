@@ -186,6 +186,7 @@
     <Compile Include="Repositories\DatosGeneralesESRepository.cs" />
     <Compile Include="Repositories\DatosViviendaESRepository.cs" />
     <Compile Include="Repositories\DependientesEconomicosESRepository.cs" />
+    <Compile Include="Repositories\DerivadoRepository.cs" />
     <Compile Include="Repositories\DiasRepository.cs" />
     <Compile Include="Repositories\DisponibilidadConsultoriosRepository.cs" />
     <Compile Include="Repositories\DisponibilidadPsicoterapeutaRepository.cs" />

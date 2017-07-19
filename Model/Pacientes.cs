@@ -35,10 +35,12 @@ namespace Model
         public string MedioDifusion { get; set; }
         public int IdUsuarioRegistro { get; set; }
         public System.DateTime FechaRegistro { get; set; }
+        public short IdDerivado { get; set; }
     
         public virtual ICollection<Citas> Citas { get; set; }
         public virtual ICollection<CobroConsulta> CobroConsulta { get; set; }
-        public virtual Tutores Tutores { get; set; }
+        public virtual Derivado Derivado { get; set; }
         public virtual Turnos Turnos { get; set; }
+        public virtual Tutores Tutores { get; set; }
     }
 }

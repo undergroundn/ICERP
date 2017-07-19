@@ -14,8 +14,15 @@ namespace Model
     
     public partial class Derivado
     {
+        public Derivado()
+        {
+            this.Pacientes = new HashSet<Pacientes>();
+        }
+    
         public short IdDerivado { get; set; }
         public string QuienDeriva { get; set; }
         public int PorcentajeIcerp { get; set; }
+    
+        public virtual ICollection<Pacientes> Pacientes { get; set; }
     }
 }
