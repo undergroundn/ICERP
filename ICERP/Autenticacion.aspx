@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><%--<b>ICERP</b>--%>
+    <a href="Index.aspx"><%--<b>ICERP</b>--%>
         <img src="Images/logo/logoIcerp.jpg" />
     </a>
   </div>
