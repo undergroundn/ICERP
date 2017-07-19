@@ -13,8 +13,7 @@ namespace Model.UnitOfWork
 
         public Repositories.DerivadoRepository DerivadoRepository
         {
-            get { return _derivadoRepository; }
-            set { _derivadoRepository = value; }
+            get { return _derivadoRepository ?? (_derivadoRepository = new DerivadoRepository(_entities)); }
         }
 
         private Repositories.CatEstadoRepository _catEstadoRepository;
