@@ -139,6 +139,14 @@
           <Property Name="ServicioSalud" Type="nvarchar" MaxLength="150" />
           <Property Name="IdEstudioSocioeconomico" Type="int" />
         </EntityType>
+        <EntityType Name="Derivado">
+          <Key>
+            <PropertyRef Name="IdDerivado" />
+          </Key>
+          <Property Name="IdDerivado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuienDeriva" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PorcentajeIcerp" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Dias">
           <Key>
             <PropertyRef Name="ID" />
@@ -1072,6 +1080,7 @@
           <EntitySet Name="DatosGeneralesES" EntityType="Self.DatosGeneralesES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatosViviendaES" EntityType="Self.DatosViviendaES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DependientesEconomicosES" EntityType="Self.DependientesEconomicosES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Derivado" EntityType="Self.Derivado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dias" EntityType="Self.Dias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisponibilidadConsultorios" EntityType="Self.DisponibilidadConsultorios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisponibilidadPsicoterapeuta" EntityType="Self.DisponibilidadPsicoterapeuta" Schema="dbo" store:Type="Tables" />
@@ -2179,6 +2188,7 @@
             <End Role="Turnos" EntitySet="Turnos" />
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
           </AssociationSet>
+          <EntitySet Name="Derivado" EntityType="IcerpModel.Derivado" />
           </EntityContainer>
         <ComplexType Name="getCredencialesUsuario_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -2710,6 +2720,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Derivado">
+          <Key>
+            <PropertyRef Name="IdDerivado" />
+          </Key>
+          <Property Name="IdDerivado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuienDeriva" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PorcentajeIcerp" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3258,6 +3276,15 @@
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Turno" ColumnName="Turno" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Derivado">
+            <EntityTypeMapping TypeName="IcerpModel.Derivado">
+              <MappingFragment StoreEntitySet="Derivado">
+                <ScalarProperty Name="PorcentajeIcerp" ColumnName="PorcentajeIcerp" />
+                <ScalarProperty Name="QuienDeriva" ColumnName="QuienDeriva" />
+                <ScalarProperty Name="IdDerivado" ColumnName="IdDerivado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

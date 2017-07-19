@@ -99,6 +99,7 @@
         <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.875" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
         <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
+        <EntityTypeShape EntityType="IcerpModel.Derivado" Width="1.5" PointX="5.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

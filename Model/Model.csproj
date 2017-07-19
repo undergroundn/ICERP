@@ -103,6 +103,9 @@
     <Compile Include="DependientesEconomicosES.cs">
       <DependentUpon>Core.tt</DependentUpon>
     </Compile>
+    <Compile Include="Derivado.cs">
+      <DependentUpon>Core.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dias.cs">
       <DependentUpon>Core.tt</DependentUpon>
     </Compile>
