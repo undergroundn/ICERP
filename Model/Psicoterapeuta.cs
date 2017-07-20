@@ -32,6 +32,7 @@ namespace Model
         public string ApMaterno { get; set; }
         public Nullable<short> IdTurno { get; set; }
         public string Telefono { get; set; }
+        public string Celular { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
         public Nullable<short> IdTipoCuota { get; set; }
         public bool Activo { get; set; }
@@ -43,10 +44,10 @@ namespace Model
         public virtual ICollection<DisponibilidadPsicoterapeuta> DisponibilidadPsicoterapeuta { get; set; }
         public virtual ICollection<HorarioPsicoterapeuta> HorarioPsicoterapeuta { get; set; }
         public virtual ICollection<PagoTerapeutas> PagoTerapeutas { get; set; }
+        public virtual TipoCouta TipoCouta { get; set; }
+        public virtual Turnos Turnos { get; set; }
         public virtual ICollection<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
         public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
         public virtual ICollection<PsicoterapeutasTiposTrastornos> PsicoterapeutasTiposTrastornos { get; set; }
-        public virtual TipoCouta TipoCouta { get; set; }
-        public virtual Turnos Turnos { get; set; }
     }
 }

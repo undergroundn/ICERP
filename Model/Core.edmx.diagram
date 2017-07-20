@@ -70,20 +70,11 @@
         <EntityTypeShape EntityType="IcerpModel.PsicoterapeutasTiposAreas" Width="1.5" PointX="11.25" PointY="1.875" />
         <EntityTypeShape EntityType="IcerpModel.PsicoterapeutasTiposPacientes" Width="1.5" PointX="14.25" PointY="21" />
         <EntityTypeShape EntityType="IcerpModel.PsicoterapeutasTiposTrastornos" Width="1.5" PointX="16.25" PointY="12.25" />
-        <EntityTypeShape EntityType="IcerpModel.Psicoterapeuta" Width="1.5" PointX="6" PointY="4.375" />
         <EntityTypeShape EntityType="IcerpModel.Usuarios" Width="1.5" PointX="16" PointY="2.875" />
         <AssociationConnector Association="IcerpModel.FK_Usuarios_CatRoles" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_Logs_Usuarios" />
         <AssociationConnector Association="IcerpModel.FK_MenuUsuario_Usuarios" />
-        <AssociationConnector Association="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_Permisos_Usuarios" />
-        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" />
         <EntityTypeShape EntityType="IcerpModel.TipoAreas" Width="1.5" PointX="2.75" PointY="19.875" />
         <EntityTypeShape EntityType="IcerpModel.TipoPaciente" Width="1.5" PointX="0.75" PointY="19.875" />
         <EntityTypeShape EntityType="IcerpModel.TipoTrastorno" Width="1.5" PointX="18.75" PointY="11.875" />
@@ -91,9 +82,7 @@
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_TipoPaciente" />
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_TipoTrastorno" />
         <EntityTypeShape EntityType="IcerpModel.TipoCouta" Width="1.5" PointX="3.375" PointY="0.875" />
-        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_TipoCouta" />
         <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.875" />
-        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
         <EntityTypeShape EntityType="IcerpModel.Derivado" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="13.625" PointY="6.75" />
         <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
@@ -101,6 +90,17 @@
         <AssociationConnector Association="IcerpModel.FK_pacientes_drivado" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Tutores" />
+        <EntityTypeShape EntityType="IcerpModel.Psicoterapeuta" Width="1.5" PointX="5.625" PointY="3.75" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_PagoTerapeutas_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_TipoCouta" />
+        <AssociationConnector Association="IcerpModel.FK_Psicoterapeuta_Turnos" />
+        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

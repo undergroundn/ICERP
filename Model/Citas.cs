@@ -32,7 +32,7 @@ namespace Model
         public virtual EstatusCitas EstatusCitas { get; set; }
         public virtual ICollection<CobroConsulta> CobroConsulta { get; set; }
         public virtual Consultorios Consultorios { get; set; }
-        public virtual Psicoterapeuta Psicoterapeuta { get; set; }
         public virtual Pacientes Pacientes { get; set; }
+        public virtual Psicoterapeuta Psicoterapeuta { get; set; }
     }
 }

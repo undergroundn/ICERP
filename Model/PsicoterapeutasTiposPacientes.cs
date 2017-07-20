@@ -19,7 +19,7 @@ namespace Model
         public short IdTipoPaciente { get; set; }
         public bool Activo { get; set; }
     
-        public virtual Psicoterapeuta Psicoterapeuta { get; set; }
         public virtual TipoPaciente TipoPaciente { get; set; }
+        public virtual Psicoterapeuta Psicoterapeuta { get; set; }
     }
 }

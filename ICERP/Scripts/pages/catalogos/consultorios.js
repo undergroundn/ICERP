@@ -202,9 +202,9 @@ function verificarTipoConsultorioEd(field, rules, i, options) {
         }
     });
     if (!valid) {
-        $("#divTipoConsultorios").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
+        $("#divTipoConsultoriosEd").validationEngine('showPrompt', '* Seleccione el tipo de consultorio', 'error', 'topRight', true);
         options.isError = true;
     } else {
-        $('#divTipoConsultorios').validationEngine('hide');
+        $('#divTipoConsultoriosEd').validationEngine('hide');
     }
 }
