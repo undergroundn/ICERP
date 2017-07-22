@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<%= ResolveUrl("~/plugins/fullcalendar/fullcalendar.min.css") %>" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/plugins/fullcalendar/scheduler.css") %>" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/plugins/fullcalendar/fullcalendar.print.css") %>" media="print" />
+
     <!-- DataTables -->
     <link rel="stylesheet" href="<%= ResolveUrl("~/plugins/datatables/dataTables.bootstrap.css") %>" />
     <%--    <link rel="stylesheet" href="<%=ResolveUrl("~/plugins/datatables/jquery.dataTables.css")%>">--%>
@@ -64,6 +65,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="<%=ResolveUrl("~/plugins/fullcalendar/fullcalendar.min.js")%>"></script>
     <script src="<%=ResolveUrl("~/plugins/fullcalendar/scheduler.js")%>"></script>
+    
     <!-- bootstrap datepicker -->
     <script src="<%=ResolveUrl("~/plugins/datepicker/bootstrap-datepicker.js")%>"></script>
     <!-- InputMask -->

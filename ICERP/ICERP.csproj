@@ -864,6 +864,12 @@
     <Content Include="plugins\flot\jquery.flot.threshold.min.js" />
     <Content Include="plugins\flot\jquery.flot.time.js" />
     <Content Include="plugins\flot\jquery.flot.time.min.js" />
+    <Content Include="plugins\fullcalendar\3.4.0\fullcalendar.css" />
+    <Content Include="plugins\fullcalendar\3.4.0\fullcalendar.js" />
+    <Content Include="plugins\fullcalendar\3.4.0\fullcalendar.print.css" />
+    <Content Include="plugins\fullcalendar\3.4.0\moment.min.js" />
+    <Content Include="plugins\fullcalendar\3.4.0\scheduler.css" />
+    <Content Include="plugins\fullcalendar\3.4.0\scheduler.js" />
     <Content Include="plugins\fullcalendar\fullcalendar.css" />
     <Content Include="plugins\fullcalendar\fullcalendar.js" />
     <Content Include="plugins\fullcalendar\fullcalendar.min.css" />
@@ -1002,6 +1008,7 @@
     <Content Include="plugins\jQueryUI\jquery-ui.js" />
     <Content Include="plugins\jQueryUI\jquery-ui.min.js" />
     <Content Include="plugins\jQuery\jQuery-2.2.0.min.js" />
+    <Content Include="plugins\jQuery\jquery-3.2.1.js" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-usa-en.js" />
