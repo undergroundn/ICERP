@@ -181,10 +181,26 @@
                       borderColor: "#3c8dbc" //Primary (light-blue)
                   }
                 ],
+                selectable: true,
+                selectHelper: true,
+                select: function (start, end) {
+                    alert(start + " - " + end);
+                    //var title = prompt('Event Title:');
+                    //var eventData;
+                    //if (title) {
+                    //    eventData = {
+                    //        title: title,
+                    //        start: start,
+                    //        end: end
+                    //    };
+                    //    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    //}
+                    //$('#calendar').fullCalendar('unselect');
+                },
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function (date, allDay) { // this function is called when something is dropped
-
+                    alert();
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
 
