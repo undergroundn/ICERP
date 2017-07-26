@@ -184,7 +184,12 @@
                 selectable: true,
                 selectHelper: true,
                 select: function (start, end) {
-                    alert(start + " - " + end);
+
+                    if (start.hasTime() || end.hasTime()) {
+
+                        alert(start.format("DD/MM/YYYY HH:mm"));
+                    }
+
                     //var title = prompt('Event Title:');
                     //var eventData;
                     //if (title) {
@@ -196,6 +201,13 @@
                     //    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
                     //}
                     //$('#calendar').fullCalendar('unselect');
+                },
+                eventClick: function(calEvent, jsEvent, view) {
+
+                    alert('Event: ' + calEvent.title);
+                    //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                    //alert('View: ' + view.name);
+
                 },
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!

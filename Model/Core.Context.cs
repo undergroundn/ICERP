@@ -32,7 +32,6 @@ namespace Model
         public virtual DbSet<CatMunicipio> CatMunicipio { get; set; }
         public virtual DbSet<CatPais> CatPais { get; set; }
         public virtual DbSet<CatRoles> CatRoles { get; set; }
-        public virtual DbSet<Citas> Citas { get; set; }
         public virtual DbSet<CobroConsulta> CobroConsulta { get; set; }
         public virtual DbSet<CostosConsultasFijas> CostosConsultasFijas { get; set; }
         public virtual DbSet<DatosGeneralesES> DatosGeneralesES { get; set; }
@@ -74,6 +73,7 @@ namespace Model
         public virtual DbSet<Derivado> Derivado { get; set; }
         public virtual DbSet<Pacientes> Pacientes { get; set; }
         public virtual DbSet<Psicoterapeuta> Psicoterapeuta { get; set; }
+        public virtual DbSet<Citas> Citas { get; set; }
     
         public virtual ObjectResult<getCredencialesUsuario_Result> getCredencialesUsuario(string nombreUsuario, string pwd)
         {

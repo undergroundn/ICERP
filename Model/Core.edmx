@@ -50,14 +50,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdConsultorio" Type="int" />
-          <Property Name="IdEstatus" Type="int" />
+          <Property Name="IdConsultorio" Type="int" Nullable="false" />
+          <Property Name="IdEstatus" Type="int" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
           <Property Name="Cuota" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="PagoTerapeuta" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Fecha" Type="datetime" />
+          <Property Name="FechaInicial" Type="datetime" Nullable="false" />
+          <Property Name="FechaFinal" Type="datetime" Nullable="false" />
           <Property Name="IdTerapeuta" Type="int" Nullable="false" />
-          <Property Name="NumSesion" Type="int" />
+          <Property Name="NumSesion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CobroConsulta">
           <Key>
@@ -322,9 +323,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="ApPaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ApMaterno" Type="nvarchar" MaxLength="150" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ApPaterno" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ApMaterno" Type="nvarchar" MaxLength="100" />
           <Property Name="IdTurno" Type="smallint" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Celular" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -524,7 +525,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Citas_Consultorios">
-          <End Role="Consultorios" Type="Self.Consultorios" Multiplicity="0..1" />
+          <End Role="Consultorios" Type="Self.Consultorios" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Consultorios">
@@ -536,7 +537,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Citas_EstatusCitas">
-          <End Role="EstatusCitas" Type="Self.EstatusCitas" Multiplicity="0..1" />
+          <End Role="EstatusCitas" Type="Self.EstatusCitas" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EstatusCitas">
@@ -1377,25 +1378,6 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="IcerpModel.FK_Usuarios_CatRoles" FromRole="CatRoles" ToRole="Usuarios" />
         </EntityType>
-        <EntityType Name="Citas">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="IdConsultorio" Type="Int32" />
-          <Property Name="IdEstatus" Type="Int32" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <Property Name="Cuota" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="PagoTerapeuta" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="IdTerapeuta" Type="Int32" Nullable="false" />
-          <Property Name="NumSesion" Type="Int32" />
-          <NavigationProperty Name="EstatusCitas" Relationship="Self.FK_Citas_EstatusCitas" FromRole="Citas" ToRole="EstatusCitas" />
-          <NavigationProperty Name="CobroConsulta" Relationship="Self.FK_CobroConsulta_Citas" FromRole="Citas" ToRole="CobroConsulta" />
-          <NavigationProperty Name="Consultorios" Relationship="IcerpModel.FK_Citas_Consultorios" FromRole="Citas" ToRole="Consultorios" />
-          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Citas" ToRole="Pacientes" />
-          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Citas" ToRole="Psicoterapeuta" />
-        </EntityType>
         <EntityType Name="CobroConsulta">
           <Key>
             <PropertyRef Name="ID" />
@@ -1407,9 +1389,9 @@
           <Property Name="CantidadTarjeta" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="IdTipoPago" Type="Int32" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK_CobroConsulta_Citas" FromRole="CobroConsulta" ToRole="Citas" />
           <NavigationProperty Name="TipoPago" Relationship="Self.FK_CobroConsulta_TipoPago" FromRole="CobroConsulta" ToRole="TipoPago" />
           <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_CobroConsulta_Pacientes" FromRole="CobroConsulta" ToRole="Pacientes" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_CobroConsulta_Citas" FromRole="CobroConsulta" ToRole="Citas" />
         </EntityType>
         <EntityType Name="CostosConsultasFijas">
           <Key>
@@ -1519,7 +1501,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK_Citas_EstatusCitas" FromRole="EstatusCitas" ToRole="Citas" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_EstatusCitas" FromRole="EstatusCitas" ToRole="Citas" />
         </EntityType>
         <EntityType Name="EstudioSocioeconomico">
           <Key>
@@ -1746,30 +1728,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Citas_EstatusCitas">
-          <End Role="EstatusCitas" Type="Self.EstatusCitas" Multiplicity="0..1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EstatusCitas">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdEstatus" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CobroConsulta_Citas">
-          <End Role="Citas" Type="Self.Citas" Multiplicity="1" />
-          <End Role="CobroConsulta" Type="Self.CobroConsulta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Citas">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CobroConsulta">
-              <PropertyRef Name="IdCita" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CobroConsulta_TipoPago">
           <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="0..1" />
           <End Role="CobroConsulta" Type="Self.CobroConsulta" Multiplicity="*" />
@@ -1968,7 +1926,6 @@
           <EntitySet Name="CatMunicipio" EntityType="Self.CatMunicipio" />
           <EntitySet Name="CatPais" EntityType="Self.CatPais" />
           <EntitySet Name="CatRoles" EntityType="Self.CatRoles" />
-          <EntitySet Name="Citas" EntityType="Self.Citas" />
           <EntitySet Name="CobroConsulta" EntityType="Self.CobroConsulta" />
           <EntitySet Name="CostosConsultasFijas" EntityType="Self.CostosConsultasFijas" />
           <EntitySet Name="DatosGeneralesES" EntityType="Self.DatosGeneralesES" />
@@ -2009,14 +1966,6 @@
           <AssociationSet Name="FK_CatMunicipio_CatEstado" Association="Self.FK_CatMunicipio_CatEstado">
             <End Role="CatEstado" EntitySet="CatEstado" />
             <End Role="CatMunicipio" EntitySet="CatMunicipio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Citas_EstatusCitas" Association="Self.FK_Citas_EstatusCitas">
-            <End Role="EstatusCitas" EntitySet="EstatusCitas" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CobroConsulta_Citas" Association="Self.FK_CobroConsulta_Citas">
-            <End Role="Citas" EntitySet="Citas" />
-            <End Role="CobroConsulta" EntitySet="CobroConsulta" />
           </AssociationSet>
           <AssociationSet Name="FK_CobroConsulta_TipoPago" Association="Self.FK_CobroConsulta_TipoPago">
             <End Role="TipoPago" EntitySet="TipoPago" />
@@ -2092,10 +2041,6 @@
             <End Role="MenuUsuario" EntitySet="MenuUsuario" />
           </AssociationSet>
           <EntitySet Name="Consultorios" EntityType="IcerpModel.Consultorios" />
-          <AssociationSet Name="FK_Citas_Consultorios" Association="IcerpModel.FK_Citas_Consultorios">
-            <End Role="Consultorios" EntitySet="Consultorios" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK_DisponibilidadConsultorios_Consultorios" Association="IcerpModel.FK_DisponibilidadConsultorios_Consultorios">
             <End Role="Consultorios" EntitySet="Consultorios" />
             <End Role="DisponibilidadConsultorios" EntitySet="DisponibilidadConsultorios" />
@@ -2150,10 +2095,6 @@
           <EntitySet Name="Turnos" EntityType="IcerpModel.Turnos" />
           <EntitySet Name="Derivado" EntityType="IcerpModel.Derivado" />
           <EntitySet Name="Pacientes" EntityType="IcerpModel.Pacientes" />
-          <AssociationSet Name="FK_Citas_Pacientes" Association="IcerpModel.FK_Citas_Pacientes">
-            <End Role="Pacientes" EntitySet="Pacientes" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK_CobroConsulta_Pacientes" Association="IcerpModel.FK_CobroConsulta_Pacientes">
             <End Role="Pacientes" EntitySet="Pacientes" />
             <End Role="CobroConsulta" EntitySet="CobroConsulta" />
@@ -2171,10 +2112,6 @@
             <End Role="Pacientes" EntitySet="Pacientes" />
           </AssociationSet>
           <EntitySet Name="Psicoterapeuta" EntityType="IcerpModel.Psicoterapeuta" />
-          <AssociationSet Name="FK_Citas_Psicoterapeuta" Association="IcerpModel.FK_Citas_Psicoterapeuta">
-            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK_CostosConsultasFijas_Psicoterapeuta" Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta">
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
             <End Role="CostosConsultasFijas" EntitySet="CostosConsultasFijas" />
@@ -2210,6 +2147,27 @@
           <AssociationSet Name="FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta">
             <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
             <End Role="PsicoterapeutasTiposTrastornos" EntitySet="PsicoterapeutasTiposTrastornos" />
+          </AssociationSet>
+          <EntitySet Name="Citas" EntityType="IcerpModel.Citas" />
+          <AssociationSet Name="FK_Citas_Consultorios" Association="IcerpModel.FK_Citas_Consultorios">
+            <End Role="Consultorios" EntitySet="Consultorios" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_EstatusCitas" Association="IcerpModel.FK_Citas_EstatusCitas">
+            <End Role="EstatusCitas" EntitySet="EstatusCitas" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Pacientes" Association="IcerpModel.FK_Citas_Pacientes">
+            <End Role="Pacientes" EntitySet="Pacientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Psicoterapeuta" Association="IcerpModel.FK_Citas_Psicoterapeuta">
+            <End Role="Psicoterapeuta" EntitySet="Psicoterapeuta" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CobroConsulta_Citas" Association="IcerpModel.FK_CobroConsulta_Citas">
+            <End Role="Citas" EntitySet="Citas" />
+            <End Role="CobroConsulta" EntitySet="CobroConsulta" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="getCredencialesUsuario_Result">
@@ -2255,22 +2213,10 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="IdUsuarioRegistro" Type="Int32" Nullable="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Consultorios" FromRole="Consultorios" ToRole="Citas" />
           <NavigationProperty Name="DisponibilidadConsultorios" Relationship="IcerpModel.FK_DisponibilidadConsultorios_Consultorios" FromRole="Consultorios" ToRole="DisponibilidadConsultorios" />
           <NavigationProperty Name="ConsultoriosTipos" Relationship="IcerpModel.FK_ConsultoriosTipos_Consultorios" FromRole="Consultorios" ToRole="ConsultoriosTipos" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Consultorios" FromRole="Consultorios" ToRole="Citas" />
         </EntityType>
-        <Association Name="FK_Citas_Consultorios">
-          <End Type="IcerpModel.Consultorios" Role="Consultorios" Multiplicity="0..1" />
-          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consultorios">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdConsultorio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DisponibilidadConsultorios_Consultorios">
           <End Type="IcerpModel.Consultorios" Role="Consultorios" Multiplicity="1" />
           <End Type="IcerpModel.DisponibilidadConsultorios" Role="DisponibilidadConsultorios" Multiplicity="*" />
@@ -2553,24 +2499,12 @@
           <Property Name="IdUsuarioRegistro" Type="Int32" Nullable="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdDerivado" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Pacientes" ToRole="Citas" />
           <NavigationProperty Name="CobroConsulta" Relationship="IcerpModel.FK_CobroConsulta_Pacientes" FromRole="Pacientes" ToRole="CobroConsulta" />
           <NavigationProperty Name="Derivado" Relationship="IcerpModel.FK_pacientes_drivado" FromRole="Pacientes" ToRole="Derivado" />
           <NavigationProperty Name="Turnos" Relationship="IcerpModel.FK_Pacientes_Turnos" FromRole="Pacientes" ToRole="Turnos" />
           <NavigationProperty Name="Tutores" Relationship="IcerpModel.FK_Pacientes_Tutores" FromRole="Pacientes" ToRole="Tutores" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Pacientes" ToRole="Citas" />
         </EntityType>
-        <Association Name="FK_Citas_Pacientes">
-          <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />
-          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pacientes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CobroConsulta_Pacientes">
           <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />
           <End Type="IcerpModel.CobroConsulta" Role="CobroConsulta" Multiplicity="*" />
@@ -2624,9 +2558,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ApMaterno" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApPaterno" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdTurno" Type="Int16" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Celular" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2635,7 +2569,6 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
           <NavigationProperty Name="CostosConsultasFijas" Relationship="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="CostosConsultasFijas" />
           <NavigationProperty Name="DisponibilidadPsicoterapeuta" Relationship="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="DisponibilidadPsicoterapeuta" />
           <NavigationProperty Name="HorarioPsicoterapeuta" Relationship="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="HorarioPsicoterapeuta" />
@@ -2645,19 +2578,8 @@
           <NavigationProperty Name="PsicoterapeutasTiposAreas" Relationship="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposAreas" />
           <NavigationProperty Name="PsicoterapeutasTiposPacientes" Relationship="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposPacientes" />
           <NavigationProperty Name="PsicoterapeutasTiposTrastornos" Relationship="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="PsicoterapeutasTiposTrastornos" />
+          <NavigationProperty Name="Citas" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Psicoterapeuta" ToRole="Citas" />
         </EntityType>
-        <Association Name="FK_Citas_Psicoterapeuta">
-          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
-          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Psicoterapeuta">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="IdTerapeuta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CostosConsultasFijas_Psicoterapeuta">
           <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
           <End Type="IcerpModel.CostosConsultasFijas" Role="CostosConsultasFijas" Multiplicity="*" />
@@ -2766,6 +2688,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdConsultorio" Type="Int32" Nullable="false" />
+          <Property Name="IdEstatus" Type="Int32" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <Property Name="Cuota" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="PagoTerapeuta" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FechaInicial" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaFinal" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdTerapeuta" Type="Int32" Nullable="false" />
+          <Property Name="NumSesion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Consultorios" Relationship="IcerpModel.FK_Citas_Consultorios" FromRole="Citas" ToRole="Consultorios" />
+          <NavigationProperty Name="EstatusCitas" Relationship="IcerpModel.FK_Citas_EstatusCitas" FromRole="Citas" ToRole="EstatusCitas" />
+          <NavigationProperty Name="Pacientes" Relationship="IcerpModel.FK_Citas_Pacientes" FromRole="Citas" ToRole="Pacientes" />
+          <NavigationProperty Name="Psicoterapeuta" Relationship="IcerpModel.FK_Citas_Psicoterapeuta" FromRole="Citas" ToRole="Psicoterapeuta" />
+          <NavigationProperty Name="CobroConsulta" Relationship="IcerpModel.FK_CobroConsulta_Citas" FromRole="Citas" ToRole="CobroConsulta" />
+        </EntityType>
+        <Association Name="FK_Citas_Consultorios">
+          <End Type="IcerpModel.Consultorios" Role="Consultorios" Multiplicity="1" />
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultorios">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="IdConsultorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_EstatusCitas">
+          <End Type="IcerpModel.EstatusCitas" Role="EstatusCitas" Multiplicity="1" />
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusCitas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="IdEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Pacientes">
+          <End Type="IcerpModel.Pacientes" Role="Pacientes" Multiplicity="1" />
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Psicoterapeuta">
+          <End Type="IcerpModel.Psicoterapeuta" Role="Psicoterapeuta" Multiplicity="1" />
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Psicoterapeuta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="IdTerapeuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CobroConsulta_Citas">
+          <End Type="IcerpModel.Citas" Role="Citas" Multiplicity="1" />
+          <End Type="IcerpModel.CobroConsulta" Role="CobroConsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CobroConsulta">
+              <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2814,21 +2816,6 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Citas">
-            <EntityTypeMapping TypeName="IcerpModel.Citas">
-              <MappingFragment StoreEntitySet="Citas">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IdConsultorio" ColumnName="IdConsultorio" />
-                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
-                <ScalarProperty Name="PagoTerapeuta" ColumnName="PagoTerapeuta" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="IdTerapeuta" ColumnName="IdTerapeuta" />
-                <ScalarProperty Name="NumSesion" ColumnName="NumSesion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3324,6 +3311,22 @@
                 <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
                 <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="IcerpModel.Citas">
+              <MappingFragment StoreEntitySet="Citas">
+                <ScalarProperty Name="NumSesion" ColumnName="NumSesion" />
+                <ScalarProperty Name="IdTerapeuta" ColumnName="IdTerapeuta" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="PagoTerapeuta" ColumnName="PagoTerapeuta" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdConsultorio" ColumnName="IdConsultorio" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

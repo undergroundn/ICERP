@@ -20,19 +20,20 @@ namespace Model
         }
     
         public int ID { get; set; }
-        public Nullable<int> IdConsultorio { get; set; }
-        public Nullable<int> IdEstatus { get; set; }
+        public int IdConsultorio { get; set; }
+        public int IdEstatus { get; set; }
         public int IdPaciente { get; set; }
         public decimal Cuota { get; set; }
         public Nullable<decimal> PagoTerapeuta { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public System.DateTime FechaInicial { get; set; }
+        public System.DateTime FechaFinal { get; set; }
         public int IdTerapeuta { get; set; }
-        public Nullable<int> NumSesion { get; set; }
+        public int NumSesion { get; set; }
     
-        public virtual EstatusCitas EstatusCitas { get; set; }
-        public virtual ICollection<CobroConsulta> CobroConsulta { get; set; }
         public virtual Consultorios Consultorios { get; set; }
+        public virtual EstatusCitas EstatusCitas { get; set; }
         public virtual Pacientes Pacientes { get; set; }
         public virtual Psicoterapeuta Psicoterapeuta { get; set; }
+        public virtual ICollection<CobroConsulta> CobroConsulta { get; set; }
     }
 }

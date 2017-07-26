@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="IcerpModel.CatMunicipio" Width="1.5" PointX="17.25" PointY="17.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.CatPais" Width="1.5" PointX="12.75" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.CatRoles" Width="1.5" PointX="13.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IcerpModel.Citas" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.CobroConsulta" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.CostosConsultasFijas" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="IcerpModel.DatosGeneralesES" Width="1.5" PointX="24" PointY="17" IsExpanded="true" />
@@ -40,8 +39,6 @@
         <AssociationConnector Association="IcerpModel.FK_DomicilioES_CatColonia" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_CatEstado_CatEstado" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_CatMunicipio_CatEstado" ManuallyRouted="false" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_EstatusCitas" ManuallyRouted="false" />
-        <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Citas" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_CobroConsulta_TipoPago" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_DatosGeneralesES_DomicilioES" ManuallyRouted="false" />
         <AssociationConnector Association="IcerpModel.FK_EstudioSocioeconomico_DatosGeneralesES" ManuallyRouted="false" />
@@ -61,7 +58,6 @@
         <EntityTypeShape EntityType="IcerpModel.MenuUsuario" Width="1.5" PointX="21.25" PointY="6.75" />
         <AssociationConnector Association="IcerpModel.FK_MenuUsuario_Menu" />
         <EntityTypeShape EntityType="IcerpModel.Consultorios" Width="1.5" PointX="6" PointY="16.875" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Consultorios" />
         <AssociationConnector Association="IcerpModel.FK_DisponibilidadConsultorios_Consultorios" />
         <EntityTypeShape EntityType="IcerpModel.TipoConsultorio" Width="1.5" PointX="9" PointY="26.375" />
         <EntityTypeShape EntityType="IcerpModel.ConsultoriosTipos" Width="1.5" PointX="11.25" PointY="21.5" />
@@ -85,13 +81,11 @@
         <EntityTypeShape EntityType="IcerpModel.Turnos" Width="1.5" PointX="0.75" PointY="9.875" />
         <EntityTypeShape EntityType="IcerpModel.Derivado" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="IcerpModel.Pacientes" Width="1.5" PointX="13.625" PointY="6.75" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
         <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Pacientes" />
         <AssociationConnector Association="IcerpModel.FK_pacientes_drivado" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Tutores" />
         <EntityTypeShape EntityType="IcerpModel.Psicoterapeuta" Width="1.5" PointX="5.625" PointY="3.75" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" />
@@ -101,6 +95,12 @@
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" />
+        <EntityTypeShape EntityType="IcerpModel.Citas" Width="1.5" PointX="23.875" PointY="7.75" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Consultorios" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_EstatusCitas" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
+        <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Citas" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
