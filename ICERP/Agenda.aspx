@@ -187,8 +187,12 @@
 
                     if (start.hasTime() || end.hasTime()) {
 
-                        alert(start.format("DD/MM/YYYY HH:mm"));
+                        //alert(start.format("DD/MM/YYYY HH:mm") + " - " + end.format("DD/MM/YYYY HH:mm"));
+                        $("#tituloModal").text("Agendar Cita");
+                        $("#mdlAdminCita").modal("show");
                     }
+
+                    $('#calendar').fullCalendar('unselect');
 
                     //var title = prompt('Event Title:');
                     //var eventData;
@@ -202,7 +206,7 @@
                     //}
                     //$('#calendar').fullCalendar('unselect');
                 },
-                eventClick: function(calEvent, jsEvent, view) {
+                eventClick: function (calEvent, jsEvent, view) {
 
                     alert('Event: ' + calEvent.title);
                     //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -293,4 +297,60 @@
 
         </div>
     </section>
+
+    <div class="modal fade" id="mdlAdminCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 550px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title"><strong id="tituloModal"></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="sltPaciente" class="col-sm-4 control-label">Paciente</label>
+                                <div class="col-sm-8" id="divSltPaciente">
+                                    <select class="form-control" id="sltPaciente">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sltTerapeuta" class="col-sm-4 control-label">Psicoterapeuta</label>
+                                <div class="col-sm-8" id="divSltTerapeuta">
+                                    <select class="form-control" id="sltTerapeuta">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sltConsultorio" class="col-sm-4 control-label">Consultorio</label>
+                                <div class="col-sm-8" id="divSltConsultorio">
+                                    <select class="form-control" id="sltConsultorio">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtCuota" class="col-sm-4 control-label">Cuota</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control validate[required]" id="txtCuota" placeholder="Cuota" maxlength="100" validgroup="editarTerapeuta" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;Cerrar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnEditarTerapeuta">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;Actualizar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </asp:Content>
