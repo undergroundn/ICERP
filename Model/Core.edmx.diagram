@@ -85,7 +85,13 @@
         <AssociationConnector Association="IcerpModel.FK_pacientes_drivado" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Turnos" />
         <AssociationConnector Association="IcerpModel.FK_Pacientes_Tutores" />
-        <EntityTypeShape EntityType="IcerpModel.Psicoterapeuta" Width="1.5" PointX="5.625" PointY="3.75" />
+        <EntityTypeShape EntityType="IcerpModel.Citas" Width="1.5" PointX="23.875" PointY="7.75" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Consultorios" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_EstatusCitas" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
+        <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Citas" />
+        <EntityTypeShape EntityType="IcerpModel.Psicoterapeuta" Width="1.5" PointX="5.625" PointY="3.625" />
+        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_CostosConsultasFijas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_DisponibilidadPsicoterapeuta_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_HorarioPsicoterapeuta_Psicoterapeuta" />
@@ -95,12 +101,6 @@
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposAreas_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposPacientes_Psicoterapeuta" />
         <AssociationConnector Association="IcerpModel.FK_PsicoterapeutasTiposTrastornos_Psicoterapeuta" />
-        <EntityTypeShape EntityType="IcerpModel.Citas" Width="1.5" PointX="23.875" PointY="7.75" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Consultorios" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_EstatusCitas" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Pacientes" />
-        <AssociationConnector Association="IcerpModel.FK_Citas_Psicoterapeuta" />
-        <AssociationConnector Association="IcerpModel.FK_CobroConsulta_Citas" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,6 +16,7 @@ namespace Model
     {
         public Psicoterapeuta()
         {
+            this.Citas = new HashSet<Citas>();
             this.CostosConsultasFijas = new HashSet<CostosConsultasFijas>();
             this.DisponibilidadPsicoterapeuta = new HashSet<DisponibilidadPsicoterapeuta>();
             this.HorarioPsicoterapeuta = new HashSet<HorarioPsicoterapeuta>();
@@ -23,7 +24,6 @@ namespace Model
             this.PsicoterapeutasTiposAreas = new HashSet<PsicoterapeutasTiposAreas>();
             this.PsicoterapeutasTiposPacientes = new HashSet<PsicoterapeutasTiposPacientes>();
             this.PsicoterapeutasTiposTrastornos = new HashSet<PsicoterapeutasTiposTrastornos>();
-            this.Citas = new HashSet<Citas>();
         }
     
         public int ID { get; set; }
@@ -35,10 +35,12 @@ namespace Model
         public string Celular { get; set; }
         public Nullable<bool> Whatsapp { get; set; }
         public Nullable<short> IdTipoCuota { get; set; }
+        public Nullable<decimal> MontoCuota { get; set; }
         public bool Activo { get; set; }
         public System.DateTime FechaAlta { get; set; }
         public int IdUsuario { get; set; }
     
+        public virtual ICollection<Citas> Citas { get; set; }
         public virtual ICollection<CostosConsultasFijas> CostosConsultasFijas { get; set; }
         public virtual ICollection<DisponibilidadPsicoterapeuta> DisponibilidadPsicoterapeuta { get; set; }
         public virtual ICollection<HorarioPsicoterapeuta> HorarioPsicoterapeuta { get; set; }
@@ -48,6 +50,5 @@ namespace Model
         public virtual ICollection<PsicoterapeutasTiposAreas> PsicoterapeutasTiposAreas { get; set; }
         public virtual ICollection<PsicoterapeutasTiposPacientes> PsicoterapeutasTiposPacientes { get; set; }
         public virtual ICollection<PsicoterapeutasTiposTrastornos> PsicoterapeutasTiposTrastornos { get; set; }
-        public virtual ICollection<Citas> Citas { get; set; }
     }
 }

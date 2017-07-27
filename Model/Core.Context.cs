@@ -72,8 +72,8 @@ namespace Model
         public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<Derivado> Derivado { get; set; }
         public virtual DbSet<Pacientes> Pacientes { get; set; }
-        public virtual DbSet<Psicoterapeuta> Psicoterapeuta { get; set; }
         public virtual DbSet<Citas> Citas { get; set; }
+        public virtual DbSet<Psicoterapeuta> Psicoterapeuta { get; set; }
     
         public virtual ObjectResult<getCredencialesUsuario_Result> getCredencialesUsuario(string nombreUsuario, string pwd)
         {
